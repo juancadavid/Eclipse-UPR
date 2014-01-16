@@ -19,21 +19,21 @@ Marc-Florian Wendland
 <feature
       id="org.eclipse.upr.soaml.papyrus.feature"
       label="Eclipse UPR SoaML Implementation for Papyrus"
-      version="1.0.0.qualifier">
+      version="0.9.0.qualifier">
 
    <description>
-This feature integrates the Eclipse UPR SoaML implementation with Eclipse Papyrus.
+      This feature integrates the Eclipse UPR SoaML implementation with Eclipse Papyrus.
 For more information visit: 
 http://www.omg.org/spec/SoaML/
 http://www.eclipse.org/papyrus/
    </description>
 
    <copyright>
-   		%copyright
+      %copyright
    </copyright>
 
    <license url="%licenseURL">
-   		%license
+      %license
    </license>
 
    <plugin

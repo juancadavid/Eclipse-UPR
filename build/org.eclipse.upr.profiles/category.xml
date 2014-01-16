@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/org.eclipse.upr.soaml.feature_1.0.0.qualifier.jar" id="org.eclipse.upr.soaml.feature" version="1.0.0.qualifier">
+   <feature url="features/org.eclipse.upr.soaml.feature_0.9.0.qualifier.jar" id="org.eclipse.upr.soaml.feature" version="0.9.0.qualifier">
       <category name="profiles"/>
    </feature>
-   <feature url="features/org.eclipse.upr.soaml.papyrus.feature_1.0.0.qualifier.jar" id="org.eclipse.upr.soaml.papyrus.feature" version="1.0.0.qualifier">
+   <feature url="features/org.eclipse.upr.soaml.papyrus.feature_0.9.0.qualifier.jar" id="org.eclipse.upr.soaml.papyrus.feature" version="0.9.0.qualifier">
       <category name="profiles_papyrus"/>
    </feature>
-   <feature url="features/org.eclipse.upr.utp.feature_1.0.0.qualifier.jar" id="org.eclipse.upr.utp.feature" version="1.0.0.qualifier">
+   <feature url="features/org.eclipse.upr.utp.feature_0.9.0.qualifier.jar" id="org.eclipse.upr.utp.feature" version="0.9.0.qualifier">
       <category name="profiles"/>
    </feature>
-   <feature url="features/org.eclipse.upr.utp.papyrus.feature_1.0.0.qualifier.jar" id="org.eclipse.upr.utp.papyrus.feature" version="1.0.0.qualifier">
+   <feature url="features/org.eclipse.upr.utp.papyrus.feature_0.9.0.qualifier.jar" id="org.eclipse.upr.utp.papyrus.feature" version="0.9.0.qualifier">
       <category name="profiles_papyrus"/>
    </feature>
-   <feature url="features/org.eclipse.upr.depl.feature_1.0.0.qualifier.jar" id="org.eclipse.upr.depl.feature" version="1.0.0.qualifier">
+   <feature url="features/org.eclipse.upr.depl.feature_0.9.0.qualifier.jar" id="org.eclipse.upr.depl.feature" version="0.9.0.qualifier">
       <category name="profiles"/>
    </feature>
-   <feature url="features/org.eclipse.upr.depl.papyrus.feature_1.0.0.qualifier.jar" id="org.eclipse.upr.depl.papyrus.feature" version="1.0.0.qualifier">
+   <feature url="features/org.eclipse.upr.depl.papyrus.feature_0.9.0.qualifier.jar" id="org.eclipse.upr.depl.papyrus.feature" version="0.9.0.qualifier">
       <category name="profiles_papyrus"/>
    </feature>
    <category-def name="profiles" label="OMG Profiles"/>

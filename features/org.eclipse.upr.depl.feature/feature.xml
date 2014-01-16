@@ -19,11 +19,11 @@ Marc-Florian Wendland
 <feature
       id="org.eclipse.upr.depl.feature"
       label="Eclipse UPR DEPL 4.0 UML Profile Implementation"
-      version="1.0.0.qualifier"
+      version="0.9.0.qualifier"
       provider-name="Fraunhofer FOKUS">
 
    <description>
-Implementation of the UML profile defined in the OMG standard
+      Implementation of the UML profile defined in the OMG standard
 &quot;Deployment and Configuration of
 Component-based Distributed Applications (DEPL)&quot; in Version 4.0.
 For more information visit: 
@@ -46,7 +46,7 @@ http://www.omg.org/spec/DEPL/
       <import plugin="org.eclipse.ocl.examples.codegen"/>
       <import plugin="org.eclipse.emf.ecore.xmi"/>
       <import plugin="org.eclipse.uml2.types"/>
-      <import plugin="org.eclipse.uml2.uml" version="4.0.0" match="greaterOrEqual"/>      
+      <import plugin="org.eclipse.uml2.uml" version="4.0.0" match="greaterOrEqual"/>
    </requires>
 
    <plugin

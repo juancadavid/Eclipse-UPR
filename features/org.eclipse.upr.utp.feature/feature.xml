@@ -19,11 +19,11 @@ Marc-Florian Wendland
 <feature
       id="org.eclipse.upr.utp.feature"
       label="Eclipse UPR UTP 1.2 Implementation"
-      version="1.0.0.qualifier"
+      version="0.9.0.qualifier"
       provider-name="Fraunhofer FOKUS">
 
    <description>
-Implementation of the UML Testing Profile version 1.2.
+      Implementation of the UML Testing Profile version 1.2.
 The UML Testing Profile is a standardized language based on OMG’s Unified Modeling Language (UML) for designing,
 visualizing, specifying, analyzing, constructing, and documenting the artifacts commonly used in and required for various
 testing approaches, in particular model-based testing (MBT) approaches. Model-based test specifications expressed with
@@ -33,11 +33,11 @@ http://utp.omg.org/
    </description>
 
    <copyright>
-   		%copyright
+      %copyright
    </copyright>
 
    <license url="%licenseURL">
-   		%license
+      %license
    </license>
 
    <requires>
