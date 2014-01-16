@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.papyrus.uml.extensionpoints.UMLProfile">
+      <profile
+            name="SoaML"
+            path="pathmap://SOAML/soaml.profile.uml"
+            provider="Fraunhofer FOKUS">
+      </profile>
+   </extension>
+
+</plugin>

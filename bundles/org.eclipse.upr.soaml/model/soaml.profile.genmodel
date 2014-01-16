@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/uml2/2.2.0/GenModel"
+    copyrightText="Copyright (c) 2014 Fraunhofer FOKUS&#xD;&#xA;All rights reserved. This program and the accompanying materials&#xD;&#xA;are made available under the terms of the Eclipse Public License v1.0&#xD;&#xA;which accompanies this distribution, and is available at&#xD;&#xA;http://www.eclipse.org/legal/epl-v10.html&#xD;&#xA;&#xD;&#xA;Contributors:&#xD;&#xA;Marc-Florian Wendland"
+    modelDirectory="/org.eclipse.upr.soaml/src" editDirectory="/org.eclipse.upr.soaml.edit/src"
+    modelPluginID="org.eclipse.upr.soaml" modelName="SoaML" importerID="org.eclipse.uml2.uml.ecore.importer"
+    complianceLevel="6.0" copyrightFields="false" editPluginID="org.eclipse.upr.soaml.edit"
+    usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml platform:/plugin/org.eclipse.uml2.types/model/Types.genmodel#//types"
+    factoryMethods="true" pluralizedGetters="true" cacheAdapterSupport="true">
+  <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/importer/org.eclipse.uml2.uml.ecore.importer">
+    <details key="ECORE_TAGGED_VALUES" value="PROCESS"/>
+    <details key="UNION_PROPERTIES" value="PROCESS"/>
+    <details key="DUPLICATE_FEATURES" value="PROCESS"/>
+    <details key="SUBSETTING_PROPERTIES" value="PROCESS"/>
+    <details key="COMMENTS" value="PROCESS"/>
+    <details key="DUPLICATE_FEATURE_INHERITANCE" value="PROCESS"/>
+    <details key="DUPLICATE_OPERATIONS" value="PROCESS"/>
+    <details key="INVARIANT_CONSTRAINTS" value="PROCESS"/>
+    <details key="REDEFINING_PROPERTIES" value="PROCESS"/>
+    <details key="ANNOTATION_DETAILS" value="PROCESS"/>
+    <details key="DUPLICATE_OPERATION_INHERITANCE" value="PROCESS"/>
+    <details key="REDEFINING_OPERATIONS" value="PROCESS"/>
+    <details key="DERIVED_FEATURES" value="PROCESS"/>
+    <details key="OPERATION_BODIES" value="PROCESS"/>
+    <details key="CAMEL_CASE_NAMES" value="IGNORE"/>
+    <details key="SUPER_CLASS_ORDER" value="PROCESS"/>
+    <details key="VALIDATION_DELEGATES" value="IGNORE"/>
+    <details key="INVOCATION_DELEGATES" value="IGNORE"/>
+  </genAnnotations>
+  <foreignModel>soaml.profile.uml</foreignModel>
+  <genPackages xsi:type="genmodel:GenPackage" prefix="SoaML" basePackage="org.eclipse.upr"
+      resource="XMI" disposableProviderFactory="true" ecorePackage="soaml.ecore#/"
+      operationsPackage="">
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="soaml.ecore#//Collaboration">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference soaml.ecore#//Collaboration/base_Collaboration"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute soaml.ecore#//Collaboration/isStrict"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="soaml.ecore#//ServiceArchitecture"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="soaml.ecore#//ServiceContract"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="soaml.ecore#//CollaborationUse">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference soaml.ecore#//CollaborationUse/base_CollaborationUse"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute soaml.ecore#//CollaborationUse/isStrict"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="soaml.ecore#//Consumer">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference soaml.ecore#//Consumer/base_Interface"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference soaml.ecore#//Consumer/base_Class"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="soaml.ecore#//Provider">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference soaml.ecore#//Provider/base_Interface"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference soaml.ecore#//Provider/base_Class"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="soaml.ecore#//MotivationRealization">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference soaml.ecore#//MotivationRealization/base_Realization"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="soaml.ecore#//ServiceInterface">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference soaml.ecore#//ServiceInterface/base_Interface"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference soaml.ecore#//ServiceInterface/base_Class"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="soaml.ecore#//Participant">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference soaml.ecore#//Participant/base_Class"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="soaml.ecore#//Agent"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="soaml.ecore#//Port">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute soaml.ecore#//Port/connectorRequired"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference soaml.ecore#//Port/base_Port"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="soaml.ecore#//Request">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference soaml.ecore#//Request/base_Port"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="soaml.ecore#//Service">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference soaml.ecore#//Service/base_Port"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="soaml.ecore#//ServiceChannel">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference soaml.ecore#//ServiceChannel/base_Connector"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="soaml.ecore#//Property">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute soaml.ecore#//Property/isID"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference soaml.ecore#//Property/base_Property"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="soaml.ecore#//Attachment">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute soaml.ecore#//Attachment/encoding"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute soaml.ecore#//Attachment/mimeType"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference soaml.ecore#//Attachment/base_Property"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="soaml.ecore#//MessageType">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute soaml.ecore#//MessageType/encoding"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference soaml.ecore#//MessageType/base_Class"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference soaml.ecore#//MessageType/base_DataType"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference soaml.ecore#//MessageType/base_Signal"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="soaml.ecore#//Milestone">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute soaml.ecore#//Milestone/progress"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference soaml.ecore#//Milestone/value"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference soaml.ecore#//Milestone/signal"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference soaml.ecore#//Milestone/base_Comment"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="soaml.ecore#//Capability">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference soaml.ecore#//Capability/base_Class"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="soaml.ecore#//Expose">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference soaml.ecore#//Expose/base_Dependency"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="soaml.ecore#//NodeDescriptor">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference soaml.ecore#//NodeDescriptor/base_Artifact"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="soaml.ecore#//Catalog">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference soaml.ecore#//Catalog/base_Package"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="soaml.ecore#//Category"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="soaml.ecore#//FreeFormDescriptor">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference soaml.ecore#//FreeFormDescriptor/base_Property"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="soaml.ecore#//FreeFormValue">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference soaml.ecore#//FreeFormValue/base_ValueSpecification"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="soaml.ecore#//CategoryValue"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="soaml.ecore#//Categorization">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference soaml.ecore#//Categorization/base_Dependency"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

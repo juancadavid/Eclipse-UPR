@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ <copyright>
+
+Copyright (c) 2014 Fraunhofer FOKUS
+All rights reserved. This program and the accompanying materials
+are made available under the terms of the Eclipse Public License v1.0
+which accompanies this distribution, and is available at
+http://www.eclipse.org/legal/epl-v10.html
+
+Contributors:
+Max Bureck
+Marc-Florian Wendland
+
+ </copyright>
+
+ $Id$
+-->
+<feature
+      id="org.eclipse.upr.utp.feature"
+      label="Eclipse UPR UTP 1.2 Implementation"
+      version="1.0.0.qualifier"
+      provider-name="Fraunhofer FOKUS">
+
+   <description>
+Implementation of the UML Testing Profile version 1.2.
+The UML Testing Profile is a standardized language based on OMG’s Unified Modeling Language (UML) for designing,
+visualizing, specifying, analyzing, constructing, and documenting the artifacts commonly used in and required for various
+testing approaches, in particular model-based testing (MBT) approaches. Model-based test specifications expressed with
+the UML Testing Profile are independent to any methodology, domain, or type of system.
+For more information visit:
+http://utp.omg.org/
+   </description>
+
+   <copyright>
+   		%copyright
+   </copyright>
+
+   <license url="%licenseURL">
+   		%license
+   </license>
+
+   <requires>
+      <import plugin="org.eclipse.core.runtime"/>
+      <import plugin="org.eclipse.emf.ecore"/>
+      <import plugin="org.eclipse.emf.ecore.xmi"/>
+      <import plugin="org.eclipse.uml2.types"/>
+      <import plugin="org.eclipse.uml2.common"/>
+      <import plugin="org.eclipse.uml2.uml" version="4.0.0" match="greaterOrEqual"/>
+   </requires>
+
+   <plugin
+         id="org.eclipse.upr.utp"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated utp.profile -->
+      <package
+            uri="http://www.omg.org/spec/UTP/20120801/utp.xmi"
+            class="org.eclipse.upr.utp.UTPPackage"
+            genModel="model/utp.profile.genmodel"/>
+   </extension>
+
+   <extension
+         point="org.eclipse.emf.ecore.extension_parser">
+      <parser
+            class="org.eclipse.upr.utp.util.UTPResourceFactoryImpl"
+            type="UTP">
+      </parser>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated utptypes -->
+      <package
+            uri="http://www.omg.org/spec/UTP/20120801/utptypes.xmi"
+            class="org.eclipse.upr.utptypes.UTPLibPackage"
+            genModel="model/utptypes.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated utptypes -->
+      <parser
+            type="utplib"
+            class="org.eclipse.upr.utptypes.util.UTPLibResourceFactoryImpl"/>
+   </extension>
+</plugin>

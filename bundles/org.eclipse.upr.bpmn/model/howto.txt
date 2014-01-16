@@ -1,0 +1,43 @@
+Currently this project is under development. This document describes a general workflow and will
+point out where the solution is currently incomplete and needs further work.
+
+The following workflow has used to create the profile and generate EMF source code for the static profile:
+
+1. The original OMG model BPMNProfile.xmi has to be copied to file BPMNProfile_modified.uml.
+   The copied model has to be modified to work correctly as input for EMF to be used as EMF meta model. 
+   Also the derived properties have do be specified via OCL expressions according to the specification 
+   in a way the Eclipse OCL project supports (via EAnnotations). Constraints that cannot be expressed 
+   via OCL, code for derived properties has to be written in Java in the generated Java sources.
+
+The modifications to the model are at the current state incomplete. The following chances have already been done:
+
+The structureRef properties of the following classes have been modified.
+The was typed with uml::Class and 
+EAnnotation(source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"){ derivation->self.base_Class }
+was added to the property
+
+* BPMNProfile::CoreStructure::Common::Events::Escalation
+* BPMNProfile::CoreStructure::Common::Events::BPMNSignal
+* BPMNProfile::CoreStructure::Common::Events::Error
+
+The structureRef property of the following class were modified by adding 
+the EAnnotaion defined above above:
+BPMNProfile::CoreStructure::Common::ItemDefinition
+
+2. Define a file "bpmn.uml" containing a profile that merges all packages from the modified profile from the OMG standard.
+   Annotate the profile with the EPackage stereotype from the Ecore UML profile and set 
+   * nsURI to http://www.omg.org/spec/BPMNProfile/20121112/BPMNProfile.xmi
+   * base package to "org.eclipse.upr" 
+   * package name to "bpmn"
+   
+3. Copy that file and save under name "bpmn.profile.uml". In this file we actually replace the package merge declaration
+   by actual copies of the merged packages. This can be done using the standard Eclipse UML model tree editor, via main menu entry
+   UML Editor -> Package -> Merge ...
+   
+Unfortunately this does not work currently. There are several reasons for this. For one many UML elements that need to be merged
+do not have it's "name" property set (e.g. Associations). Another problem seems to be that packages are being merged that nest each other.
+
+4. Create a GenModel from file "bpmn.profile.uml", loading this model as a meta model.
+   Set copyright text on root element and add EAnnotation to root element, so that the OCL expressions get compiled to Java source code.
+   
+This was not done yet, since the package merge does not work.

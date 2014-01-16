@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/uml2/2.2.0/GenModel"
+    copyrightText="Copyright (c) 2014 Fraunhofer FOKUS&#xD;&#xA;All rights reserved. This program and the accompanying materials&#xD;&#xA;are made available under the terms of the Eclipse Public License v1.0&#xD;&#xA;which accompanies this distribution, and is available at&#xD;&#xA;http://www.eclipse.org/legal/epl-v10.html&#xD;&#xA;&#xD;&#xA;Contributors:&#xD;&#xA;Max Bureck&#xD;&#xA;Marc-Florian Wendland"
+    modelDirectory="/org.eclipse.upr.depl/src" modelPluginID="org.eclipse.upr.depl"
+    modelName="Depl" importerID="org.eclipse.uml2.uml.ecore.importer" complianceLevel="5.0"
+    copyrightFields="false" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml platform:/plugin/org.eclipse.uml2.types/model/Types.genmodel#//types">
+  <genAnnotations source="http://www.eclipse.org/OCL/GenModel">
+    <details key="Use Delegates" value="false"/>
+  </genAnnotations>
+  <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/importer/org.eclipse.uml2.uml.ecore.importer">
+    <details key="ECORE_TAGGED_VALUES" value="PROCESS"/>
+    <details key="UNION_PROPERTIES" value="REPORT"/>
+    <details key="DUPLICATE_FEATURES" value="DISCARD"/>
+    <details key="SUBSETTING_PROPERTIES" value="REPORT"/>
+    <details key="COMMENTS" value="PROCESS"/>
+    <details key="DUPLICATE_FEATURE_INHERITANCE" value="DISCARD"/>
+    <details key="DUPLICATE_OPERATIONS" value="DISCARD"/>
+    <details key="INVARIANT_CONSTRAINTS" value="PROCESS"/>
+    <details key="REDEFINING_PROPERTIES" value="REPORT"/>
+    <details key="ANNOTATION_DETAILS" value="PROCESS"/>
+    <details key="DUPLICATE_OPERATION_INHERITANCE" value="DISCARD"/>
+    <details key="REDEFINING_OPERATIONS" value="REPORT"/>
+    <details key="DERIVED_FEATURES" value="PROCESS"/>
+    <details key="OPERATION_BODIES" value="IGNORE"/>
+    <details key="CAMEL_CASE_NAMES" value="IGNORE"/>
+    <details key="SUPER_CLASS_ORDER" value="PROCESS"/>
+    <details key="VALIDATION_DELEGATES" value="IGNORE"/>
+    <details key="INVOCATION_DELEGATES" value="IGNORE"/>
+  </genAnnotations>
+  <foreignModel>depl.profile.uml</foreignModel>
+  <genPackages xsi:type="genmodel:GenPackage" prefix="UMLProfileForDC" disposableProviderFactory="true"
+      fileExtensions="omgdc" ecorePackage="UMLProfileForDC.ecore#/">
+    <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="Components" basePackage="org.eclipse.upr.depl"
+        resource="XML" disposableProviderFactory="true" ecorePackage="UMLProfileForDC.ecore#//components">
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="UMLProfileForDC.ecore#//components/Component">
+        <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+            propertySortChoices="true" ecoreFeature="ecore:EReference UMLProfileForDC.ecore#//components/Component/base_Component"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference UMLProfileForDC.ecore#//components/Component/ownedPort"/>
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute UMLProfileForDC.ecore#//components/Component/label"/>
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute UMLProfileForDC.ecore#//components/Component/UUID"/>
+        <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+            propertySortChoices="true" ecoreFeature="ecore:EReference UMLProfileForDC.ecore#//components/Component/implementation"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference UMLProfileForDC.ecore#//components/Component/configProperty"/>
+      </genClasses>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="UMLProfileForDC.ecore#//components/Port">
+        <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+            propertySortChoices="true" ecoreFeature="ecore:EReference UMLProfileForDC.ecore#//components/Port/base_Port"/>
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute UMLProfileForDC.ecore#//components/Port/name"/>
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute UMLProfileForDC.ecore#//components/Port/UUID"/>
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute UMLProfileForDC.ecore#//components/Port/supportedType"/>
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute UMLProfileForDC.ecore#//components/Port/provider"/>
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute UMLProfileForDC.ecore#//components/Port/exclusiveProvider"/>
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute UMLProfileForDC.ecore#//components/Port/exclusiveUser"/>
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute UMLProfileForDC.ecore#//components/Port/optional"/>
+      </genClasses>
+      <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="UMLProfileForDC.ecore#//components/ComponentImplementation">
+        <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+            propertySortChoices="true" ecoreFeature="ecore:EReference UMLProfileForDC.ecore#//components/ComponentImplementation/base_Class"/>
+        <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+            propertySortChoices="true" ecoreFeature="ecore:EReference UMLProfileForDC.ecore#//components/ComponentImplementation/capability"/>
+        <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+            propertySortChoices="true" ecoreFeature="ecore:EReference UMLProfileForDC.ecore#//components/ComponentImplementation/deployRequirement"/>
+      </genClasses>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="UMLProfileForDC.ecore#//components/Capability">
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute UMLProfileForDC.ecore#//components/Capability/name"/>
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute UMLProfileForDC.ecore#//components/Capability/resourceType"/>
+      </genClasses>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="UMLProfileForDC.ecore#//components/Requirement">
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute UMLProfileForDC.ecore#//components/Requirement/resourceType"/>
+        <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+            propertySortChoices="true" ecoreFeature="ecore:EReference UMLProfileForDC.ecore#//components/Requirement/properties"/>
+      </genClasses>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="UMLProfileForDC.ecore#//components/Property">
+        <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+            propertySortChoices="true" ecoreFeature="ecore:EReference UMLProfileForDC.ecore#//components/Property/base_Property"/>
+      </genClasses>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="UMLProfileForDC.ecore#//components/ComponentAssembly">
+        <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+            propertySortChoices="true" ecoreFeature="ecore:EReference UMLProfileForDC.ecore#//components/ComponentAssembly/containedComponent"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference UMLProfileForDC.ecore#//components/ComponentAssembly/ownedPropertyConnector"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="Readonly" notify="false"
+            createChild="false" ecoreFeature="ecore:EReference UMLProfileForDC.ecore#//components/ComponentAssembly/assemblyProperty"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="Readonly" notify="false"
+            createChild="false" ecoreFeature="ecore:EReference UMLProfileForDC.ecore#//components/ComponentAssembly/externalPort"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference UMLProfileForDC.ecore#//components/ComponentAssembly/ownedPortConnector"/>
+      </genClasses>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="UMLProfileForDC.ecore#//components/PropertyConnector">
+        <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+            propertySortChoices="true" ecoreFeature="ecore:EReference UMLProfileForDC.ecore#//components/PropertyConnector/base_Connector"/>
+        <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+            propertySortChoices="true" ecoreFeature="ecore:EReference UMLProfileForDC.ecore#//components/PropertyConnector/connectedProperty"/>
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute UMLProfileForDC.ecore#//components/PropertyConnector/label"/>
+      </genClasses>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="UMLProfileForDC.ecore#//components/PortConnector">
+        <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+            propertySortChoices="true" ecoreFeature="ecore:EReference UMLProfileForDC.ecore#//components/PortConnector/base_Connector"/>
+        <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+            propertySortChoices="true" ecoreFeature="ecore:EReference UMLProfileForDC.ecore#//components/PortConnector/connectedPort"/>
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute UMLProfileForDC.ecore#//components/PortConnector/label"/>
+        <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+            propertySortChoices="true" ecoreFeature="ecore:EReference UMLProfileForDC.ecore#//components/PortConnector/externalReference"/>
+      </genClasses>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="UMLProfileForDC.ecore#//components/ExternalReference">
+        <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+            propertySortChoices="true" ecoreFeature="ecore:EReference UMLProfileForDC.ecore#//components/ExternalReference/base_ConnectableElement"/>
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute UMLProfileForDC.ecore#//components/ExternalReference/location"/>
+      </genClasses>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="UMLProfileForDC.ecore#//components/MonolithicImplementation"/>
+    </nestedGenPackages>
+    <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="Target" basePackage="org.eclipse.upr.depl"
+        resource="XML" disposableProviderFactory="true" ecorePackage="UMLProfileForDC.ecore#//target">
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="UMLProfileForDC.ecore#//target/Domain">
+        <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+            propertySortChoices="true" ecoreFeature="ecore:EReference UMLProfileForDC.ecore#//target/Domain/base_Class"/>
+        <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+            propertySortChoices="true" ecoreFeature="ecore:EReference UMLProfileForDC.ecore#//target/Domain/containedCommunicationPath"/>
+        <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+            propertySortChoices="true" ecoreFeature="ecore:EReference UMLProfileForDC.ecore#//target/Domain/containedNode"/>
+        <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+            propertySortChoices="true" ecoreFeature="ecore:EReference UMLProfileForDC.ecore#//target/Domain/domainResource"/>
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute UMLProfileForDC.ecore#//target/Domain/label"/>
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute UMLProfileForDC.ecore#//target/Domain/UUID"/>
+      </genClasses>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="UMLProfileForDC.ecore#//target/CommunicationPath">
+        <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+            propertySortChoices="true" ecoreFeature="ecore:EReference UMLProfileForDC.ecore#//target/CommunicationPath/base_CommunicationPath"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference UMLProfileForDC.ecore#//target/CommunicationPath/interconnect"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference UMLProfileForDC.ecore#//target/CommunicationPath/bridge"/>
+        <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+            propertySortChoices="true" ecoreFeature="ecore:EReference UMLProfileForDC.ecore#//target/CommunicationPath/connectedNode"/>
+      </genClasses>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="UMLProfileForDC.ecore#//target/Interconnect">
+        <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+            propertySortChoices="true" ecoreFeature="ecore:EReference UMLProfileForDC.ecore#//target/Interconnect/base_AssociationClass"/>
+        <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+            propertySortChoices="true" ecoreFeature="ecore:EReference UMLProfileForDC.ecore#//target/Interconnect/bridge"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference UMLProfileForDC.ecore#//target/Interconnect/ownedResource"/>
+        <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+            propertySortChoices="true" ecoreFeature="ecore:EReference UMLProfileForDC.ecore#//target/Interconnect/connectedNode"/>
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute UMLProfileForDC.ecore#//target/Interconnect/name"/>
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute UMLProfileForDC.ecore#//target/Interconnect/label"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" notify="false"
+            createChild="false" ecoreFeature="ecore:EReference UMLProfileForDC.ecore#//target/Interconnect/communicationPath"/>
+      </genClasses>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="UMLProfileForDC.ecore#//target/Bridge">
+        <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+            propertySortChoices="true" ecoreFeature="ecore:EReference UMLProfileForDC.ecore#//target/Bridge/base_AssociationClass"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference UMLProfileForDC.ecore#//target/Bridge/ownedResource"/>
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute UMLProfileForDC.ecore#//target/Bridge/name"/>
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute UMLProfileForDC.ecore#//target/Bridge/label"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" notify="false"
+            createChild="false" ecoreFeature="ecore:EReference UMLProfileForDC.ecore#//target/Bridge/communicationPath"/>
+        <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+            propertySortChoices="true" ecoreFeature="ecore:EReference UMLProfileForDC.ecore#//target/Bridge/interconnect"/>
+      </genClasses>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="UMLProfileForDC.ecore#//target/Resource">
+        <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+            propertySortChoices="true" ecoreFeature="ecore:EReference UMLProfileForDC.ecore#//target/Resource/base_Class"/>
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute UMLProfileForDC.ecore#//target/Resource/name"/>
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute UMLProfileForDC.ecore#//target/Resource/resourceType"/>
+      </genClasses>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="UMLProfileForDC.ecore#//target/Node">
+        <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+            propertySortChoices="true" ecoreFeature="ecore:EReference UMLProfileForDC.ecore#//target/Node/base_Node"/>
+        <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+            propertySortChoices="true" ecoreFeature="ecore:EReference UMLProfileForDC.ecore#//target/Node/availableSharedResource"/>
+        <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+            propertySortChoices="true" ecoreFeature="ecore:EReference UMLProfileForDC.ecore#//target/Node/communicationPath"/>
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute UMLProfileForDC.ecore#//target/Node/name"/>
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute UMLProfileForDC.ecore#//target/Node/label"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference UMLProfileForDC.ecore#//target/Node/ownedResource"/>
+        <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+            propertySortChoices="true" ecoreFeature="ecore:EReference UMLProfileForDC.ecore#//target/Node/nodeConnector"/>
+      </genClasses>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="UMLProfileForDC.ecore#//target/SharedResource">
+        <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+            propertySortChoices="true" ecoreFeature="ecore:EReference UMLProfileForDC.ecore#//target/SharedResource/resourceUser"/>
+      </genClasses>
+    </nestedGenPackages>
+  </genPackages>
+</genmodel:GenModel>

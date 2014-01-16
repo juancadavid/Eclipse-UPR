@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+
+Copyright (c) 2014 Fraunhofer FOKUS
+All rights reserved. This program and the accompanying materials
+are made available under the terms of the Eclipse Public License v1.0
+which accompanies this distribution, and is available at
+http://www.eclipse.org/legal/epl-v10.html
+
+Contributors:
+Max Bureck
+Marc-Florian Wendland
+
+ </copyright>
+
+ $Id$
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://www.omg.org/spec/DEPL/4.0/profile/components/1.0"
+            class="org.eclipse.upr.depl.components.ComponentsPackage"
+            genModel="model/depl.profile.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <parser
+            type="components"
+            class="org.eclipse.upr.depl.components.util.ComponentsResourceFactoryImpl"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://www.omg.org/spec/DEPL/4.0/profile/target/1.0"
+            class="org.eclipse.upr.depl.target.TargetPackage"
+            genModel="model/depl.profile.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <parser
+            type="target"
+            class="org.eclipse.upr.depl.target.util.TargetResourceFactoryImpl"/>
+   </extension>
+   <extension
+         point="org.eclipse.uml2.uml.generated_package">
+      <profile
+            location="platform:/plugin/org.eclipse.upr.depl/model/depl.profile.uml#_7TRQ0DztEeGa_u5A69AAkQ"
+            uri="http://www.omg.org/spec/DEPL/4.0/profile/components/1.0">
+      </profile>
+   </extension>
+   <extension
+         point="org.eclipse.uml2.uml.generated_package">
+      <profile
+            location="platform:/plugin/org.eclipse.upr.depl/model/depl.profile.uml#_F7S_cDzuEeGa_u5A69AAkQ"
+            uri="http://www.omg.org/spec/DEPL/4.0/profile/target/1.0">
+      </profile>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecore.uri_mapping">
+      <mapping
+            source="pathmap://DEPL/"
+            target="platform:/plugin/org.eclipse.upr.depl/model/">
+      </mapping>
+   </extension>
+
+</plugin>

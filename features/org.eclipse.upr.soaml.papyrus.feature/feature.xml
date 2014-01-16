@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ <copyright>
+
+Copyright (c) 2014 Fraunhofer FOKUS
+All rights reserved. This program and the accompanying materials
+are made available under the terms of the Eclipse Public License v1.0
+which accompanies this distribution, and is available at
+http://www.eclipse.org/legal/epl-v10.html
+
+Contributors:
+Max Bureck
+Marc-Florian Wendland
+
+ </copyright>
+
+ $Id$
+-->
+<feature
+      id="org.eclipse.upr.soaml.papyrus.feature"
+      label="Eclipse UPR SoaML Implementation for Papyrus"
+      version="1.0.0.qualifier">
+
+   <description>
+This feature integrates the Eclipse UPR SoaML implementation with Eclipse Papyrus.
+For more information visit: 
+http://www.omg.org/spec/SoaML/
+http://www.eclipse.org/papyrus/
+   </description>
+
+   <copyright>
+   		%copyright
+   </copyright>
+
+   <license url="%licenseURL">
+   		%license
+   </license>
+
+   <plugin
+         id="org.eclipse.upr.soaml.papyrus"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>

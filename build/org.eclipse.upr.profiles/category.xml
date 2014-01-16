@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/org.eclipse.upr.soaml.feature_1.0.0.qualifier.jar" id="org.eclipse.upr.soaml.feature" version="1.0.0.qualifier">
+      <category name="profiles"/>
+   </feature>
+   <feature url="features/org.eclipse.upr.soaml.papyrus.feature_1.0.0.qualifier.jar" id="org.eclipse.upr.soaml.papyrus.feature" version="1.0.0.qualifier">
+      <category name="profiles_papyrus"/>
+   </feature>
+   <feature url="features/org.eclipse.upr.utp.feature_1.0.0.qualifier.jar" id="org.eclipse.upr.utp.feature" version="1.0.0.qualifier">
+      <category name="profiles"/>
+   </feature>
+   <feature url="features/org.eclipse.upr.utp.papyrus.feature_1.0.0.qualifier.jar" id="org.eclipse.upr.utp.papyrus.feature" version="1.0.0.qualifier">
+      <category name="profiles_papyrus"/>
+   </feature>
+   <feature url="features/org.eclipse.upr.depl.feature_1.0.0.qualifier.jar" id="org.eclipse.upr.depl.feature" version="1.0.0.qualifier">
+      <category name="profiles"/>
+   </feature>
+   <feature url="features/org.eclipse.upr.depl.papyrus.feature_1.0.0.qualifier.jar" id="org.eclipse.upr.depl.papyrus.feature" version="1.0.0.qualifier">
+      <category name="profiles_papyrus"/>
+   </feature>
+   <category-def name="profiles" label="OMG Profiles"/>
+   <category-def name="profiles_papyrus" label="Profile Extensions for Papyrus"/>
+</site>

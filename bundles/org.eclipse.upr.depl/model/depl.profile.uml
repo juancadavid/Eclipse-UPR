@@ -1,0 +1,1072 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Documentation="http://Papyrus/schemas/Documentation/_vaU6gAEYEeCIz8iAxBJnfA/0" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/5" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xsi:schemaLocation="http://Papyrus/schemas/Documentation/_vaU6gAEYEeCIz8iAxBJnfA/0 pathmap://Papyrus.profile.uml#_vaU6ggEYEeCIz8iAxBJnfA http://www.eclipse.org/uml2/schemas/Ecore/5 pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA">
+  <uml:Profile xmi:id="_5MTkUDztEeGa_u5A69AAkQ" name="UMLProfileForD&amp;C" metamodelReference="_5MTkUTztEeGa_u5A69AAkQ">
+    <packageImport xmi:id="_5MTkUTztEeGa_u5A69AAkQ">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_METAMODELS/UML.metamodel.uml#_0"/>
+    </packageImport>
+    <packageImport xmi:id="_5MTkUjztEeGa_u5A69AAkQ">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Profile" xmi:id="_7TRQ0DztEeGa_u5A69AAkQ" name="Components" metaclassReference="_boDm0DzuEeGa_u5A69AAkQ _gv8tsDzuEeGa_u5A69AAkQ _rj4KUDzuEeGa_u5A69AAkQ _-CvSUDzuEeGa_u5A69AAkQ _HtfgYDzvEeGa_u5A69AAkQ _TZ2Z0DzvEeGa_u5A69AAkQ">
+      <eAnnotations xmi:id="_j9NzcEXMEeGg_5BLT7cI1A" source="http://www.eclipse.org/emf/2002/Ecore">
+        <details xmi:id="_mAWv4EXMEeGg_5BLT7cI1A" key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+        <details xmi:id="_su9gcEXNEeGg_5BLT7cI1A" key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+      </eAnnotations>
+      <elementImport xmi:id="_boDm0DzuEeGa_u5A69AAkQ" alias="Component">
+        <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Component"/>
+      </elementImport>
+      <elementImport xmi:id="_gv8tsDzuEeGa_u5A69AAkQ" alias="Port">
+        <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Port"/>
+      </elementImport>
+      <elementImport xmi:id="_rj4KUDzuEeGa_u5A69AAkQ" alias="Class">
+        <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
+      </elementImport>
+      <elementImport xmi:id="_-CvSUDzuEeGa_u5A69AAkQ" alias="ConnectableElement">
+        <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#ConnectableElement"/>
+      </elementImport>
+      <elementImport xmi:id="_HtfgYDzvEeGa_u5A69AAkQ" alias="Connector">
+        <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Connector"/>
+      </elementImport>
+      <elementImport xmi:id="_TZ2Z0DzvEeGa_u5A69AAkQ" alias="Property">
+        <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Property"/>
+      </elementImport>
+      <packageImport xmi:id="_vy6-UEWZEeGF4pqj1CPB9g">
+        <importedPackage xmi:type="uml:Model" href="pathmap://UML_METAMODELS/UML.metamodel.uml#_0"/>
+      </packageImport>
+      <packagedElement xmi:type="uml:Stereotype" xmi:id="_XDRNADzuEeGa_u5A69AAkQ" name="Component">
+        <ownedComment xmi:id="_4qJ1UDz0EeGa_u5A69AAkQ" annotatedElement="_XDRNADzuEeGa_u5A69AAkQ">
+          <body>The Component metaclass extends the UML Component metaclass (from UML2.0::Components). In UML 2.0, a&#xD;
+component is defined in terms of its set of ports and has references to its realizations.&#xD;
+The Component stereotype is defined as “required,” which means that every instance of the Component metaclass must&#xD;
+be associated with an instance of the Component stereotype.</body>
+        </ownedComment>
+        <ownedComment xmi:id="_0KFsAHhVEeOygooCHiEUzQ" annotatedElement="_XDRNADzuEeGa_u5A69AAkQ">
+          <body>Note: Definition. Component (from UML2.0::Components): A component represents a modular part of a system that&#xD;
+encapsulates its contents and whose manifestation is replaceable within its environment. A component defines its&#xD;
+behavior in terms of provided and required interfaces. As such, a component serves as a type, whose conformance is&#xD;
+defined by these provided and required interfaces (encompassing both their static as well as dynamic semantics). One&#xD;
+component may therefore be substituted by another only if the two are type conformant. Larger pieces of a system's&#xD;
+functionality may be assembled by reusing components as parts in an encompassing component or assembly of&#xD;
+components, and wiring together their required and provided interfaces. A component is modeled throughout the&#xD;
+development life cycle and successively refined into deployment and run-time. A component may be manifest by one or&#xD;
+more artifacts, and in turn, that artifact may be deployed to its execution environment. A deployment specification may&#xD;
+define values that parameterize the component’s execution.</body>
+        </ownedComment>
+        <ownedAttribute xmi:id="_dAmHEDzuEeGa_u5A69AAkQ" name="base_Component" association="_dAmHETzuEeGa_u5A69AAkQ">
+          <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Component"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_QoyDkDzzEeGa_u5A69AAkQ" name="ownedPort" type="_hhW8gDzuEeGa_u5A69AAkQ" aggregation="composite" association="_QoyqoDzzEeGa_u5A69AAkQ">
+          <ownedComment xmi:id="_qAAfoDz1EeGa_u5A69AAkQ" annotatedElement="_QoyDkDzzEeGa_u5A69AAkQ">
+            <body>Contains the set of ports of the component.These configuration properties are used to configure the component once&#xD;
+instantiated. This allows the definition of configuration properties in a package regardless of which implementation is&#xD;
+chosen. ownedPort is a renaming of the ownedPort association of Component (inherited from&#xD;
+UML2.0::CompositeStructures::Ports::EncapsulatedClassifier).&#xD;
+&#xD;
+Note: Definition. Component (from UML2.0::Components): A component represents a modular part of a system that&#xD;
+encapsulates its contents and whose manifestation is replaceable within its environment. A component defines its&#xD;
+behavior in terms of provided and required interfaces. As such, a component serves as a type, whose conformance is&#xD;
+defined by these provided and required interfaces (encompassing both their static as well as dynamic semantics). One&#xD;
+component may therefore be substituted by another only if the two are type conformant. Larger pieces of a system's&#xD;
+functionality may be assembled by reusing components as parts in an encompassing component or assembly of&#xD;
+components, and wiring together their required and provided interfaces. A component is modeled throughout the&#xD;
+development life cycle and successively refined into deployment and run-time. A component may be manifest by one or&#xD;
+more artifacts, and in turn, that artifact may be deployed to its execution environment. A deployment specification may&#xD;
+define values that parameterize the component’s execution.</body>
+          </ownedComment>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_QoyDkjzzEeGa_u5A69AAkQ"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_QoyDkTzzEeGa_u5A69AAkQ" value="*"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_8TLKcDz0EeGa_u5A69AAkQ" name="label">
+          <ownedComment xmi:id="_IB7QkDz1EeGa_u5A69AAkQ" annotatedElement="_8TLKcDz0EeGa_u5A69AAkQ">
+            <body>An optional human-readable label for the component.</body>
+          </ownedComment>
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_AgMkgDz1EeGa_u5A69AAkQ" name="UUID">
+          <ownedComment xmi:id="_Iyi1MDz1EeGa_u5A69AAkQ" annotatedElement="_AgMkgDz1EeGa_u5A69AAkQ">
+            <body>An optional unique identifier for this component.</body>
+          </ownedComment>
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_dsifsTzxEeGa_u5A69AAkQ" name="implementation" type="_r3b_gDzuEeGa_u5A69AAkQ" association="_dsifsDzxEeGa_u5A69AAkQ">
+          <ownedComment xmi:id="_PVF8MDz1EeGa_u5A69AAkQ" annotatedElement="_dsifsTzxEeGa_u5A69AAkQ">
+            <body>References the Classifiers of which the Component is an abstraction, i.e., that realize its behavior. This association&#xD;
+renames the “realization” association owned by Component (from UML2.0::Components::Component).</body>
+          </ownedComment>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_dsifszzxEeGa_u5A69AAkQ"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_dsifsjzxEeGa_u5A69AAkQ" value="*"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_YHrMIDz1EeGa_u5A69AAkQ" name="configProperty" type="_HivzgDzwEeGa_u5A69AAkQ" aggregation="composite" association="_YHrzMDz1EeGa_u5A69AAkQ">
+          <ownedComment xmi:id="_mK4BIDz1EeGa_u5A69AAkQ" annotatedElement="_YHrMIDz1EeGa_u5A69AAkQ">
+            <body>Contains the set of configurable properties of the component. These configuration properties are used to configure the&#xD;
+component once instantiated. This allows the definition of configuration properties in a package regardless of which&#xD;
+implementation is chosen. configProperty is a subset of the ownedAttribute association of Component (inherited from&#xD;
+UML2.0::CompositeStructures::InternalStructures::StructuredClassifier).</body>
+          </ownedComment>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YHrMIjz1EeGa_u5A69AAkQ"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YHrMITz1EeGa_u5A69AAkQ" value="*"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Extension" xmi:id="_dAmHETzuEeGa_u5A69AAkQ" name="E_Component_Component0" memberEnd="_dAmHEjzuEeGa_u5A69AAkQ _dAmHEDzuEeGa_u5A69AAkQ">
+        <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_dAmHEjzuEeGa_u5A69AAkQ" name="extension_Component" type="_XDRNADzuEeGa_u5A69AAkQ" aggregation="composite" association="_dAmHETzuEeGa_u5A69AAkQ">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_BWEaQEXBEeGg_5BLT7cI1A" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_BWWuIEXBEeGg_5BLT7cI1A" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Stereotype" xmi:id="_hhW8gDzuEeGa_u5A69AAkQ" name="Port">
+        <ownedComment xmi:id="_JrF3sDz-EeGa_u5A69AAkQ" annotatedElement="_hhW8gDzuEeGa_u5A69AAkQ">
+          <body>The Port stereotype is an extension of the UML 2.0 Port metaclass (from UML2.0::CompositeStructure::Ports).&#xD;
+The Port stereotype is defined as “required,” which means that every instance of the Port metaclass must be associated&#xD;
+with an instance of the Port stereotype.&#xD;
+&#xD;
+Note: Restriction. In UML 2.0, a Port can be associated with both required and provided interfaces. In this specification,&#xD;
+a Port is restricted to be associated with either required interfaces (user Port) or provided interfaces (provider Port). An&#xD;
+OCL constraint could be added to formally express this restriction.</body>
+        </ownedComment>
+        <ownedAttribute xmi:id="_oHQ5gDzuEeGa_u5A69AAkQ" name="base_Port" association="_oHRgkDzuEeGa_u5A69AAkQ">
+          <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Port"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_NitpgDz-EeGa_u5A69AAkQ" name="name">
+          <ownedComment xmi:id="_4Z5AMDz-EeGa_u5A69AAkQ" annotatedElement="_NitpgDz-EeGa_u5A69AAkQ">
+            <body>The name of the port.</body>
+          </ownedComment>
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_dI8XgDz-EeGa_u5A69AAkQ" name="UUID">
+          <ownedComment xmi:id="_5VwykDz-EeGa_u5A69AAkQ" annotatedElement="_dI8XgDz-EeGa_u5A69AAkQ">
+            <body>The primary type of the port.</body>
+          </ownedComment>
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_fP1LgDz-EeGa_u5A69AAkQ" name="supportedType" isOrdered="true">
+          <ownedComment xmi:id="_6OmfEDz-EeGa_u5A69AAkQ" annotatedElement="_fP1LgDz-EeGa_u5A69AAkQ">
+            <body>All types supported by this port, including the primary and inherited types. All of the types listed in this attribute are&#xD;
+acceptable for a connection.</body>
+          </ownedComment>
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_p5tUQDz-EeGa_u5A69AAkQ"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_p5vwgDz-EeGa_u5A69AAkQ" value="*"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_hTlzADz-EeGa_u5A69AAkQ" name="provider">
+          <ownedComment xmi:id="_7bcssDz-EeGa_u5A69AAkQ" annotatedElement="_hTlzADz-EeGa_u5A69AAkQ">
+            <body>Identifies whether the port acts in the role of provider or user, for any connection attached to it.</body>
+          </ownedComment>
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_kMwYgDz-EeGa_u5A69AAkQ" name="exclusiveProvider">
+          <ownedComment xmi:id="_8p8gIDz-EeGa_u5A69AAkQ" annotatedElement="_kMwYgDz-EeGa_u5A69AAkQ">
+            <body>If set to true, then this port expects that there is at most one provider on the connection that it is an endpoint to.</body>
+          </ownedComment>
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_w_d2ADz-EeGa_u5A69AAkQ" name="exclusiveUser">
+          <ownedComment xmi:id="_96NOIDz-EeGa_u5A69AAkQ" annotatedElement="_w_d2ADz-EeGa_u5A69AAkQ">
+            <body>If set to true, then this port expects that there is at most one user on the connection that it is an endpoint to.</body>
+          </ownedComment>
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_zmF6ADz-EeGa_u5A69AAkQ" name="optional">
+          <ownedComment xmi:id="_-4FLoDz-EeGa_u5A69AAkQ" annotatedElement="_zmF6ADz-EeGa_u5A69AAkQ">
+            <body>Identifies whether connecting this port is optional or mandatory.</body>
+          </ownedComment>
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Extension" xmi:id="_oHRgkDzuEeGa_u5A69AAkQ" name="E_Port_Port0" memberEnd="_oHRgkTzuEeGa_u5A69AAkQ _oHQ5gDzuEeGa_u5A69AAkQ">
+        <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_oHRgkTzuEeGa_u5A69AAkQ" name="extension_Port" type="_hhW8gDzuEeGa_u5A69AAkQ" aggregation="composite" association="_oHRgkDzuEeGa_u5A69AAkQ">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_f0lLIEXBEeGg_5BLT7cI1A" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_f0mZQEXBEeGg_5BLT7cI1A" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Stereotype" xmi:id="_r3b_gDzuEeGa_u5A69AAkQ" name="ComponentImplementation" isAbstract="true">
+        <ownedComment xmi:id="_5j3HsDz4EeGa_u5A69AAkQ" annotatedElement="_r3b_gDzuEeGa_u5A69AAkQ">
+          <body>The ComponentImplementation stereotype is an extension of the UML 2.0 Class metaclass (from UML2.0::Kernel). A&#xD;
+ComponentImplementation is an abstract class that contains the attributes and associations that are common to the&#xD;
+different types of component implementations (MonolithicImplementation and ComponentAssembly).&#xD;
+A ComponentImplementation describes a specific implementation of a component interface. This implementation can be&#xD;
+either assembly based or monolithic. The ComponentImplementation may contain configuration properties that are used&#xD;
+to configure each component instance (“default values”). Implementations may be tagged with user-defined capabilities.&#xD;
+Administrators can then select among implementations using selection requirements; Assemblers can place requirements&#xD;
+on implementations.</body>
+        </ownedComment>
+        <ownedAttribute xmi:id="_t4J6EDzuEeGa_u5A69AAkQ" name="base_Class" association="_t4J6ETzuEeGa_u5A69AAkQ">
+          <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_zUCBADz7EeGa_u5A69AAkQ" name="capability" type="_W2DPYDz5EeGa_u5A69AAkQ" isOrdered="true" aggregation="composite">
+          <ownedComment xmi:id="_OacNoDz8EeGa_u5A69AAkQ" annotatedElement="_zUCBADz7EeGa_u5A69AAkQ">
+            <body>Tags that can be used to discriminate between implementations.</body>
+          </ownedComment>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_4DGYMDz7EeGa_u5A69AAkQ"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_4DG_QDz7EeGa_u5A69AAkQ" value="*"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_AYXaADz8EeGa_u5A69AAkQ" name="deployRequirement" type="_tdk14Dz5EeGa_u5A69AAkQ">
+          <ownedComment xmi:id="_NHmFsDz8EeGa_u5A69AAkQ" annotatedElement="_AYXaADz8EeGa_u5A69AAkQ">
+            <body>Requirements that are matched against node resources at deployment time.</body>
+          </ownedComment>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_DkafQDz8EeGa_u5A69AAkQ" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_DkbGUDz8EeGa_u5A69AAkQ" value="*"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Extension" xmi:id="_t4J6ETzuEeGa_u5A69AAkQ" name="E_ComponentImplementation_Class0" memberEnd="_t4J6EjzuEeGa_u5A69AAkQ _t4J6EDzuEeGa_u5A69AAkQ">
+        <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_t4J6EjzuEeGa_u5A69AAkQ" name="extension_ComponentImplementation" type="_r3b_gDzuEeGa_u5A69AAkQ" aggregation="composite" association="_t4J6ETzuEeGa_u5A69AAkQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Stereotype" xmi:id="_yyuWoDzuEeGa_u5A69AAkQ" name="ComponentAssembly">
+        <ownedComment xmi:id="_WBnpIDz2EeGa_u5A69AAkQ" annotatedElement="_yyuWoDzuEeGa_u5A69AAkQ">
+          <body>In spite of the fact that UML 2.0 allows for the recursive definition of components in terms of subcomponents (based on&#xD;
+the fact that a UML 2.0 Component is a specialization of UML2.0::StructuredClass::Class ), the concept of component&#xD;
+assembly is not explicitly defined in UML 2.0. The ComponentAssembly stereotype specializes the UML 2.0 Class&#xD;
+metaclass from StructuredClasses (UML2.0::CompositeStructures::StructuredClasses). It is a subclass of the&#xD;
+ComponentImplementation stereotype.&#xD;
+A ComponentAssembly is a classifier whose behavior is fully described by the collaboration of a set of components. A&#xD;
+ComponentAssembly is defined in terms of a set of components (subcomponents) and the set of connections that connect&#xD;
+components.&#xD;
+A ComponentAssembly is defined as an implementation of a Component.&#xD;
+A ComponentAssembly also has a two derived attributes: ports, that contains the set of external ports of the assembly&#xD;
+implements, and properties, that contains the set of properties of the assembly. These two attributes are derived from the&#xD;
+component the assembly implements. The ports and properties of the implemented component must be allocated to ports&#xD;
+and properties of sub-components contained in the ComponentAssembly.</body>
+        </ownedComment>
+        <generalization xmi:id="_To_MkDzwEeGa_u5A69AAkQ" general="_r3b_gDzuEeGa_u5A69AAkQ"/>
+        <ownedAttribute xmi:id="_z7RTEDzuEeGa_u5A69AAkQ" name="base_Class" association="_z7RTETzuEeGa_u5A69AAkQ">
+          <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_p_k-oDzxEeGa_u5A69AAkQ" name="containedComponent" type="_XDRNADzuEeGa_u5A69AAkQ" association="_p_llsDzxEeGa_u5A69AAkQ">
+          <ownedComment xmi:id="_aCkEIDz4EeGa_u5A69AAkQ" annotatedElement="_p_k-oDzxEeGa_u5A69AAkQ">
+            <body>Describes the set of Components contained in the ComponentAssembly (i.e., subcomponents). This association is a&#xD;
+subset of the “role” association owned by the StructuredClassifier&#xD;
+(UML2.0::CompositeStructures::InternalStructures::StructuredClassifier).</body>
+          </ownedComment>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_p_k-ojzxEeGa_u5A69AAkQ" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_p_k-oTzxEeGa_u5A69AAkQ" value="*"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_br95oDzyEeGa_u5A69AAkQ" name="ownedPropertyConnector" type="_LBExADzvEeGa_u5A69AAkQ" aggregation="composite" association="_br-gsDzyEeGa_u5A69AAkQ">
+          <ownedComment xmi:id="_bqUsIDz4EeGa_u5A69AAkQ" annotatedElement="_br95oDzyEeGa_u5A69AAkQ">
+            <body>Maps the external properties of the component that is implemented by the assembly to properties of subcomponent&#xD;
+instances. Describes the set of PropertyConnectors owned by the ComponentAssembly. This association is a subset of&#xD;
+the ownedConnector association owned by UML2.0::CompositeStructures::InternalStructures::StructuredClassifier.</body>
+          </ownedComment>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_br95ojzyEeGa_u5A69AAkQ"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_br95oTzyEeGa_u5A69AAkQ" value="*"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_2fDhoDzyEeGa_u5A69AAkQ" name="assemblyProperty" type="_HivzgDzwEeGa_u5A69AAkQ" isReadOnly="true" isDerived="true" association="_2fEIsDzyEeGa_u5A69AAkQ">
+          <eAnnotations xmi:id="_C1vfcEXQEeGg_5BLT7cI1A" source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+            <details xmi:id="_FY3jgEXQEeGg_5BLT7cI1A" key="derivation" value="Component.allInstances()->select(c|c.implementation->includes(self)).configProperty->flatten()"/>
+          </eAnnotations>
+          <ownedComment xmi:id="_W9kCEDz4EeGa_u5A69AAkQ" annotatedElement="_2fDhoDzyEeGa_u5A69AAkQ">
+            <body>Contains the set of properties of the assembly. This association is derived from the Component the assembly&#xD;
+implements.</body>
+          </ownedComment>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_2fDhojzyEeGa_u5A69AAkQ"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_2fDhoTzyEeGa_u5A69AAkQ" value="*"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_evRdIDzzEeGa_u5A69AAkQ" name="externalPort" type="_hhW8gDzuEeGa_u5A69AAkQ" isReadOnly="true" isDerived="true" association="_evSEMDzzEeGa_u5A69AAkQ">
+          <eAnnotations xmi:id="_YfbIMEXREeGg_5BLT7cI1A" source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+            <details xmi:id="_YfbIMUXREeGg_5BLT7cI1A" key="derivation" value="Component.allInstances()->select(c|c.implementation->includes(self)).ownedPort->flatten()"/>
+          </eAnnotations>
+          <ownedComment xmi:id="_YbNEwDz4EeGa_u5A69AAkQ" annotatedElement="_evRdIDzzEeGa_u5A69AAkQ">
+            <body>Contains the set of external ports of the assembly. This association is derived from the Component the assembly&#xD;
+implements.</body>
+          </ownedComment>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_evRdIjzzEeGa_u5A69AAkQ"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_evRdITzzEeGa_u5A69AAkQ" value="*"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_jr7yIDz4EeGa_u5A69AAkQ" name="ownedPortConnector" type="_NonbADzvEeGa_u5A69AAkQ" aggregation="composite" association="_jr8ZMDz4EeGa_u5A69AAkQ">
+          <ownedComment xmi:id="_2iEKoDz4EeGa_u5A69AAkQ" annotatedElement="_jr7yIDz4EeGa_u5A69AAkQ">
+            <body>Describes the set of PortConnectors owned by the ComponentAssembly. This association is a subset of the&#xD;
+ownedConnector association owned by UML2.0::CompositeStructures::InternalStructures::StructuredClassifier.</body>
+          </ownedComment>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_jr7yIjz4EeGa_u5A69AAkQ"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_jr7yITz4EeGa_u5A69AAkQ" value="*"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Extension" xmi:id="_z7RTETzuEeGa_u5A69AAkQ" name="E_ComponentAssembly_Class0" memberEnd="_z7RTEjzuEeGa_u5A69AAkQ _z7RTEDzuEeGa_u5A69AAkQ">
+        <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_z7RTEjzuEeGa_u5A69AAkQ" name="extension_ComponentAssembly" type="_yyuWoDzuEeGa_u5A69AAkQ" aggregation="composite" association="_z7RTETzuEeGa_u5A69AAkQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Stereotype" xmi:id="_3tLecDzuEeGa_u5A69AAkQ" name="MonolithicImplementation">
+        <ownedComment xmi:id="_C-jHMDz-EeGa_u5A69AAkQ" annotatedElement="_3tLecDzuEeGa_u5A69AAkQ">
+          <body>The MonolothicImplementation stereotype is an extension of the UML 2.0 Class metaclass (from UML2.0::Kernel). It is&#xD;
+a subclass of the ComponentImplementation stereotype. A MonolithicImplementation is a class that contains the&#xD;
+implementation of a component.</body>
+        </ownedComment>
+        <generalization xmi:id="_U1rpMDzwEeGa_u5A69AAkQ" general="_r3b_gDzuEeGa_u5A69AAkQ"/>
+        <ownedAttribute xmi:id="_5JXIkDzuEeGa_u5A69AAkQ" name="base_Class" association="_5JXIkTzuEeGa_u5A69AAkQ">
+          <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_gAITUHiFEeOygooCHiEUzQ" name="deployRequirement" type="_tdk14Dz5EeGa_u5A69AAkQ" aggregation="composite" redefinedProperty="_AYXaADz8EeGa_u5A69AAkQ">
+          <ownedComment xmi:id="_wwAxAHiFEeOygooCHiEUzQ" annotatedElement="_gAITUHiFEeOygooCHiEUzQ">
+            <body>Requirements that are matched against node resources at deployment time.</body>
+          </ownedComment>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_jQQAQHiFEeOygooCHiEUzQ" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_jQQnUHiFEeOygooCHiEUzQ" value="*"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Extension" xmi:id="_5JXIkTzuEeGa_u5A69AAkQ" name="E_MonolithicImplementation_Class0" memberEnd="_5JXIkjzuEeGa_u5A69AAkQ _5JXIkDzuEeGa_u5A69AAkQ">
+        <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_5JXIkjzuEeGa_u5A69AAkQ" name="extension_MonolithicImplementation" type="_3tLecDzuEeGa_u5A69AAkQ" aggregation="composite" association="_5JXIkTzuEeGa_u5A69AAkQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Stereotype" xmi:id="_-3yD8DzuEeGa_u5A69AAkQ" name="ExternalReference">
+        <ownedComment xmi:id="_SmFusDz8EeGa_u5A69AAkQ" annotatedElement="_-3yD8DzuEeGa_u5A69AAkQ">
+          <body>The ExternalReference stereotype is an extension of the UML 2.0 ConnectableElement metaclass (from&#xD;
+UML2.0::CompositeStructures::InternalStructures). It identifies a location outside the assembly as an endpoint of a&#xD;
+PortConnector. Whether the endpoint is a provider or user port is implied by the URL, and its type is assumed to be&#xD;
+compatible with the connection.</body>
+        </ownedComment>
+        <ownedAttribute xmi:id="_Azx2kDzvEeGa_u5A69AAkQ" name="base_ConnectableElement" association="_Azx2kTzvEeGa_u5A69AAkQ">
+          <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#ConnectableElement"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_U-HWADz8EeGa_u5A69AAkQ" name="location">
+          <ownedComment xmi:id="_cMr1gDz8EeGa_u5A69AAkQ" annotatedElement="_U-HWADz8EeGa_u5A69AAkQ">
+            <body>URL which references a port outside of the assembly that is to be an endpoint of this connection, which is resolved at execution&#xD;
+time.</body>
+          </ownedComment>
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Extension" xmi:id="_Azx2kTzvEeGa_u5A69AAkQ" name="E_ExternalReference_ConnectableElement0" memberEnd="_Azx2kjzvEeGa_u5A69AAkQ _Azx2kDzvEeGa_u5A69AAkQ">
+        <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_Azx2kjzvEeGa_u5A69AAkQ" name="extension_ExternalReference" type="_-3yD8DzuEeGa_u5A69AAkQ" aggregation="composite" association="_Azx2kTzvEeGa_u5A69AAkQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Stereotype" xmi:id="_LBExADzvEeGa_u5A69AAkQ" name="PropertyConnector">
+        <ownedComment xmi:id="_NfADoDz9EeGa_u5A69AAkQ" annotatedElement="_LBExADzvEeGa_u5A69AAkQ">
+          <body>The PropertyConnector stereotype is an extension of the UML 2.0 Connector metaclass (from&#xD;
+UML2.0::Components::BasicComponents). A PropertyConnector connects properties of a ComponentAssembly to&#xD;
+properties of sub-Components.&#xD;
+&#xD;
+Constraints:&#xD;
+• One of the connected Properties must be a Property of the ComponentAssembly.</body>
+        </ownedComment>
+        <ownedRule xmi:id="_zq9UoHiEEeOygooCHiEUzQ" name="" constrainedElement="_LBExADzvEeGa_u5A69AAkQ">
+          <specification xmi:type="uml:LiteralString" xmi:id="_zq-iwHiEEeOygooCHiEUzQ" name="" value="One of the connected Properties must be a Property of the ComponentAssembly."/>
+        </ownedRule>
+        <ownedAttribute xmi:id="_Mq0WADzvEeGa_u5A69AAkQ" name="base_Connector" association="_Mq0WATzvEeGa_u5A69AAkQ">
+          <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Connector"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="__pOnoDzxEeGa_u5A69AAkQ" name="connectedProperty" type="_HivzgDzwEeGa_u5A69AAkQ" association="__pPOsDzxEeGa_u5A69AAkQ">
+          <ownedComment xmi:id="_IsO4MDz9EeGa_u5A69AAkQ" annotatedElement="__pOnoDzxEeGa_u5A69AAkQ">
+            <body>The set of Properties connected by the PropertyConnector. This association is a subset of the “end” association owned&#xD;
+by UML2.0::CompositeStructures::InternalStructures::Connector.</body>
+          </ownedComment>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__pOnojzxEeGa_u5A69AAkQ" value="2"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__pOnoTzxEeGa_u5A69AAkQ" value="*"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_r-z1ADz9EeGa_u5A69AAkQ" name="label">
+          <ownedComment xmi:id="_x2bIoDz9EeGa_u5A69AAkQ" annotatedElement="_r-z1ADz9EeGa_u5A69AAkQ">
+            <body>Optionally identifies this connection within its assembly. May be used or generated by visual design tools.</body>
+          </ownedComment>
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Extension" xmi:id="_Mq0WATzvEeGa_u5A69AAkQ" name="E_PropertyConnector_Connector0" memberEnd="_Mq0WAjzvEeGa_u5A69AAkQ _Mq0WADzvEeGa_u5A69AAkQ">
+        <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_Mq0WAjzvEeGa_u5A69AAkQ" name="extension_PropertyConnector" type="_LBExADzvEeGa_u5A69AAkQ" aggregation="composite" association="_Mq0WATzvEeGa_u5A69AAkQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Stereotype" xmi:id="_NonbADzvEeGa_u5A69AAkQ" name="PortConnector">
+        <ownedComment xmi:id="_gC55IDz8EeGa_u5A69AAkQ" annotatedElement="_NonbADzvEeGa_u5A69AAkQ">
+          <body>The PortConnector stereotype is an extension of the UML 2.0 Connector metaclass (from&#xD;
+UML2.0::Components::BasicComponents). A PortConnector connects a set of compatible ports.&#xD;
+&#xD;
+Constraints:&#xD;
+• A PortConnector connects two or more ConnectableElements, which are either of type Port or ExternalReference.&#xD;
+• Also, at least one of the ConnectableElements must be of type Port.&#xD;
+&#xD;
+Note: Definition. Connector (from UML2.0::Components::BasicComponents): The connector concept is extended in the&#xD;
+Components package to include interface based constraints and notation. A delegation connector is a connector that links&#xD;
+the external contract of a component (as specified by its ports) to the internal realization of that behavior by the&#xD;
+component’s parts. It represents the forwarding of signals (operation requests and events) : a signal that arrives at a port&#xD;
+that has a delegation connector to a part or to another port will be passed on to that target for handling. An assembly&#xD;
+connector is a connector between two components that defines that one component provides the services that another&#xD;
+component requires. An assembly connector is a connector that is defined from a required interface or port to a provided&#xD;
+interface or port.&#xD;
+&#xD;
+Note: One of the issues in the D&amp;C is that a single connector can at the same time connect ports of peer components in&#xD;
+an assembly and ports of internal components to external ports, i.e., delegation ports. So according to the UML 2.0 spec,&#xD;
+we have connectors that have both a delegation connector capability and an assembly connector capability. The D&amp;C&#xD;
+concept of PortConnector is based on the ECAD (circuit design, netlist) model. It fully expresses the idea that a set of&#xD;
+ports can be connected together just like a &quot;signal&quot; (say &quot;the reset signal&quot;) can be connected to many &quot;pins&quot; of the&#xD;
+components (chips) of a circuit. This allows the expression of connections that are point to point (one provider and one&#xD;
+user) as well as those with multiple users (like many clients for one server, many event producers for one consumer),&#xD;
+multiple providers (like a multicast channel), or multiple of both (like a multicast event channel with multiple listeners).&#xD;
+Also, in network systems, you want to talk about a flow that represents the traffic between a set of users and providers so&#xD;
+you can plan, manage, and configure it as a whole. If the only means of expression is point to point connections, there is&#xD;
+no way to talk about the aggregate &quot;connection.&quot; This &quot;richness&quot; has been used in network, circuit, and chip design&#xD;
+systems for decades.</body>
+        </ownedComment>
+        <ownedRule xmi:id="_8_d30HiCEeOygooCHiEUzQ" name="" constrainedElement="_NonbADzvEeGa_u5A69AAkQ">
+          <specification xmi:type="uml:LiteralString" xmi:id="_8_fF8HiCEeOygooCHiEUzQ" name="" value="A PortConnector connects two or more ConnectableElements, which are either of type Port or ExternalReference."/>
+        </ownedRule>
+        <ownedRule xmi:id="_NNEH0HiDEeOygooCHiEUzQ" name="" constrainedElement="_NonbADzvEeGa_u5A69AAkQ">
+          <specification xmi:type="uml:LiteralString" xmi:id="_NNFV8HiDEeOygooCHiEUzQ" name="" value="Also, at least one of the ConnectableElements must be of type Port."/>
+        </ownedRule>
+        <ownedAttribute xmi:id="_OYrmADzvEeGa_u5A69AAkQ" name="base_Connector" association="_OYsNEDzvEeGa_u5A69AAkQ">
+          <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Connector"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_UjzSMDz0EeGa_u5A69AAkQ" name="connectedPort" type="_hhW8gDzuEeGa_u5A69AAkQ" association="_Uj0gUDz0EeGa_u5A69AAkQ">
+          <ownedComment xmi:id="_DNbGIDz9EeGa_u5A69AAkQ" annotatedElement="_UjzSMDz0EeGa_u5A69AAkQ">
+            <body>The set of Ports connected by the PortConnector. This association is a subset of the “end” association owned by&#xD;
+UML2.0::CompositeStructures::InternalStructures::Connector.</body>
+          </ownedComment>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_UjzSMjz0EeGa_u5A69AAkQ" value="2"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_UjzSMTz0EeGa_u5A69AAkQ" value="*"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_opfUcDz8EeGa_u5A69AAkQ" name="label">
+          <ownedComment xmi:id="__R4doDz8EeGa_u5A69AAkQ" annotatedElement="_opfUcDz8EeGa_u5A69AAkQ">
+            <body>Optionally identifies this connection within its assembly. May be used or generated by visual design tools.</body>
+          </ownedComment>
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_hbUoIDz9EeGa_u5A69AAkQ" name="externalReference" type="_-3yD8DzuEeGa_u5A69AAkQ" association="_hbVPMDz9EeGa_u5A69AAkQ">
+          <ownedComment xmi:id="_p4dzkDz9EeGa_u5A69AAkQ" annotatedElement="_hbUoIDz9EeGa_u5A69AAkQ">
+            <body>The set of ExternalReferences connected by the PortConnector. This association is a subset of the “end” association&#xD;
+owned by UML2.0::CompositeStructures::InternalStructures::Connector.</body>
+          </ownedComment>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_hbUoIjz9EeGa_u5A69AAkQ"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_hbUoITz9EeGa_u5A69AAkQ" value="*"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Extension" xmi:id="_OYsNEDzvEeGa_u5A69AAkQ" name="E_PortConnector_Connector0" memberEnd="_OYsNETzvEeGa_u5A69AAkQ _OYrmADzvEeGa_u5A69AAkQ">
+        <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_OYsNETzvEeGa_u5A69AAkQ" name="extension_PortConnector" type="_NonbADzvEeGa_u5A69AAkQ" aggregation="composite" association="_OYsNEDzvEeGa_u5A69AAkQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Stereotype" xmi:id="_HivzgDzwEeGa_u5A69AAkQ" name="Property">
+        <ownedComment xmi:id="_HXqnEDz_EeGa_u5A69AAkQ" annotatedElement="_HivzgDzwEeGa_u5A69AAkQ">
+          <body>The Property stereotype is an extension of the UML 2.0 Property metaclass (from&#xD;
+UML2.0::CompositeStructures::InternalStructures). A Property has a name and a typed value. It is used to carry named&#xD;
+and typed values in various places. In the context of D&amp;C, components have configuration properties.</body>
+        </ownedComment>
+        <ownedAttribute xmi:id="_xcntEDzzEeGa_u5A69AAkQ" name="base_Property" association="_xcntETzzEeGa_u5A69AAkQ">
+          <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Property"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_dsifsDzxEeGa_u5A69AAkQ" name="componentImplementation_component_0" memberEnd="_dsifsTzxEeGa_u5A69AAkQ _dsh4oDzxEeGa_u5A69AAkQ">
+        <ownedEnd xmi:id="_dsh4oDzxEeGa_u5A69AAkQ" name="implementedComponent" type="_XDRNADzuEeGa_u5A69AAkQ" association="_dsifsDzxEeGa_u5A69AAkQ">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_dsh4ojzxEeGa_u5A69AAkQ" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_dsh4oTzxEeGa_u5A69AAkQ" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_p_llsDzxEeGa_u5A69AAkQ" name="componentAssembly_component_0" memberEnd="_p_llsTzxEeGa_u5A69AAkQ _p_k-oDzxEeGa_u5A69AAkQ">
+        <ownedEnd xmi:id="_p_llsTzxEeGa_u5A69AAkQ" name="assembly" type="_yyuWoDzuEeGa_u5A69AAkQ" association="_p_llsDzxEeGa_u5A69AAkQ">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_p_llszzxEeGa_u5A69AAkQ"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_p_llsjzxEeGa_u5A69AAkQ" value="*"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="__pPOsDzxEeGa_u5A69AAkQ" name="propertyConnector_property_0" memberEnd="__pPOsTzxEeGa_u5A69AAkQ __pOnoDzxEeGa_u5A69AAkQ">
+        <ownedComment xmi:id="_iY-kAEQgEeGbOcIfUqK4tw">
+          <body>The set of Properties connected by the PropertyConnector. This association is a subset of the “end” association owned&#xD;
+by UML2.0::CompositeStructures::InternalStructures::Connector.</body>
+        </ownedComment>
+        <ownedEnd xmi:id="__pPOsTzxEeGa_u5A69AAkQ" name="connector" type="_LBExADzvEeGa_u5A69AAkQ" association="__pPOsDzxEeGa_u5A69AAkQ">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__pPOszzxEeGa_u5A69AAkQ" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__pPOsjzxEeGa_u5A69AAkQ" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_br-gsDzyEeGa_u5A69AAkQ" name="componentAssembly_propertyConnector_0" memberEnd="_br-gsTzyEeGa_u5A69AAkQ _br95oDzyEeGa_u5A69AAkQ">
+        <ownedEnd xmi:id="_br-gsTzyEeGa_u5A69AAkQ" name="componentAssembly" type="_yyuWoDzuEeGa_u5A69AAkQ" association="_br-gsDzyEeGa_u5A69AAkQ">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_br-gszzyEeGa_u5A69AAkQ" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_br-gsjzyEeGa_u5A69AAkQ" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_2fEIsDzyEeGa_u5A69AAkQ" name="componentAssembly_property_0" memberEnd="_2fEIsTzyEeGa_u5A69AAkQ _2fDhoDzyEeGa_u5A69AAkQ">
+        <ownedEnd xmi:id="_2fEIsTzyEeGa_u5A69AAkQ" name="componentAssembly" type="_yyuWoDzuEeGa_u5A69AAkQ" association="_2fEIsDzyEeGa_u5A69AAkQ">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_2fEIszzyEeGa_u5A69AAkQ" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_2fEIsjzyEeGa_u5A69AAkQ" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_QoyqoDzzEeGa_u5A69AAkQ" name="component_port_0" memberEnd="_QoyqoTzzEeGa_u5A69AAkQ _QoyDkDzzEeGa_u5A69AAkQ">
+        <ownedEnd xmi:id="_QoyqoTzzEeGa_u5A69AAkQ" name="component" type="_XDRNADzuEeGa_u5A69AAkQ" association="_QoyqoDzzEeGa_u5A69AAkQ">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_QoyqozzzEeGa_u5A69AAkQ" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_QoyqojzzEeGa_u5A69AAkQ" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_evSEMDzzEeGa_u5A69AAkQ" name="componentAssembly_port_0" memberEnd="_evSEMTzzEeGa_u5A69AAkQ _evRdIDzzEeGa_u5A69AAkQ">
+        <ownedEnd xmi:id="_evSEMTzzEeGa_u5A69AAkQ" name="componentAssembly" type="_yyuWoDzuEeGa_u5A69AAkQ" association="_evSEMDzzEeGa_u5A69AAkQ">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_evSEMzzzEeGa_u5A69AAkQ" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_evSEMjzzEeGa_u5A69AAkQ" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Extension" xmi:id="_xcntETzzEeGa_u5A69AAkQ" name="E_Property_Property0" memberEnd="_xcntEjzzEeGa_u5A69AAkQ _xcntEDzzEeGa_u5A69AAkQ">
+        <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_xcntEjzzEeGa_u5A69AAkQ" name="extension_Property" type="_HivzgDzwEeGa_u5A69AAkQ" aggregation="composite" association="_xcntETzzEeGa_u5A69AAkQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_Uj0gUDz0EeGa_u5A69AAkQ" name="portConnector_port_0" memberEnd="_Uj0gUTz0EeGa_u5A69AAkQ _UjzSMDz0EeGa_u5A69AAkQ" navigableOwnedEnd="_Uj0gUTz0EeGa_u5A69AAkQ">
+        <ownedEnd xmi:id="_Uj0gUTz0EeGa_u5A69AAkQ" name="portConnector" type="_NonbADzvEeGa_u5A69AAkQ" association="_Uj0gUDz0EeGa_u5A69AAkQ">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Uj0gUzz0EeGa_u5A69AAkQ" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Uj0gUjz0EeGa_u5A69AAkQ" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_YHrzMDz1EeGa_u5A69AAkQ" name="component_property_0" memberEnd="_YHrzMTz1EeGa_u5A69AAkQ _YHrMIDz1EeGa_u5A69AAkQ">
+        <ownedEnd xmi:id="_YHrzMTz1EeGa_u5A69AAkQ" name="component" type="_XDRNADzuEeGa_u5A69AAkQ" association="_YHrzMDz1EeGa_u5A69AAkQ">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YHrzMzz1EeGa_u5A69AAkQ" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YHrzMjz1EeGa_u5A69AAkQ" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_jr8ZMDz4EeGa_u5A69AAkQ" name="componentAssembly_portConnector_0" memberEnd="_jr8ZMTz4EeGa_u5A69AAkQ _jr7yIDz4EeGa_u5A69AAkQ">
+        <ownedEnd xmi:id="_jr8ZMTz4EeGa_u5A69AAkQ" name="componentAssembly" type="_yyuWoDzuEeGa_u5A69AAkQ" association="_jr8ZMDz4EeGa_u5A69AAkQ">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_jr8ZMzz4EeGa_u5A69AAkQ" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_jr8ZMjz4EeGa_u5A69AAkQ" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_hbVPMDz9EeGa_u5A69AAkQ" name="portConnector_externalReference_0" memberEnd="_hbVPMTz9EeGa_u5A69AAkQ _hbUoIDz9EeGa_u5A69AAkQ">
+        <ownedEnd xmi:id="_hbVPMTz9EeGa_u5A69AAkQ" name="portConnector" type="_NonbADzvEeGa_u5A69AAkQ" association="_hbVPMDz9EeGa_u5A69AAkQ">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_hbVPMzz9EeGa_u5A69AAkQ" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_hbVPMjz9EeGa_u5A69AAkQ" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_W2DPYDz5EeGa_u5A69AAkQ" name="Capability">
+        <ownedComment xmi:id="_agJikDz5EeGa_u5A69AAkQ" annotatedElement="_W2DPYDz5EeGa_u5A69AAkQ">
+          <body>Capability is used to describe an implementation’s capabilities, which are matched against selection requirements.</body>
+        </ownedComment>
+        <ownedAttribute xmi:id="_dl1hIDz5EeGa_u5A69AAkQ" name="name">
+          <ownedComment xmi:id="_oSR1sDz5EeGa_u5A69AAkQ" annotatedElement="_dl1hIDz5EeGa_u5A69AAkQ">
+            <body>An optional name for the requirement satisfier.</body>
+          </ownedComment>
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_dl39YDz5EeGa_u5A69AAkQ" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_dl4kcDz5EeGa_u5A69AAkQ" value="1"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_i1F0QDz5EeGa_u5A69AAkQ" name="resourceType" isOrdered="true">
+          <ownedComment xmi:id="_pgiYkDz5EeGa_u5A69AAkQ" annotatedElement="_i1F0QDz5EeGa_u5A69AAkQ">
+            <body>The resource types that can be satisfied by this satisfier.</body>
+          </ownedComment>
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_i1GbUDz5EeGa_u5A69AAkQ"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_i1HCYDz5EeGa_u5A69AAkQ" value="*"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_tdk14Dz5EeGa_u5A69AAkQ" name="Requirement">
+        <ownedComment xmi:id="_JoLRIDz_EeGa_u5A69AAkQ" annotatedElement="_tdk14Dz5EeGa_u5A69AAkQ">
+          <body>Requirements are used to express the fact that an implementation artifact or connection has requirements that must be&#xD;
+fulfilled by resources in the target environment. The resource type must match the type of a resource.</body>
+        </ownedComment>
+        <ownedAttribute xmi:id="_0N56MDz5EeGa_u5A69AAkQ" name="resourceType">
+          <ownedComment xmi:id="_3TGwkDz5EeGa_u5A69AAkQ" annotatedElement="_0N56MDz5EeGa_u5A69AAkQ">
+            <body>Identifies the resource type.</body>
+          </ownedComment>
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_0N6hQDz5EeGa_u5A69AAkQ" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_0N6hQTz5EeGa_u5A69AAkQ" value="1"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_5Nk5MDz5EeGa_u5A69AAkQ" name="properties" type="_HivzgDzwEeGa_u5A69AAkQ" aggregation="composite">
+          <ownedComment xmi:id="_9mOUcDz5EeGa_u5A69AAkQ" annotatedElement="_5Nk5MDz5EeGa_u5A69AAkQ">
+            <body>Properties associated with the resource.</body>
+          </ownedComment>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_5NlgQDz5EeGa_u5A69AAkQ" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_5NlgQTz5EeGa_u5A69AAkQ" value="1"/>
+        </ownedAttribute>
+      </packagedElement>
+      <profileApplication xmi:id="_4qU0cDz0EeGa_u5A69AAkQ">
+        <eAnnotations xmi:id="_4qzVkDz0EeGa_u5A69AAkQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <references xmi:type="ecore:EPackage" href="pathmap://Papyrus.profile.uml#_vaU6ggEYEeCIz8iAxBJnfA"/>
+        </eAnnotations>
+        <appliedProfile href="pathmap://Papyrus.profile.uml#_H9068AEYEeCIz8iAxBJnfA"/>
+      </profileApplication>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Profile" xmi:id="_F7S_cDzuEeGa_u5A69AAkQ" name="Target" metaclassReference="_Lg0jsEQkEeGbOcIfUqK4tw _QLBpAEQkEeGbOcIfUqK4tw _YaTXkEQkEeGbOcIfUqK4tw _loGOkEQkEeGbOcIfUqK4tw">
+      <eAnnotations xmi:id="_xRJSMEXNEeGg_5BLT7cI1A" source="http://www.eclipse.org/emf/2002/Ecore">
+        <details xmi:id="_xRJSMUXNEeGg_5BLT7cI1A" key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+        <details xmi:id="_xRJSMkXNEeGg_5BLT7cI1A" key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+      </eAnnotations>
+      <elementImport xmi:id="_Lg0jsEQkEeGbOcIfUqK4tw" alias="Class">
+        <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
+      </elementImport>
+      <elementImport xmi:id="_QLBpAEQkEeGbOcIfUqK4tw" alias="Node">
+        <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Node"/>
+      </elementImport>
+      <elementImport xmi:id="_YaTXkEQkEeGbOcIfUqK4tw" alias="CommunicationPath">
+        <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#CommunicationPath"/>
+      </elementImport>
+      <elementImport xmi:id="_loGOkEQkEeGbOcIfUqK4tw" alias="AssociationClass">
+        <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#AssociationClass"/>
+      </elementImport>
+      <packageImport xmi:id="_wheGYEWZEeGF4pqj1CPB9g">
+        <importedPackage xmi:type="uml:Model" href="pathmap://UML_METAMODELS/UML.metamodel.uml#_0"/>
+      </packageImport>
+      <packagedElement xmi:type="uml:Stereotype" xmi:id="_Gsob8EQkEeGbOcIfUqK4tw" name="Domain">
+        <ownedComment xmi:id="_-NCJsEQ0EeGu9u2aQ0ZB_Q" annotatedElement="_Gsob8EQkEeGbOcIfUqK4tw">
+          <body>The Domain stereotype extends the UML 2.0 Class metaclass (from UML2.0::CompositeStructures::StructuredClasses). A&#xD;
+Domain is defined as a set of Nodes, CommunicationPaths, and SharedResources. In a Domain, Nodes are connected&#xD;
+using CommunicationPaths. It represents the entire target environment.&#xD;
+&#xD;
+Constraints:&#xD;
+• The top-level elements in a domain all have name attributes. These names must be unique within the domain.</body>
+        </ownedComment>
+        <ownedRule xmi:id="_UfC0YHhGEeOygooCHiEUzQ" name="" constrainedElement="_Gsob8EQkEeGbOcIfUqK4tw">
+          <specification xmi:type="uml:LiteralString" xmi:id="_UfECgHhGEeOygooCHiEUzQ" name="" value="The top-level elements in a domain all have name attributes. These names must be unique within the domain."/>
+        </ownedRule>
+        <ownedAttribute xmi:id="_MnROYEQkEeGbOcIfUqK4tw" name="base_Class" association="_MnROYUQkEeGbOcIfUqK4tw">
+          <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_0M-X0EQlEeGbOcIfUqK4tw" name="containedCommunicationPath" type="_W-xNsEQkEeGbOcIfUqK4tw" association="_0NA0EEQlEeGbOcIfUqK4tw">
+          <ownedComment xmi:id="_Dw3T8HhTEeOygooCHiEUzQ" annotatedElement="_0M-X0EQlEeGbOcIfUqK4tw">
+            <body>CommunicationPaths that provide connections between nodes.</body>
+          </ownedComment>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_0M-X0kQlEeGbOcIfUqK4tw"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_0M-X0UQlEeGbOcIfUqK4tw" value="*"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_3PREIEQlEeGbOcIfUqK4tw" name="containedNode" type="_RQCwUEQkEeGbOcIfUqK4tw" association="_3PSSQEQlEeGbOcIfUqK4tw">
+          <ownedComment xmi:id="_bIQi4EQ1EeGu9u2aQ0ZB_Q" annotatedElement="_3PREIEQlEeGbOcIfUqK4tw">
+            <body>Node elements that belong to the domain.</body>
+          </ownedComment>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_3PREIkQlEeGbOcIfUqK4tw" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_3PREIUQlEeGbOcIfUqK4tw" value="*"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_4VqEcEQlEeGbOcIfUqK4tw" name="domainResource" type="_fNb4QEQkEeGbOcIfUqK4tw" association="_4VrSkEQlEeGbOcIfUqK4tw">
+          <ownedComment xmi:id="_Urh3sEVAEeGb36HOI07LSw" annotatedElement="_4VqEcEQlEeGbOcIfUqK4tw">
+            <body>Shared resources that belong to the domain.</body>
+          </ownedComment>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_4VqEckQlEeGbOcIfUqK4tw"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_4VqEcUQlEeGbOcIfUqK4tw" value="*"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_ADcRsEQ1EeGu9u2aQ0ZB_Q" name="label">
+          <ownedComment xmi:id="_6iEtcEU9EeGb36HOI07LSw" annotatedElement="_ADcRsEQ1EeGu9u2aQ0ZB_Q">
+            <body>An optional human-readable label for the domain.</body>
+          </ownedComment>
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_D2K8cEQ1EeGu9u2aQ0ZB_Q" name="UUID">
+          <ownedComment xmi:id="_-Iid0EU9EeGb36HOI07LSw" annotatedElement="_D2K8cEQ1EeGu9u2aQ0ZB_Q">
+            <body>An optional unique identifier for this domain.</body>
+          </ownedComment>
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Extension" xmi:id="_MnROYUQkEeGbOcIfUqK4tw" name="E_Domain_Class0" memberEnd="_MnROYkQkEeGbOcIfUqK4tw _MnROYEQkEeGbOcIfUqK4tw">
+        <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_MnROYkQkEeGbOcIfUqK4tw" name="extension_Domain" type="_Gsob8EQkEeGbOcIfUqK4tw" aggregation="composite" association="_MnROYUQkEeGbOcIfUqK4tw"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Stereotype" xmi:id="_RQCwUEQkEeGbOcIfUqK4tw" name="Node">
+        <ownedComment xmi:id="_1SBzUEVBEeGb36HOI07LSw" annotatedElement="_RQCwUEQkEeGbOcIfUqK4tw">
+          <body>The Node stereotype extends the UML 2.0 Node metaclass (from UML2.0::Deployments::Nodes).&#xD;
+Nodes are connected to zero or more CommunicationPaths that enable components that are instantiated on this node to&#xD;
+communicate with components on other nodes. Nodes may own resources and may have access to shared resources that&#xD;
+are shared between nodes.&#xD;
+&#xD;
+Constraints:&#xD;
+• The name of the Node must be unique within the Domain (see above).</body>
+        </ownedComment>
+        <ownedRule xmi:id="_frJD8HhHEeOygooCHiEUzQ" name="" constrainedElement="_RQCwUEQkEeGbOcIfUqK4tw">
+          <specification xmi:type="uml:LiteralString" xmi:id="_frKSEHhHEeOygooCHiEUzQ" name="" value="The name of the Node must be unique within the Domain."/>
+        </ownedRule>
+        <ownedAttribute xmi:id="_UB7CEEQkEeGbOcIfUqK4tw" name="base_Node" association="_UB7CEUQkEeGbOcIfUqK4tw">
+          <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Node"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_7Sr2QEQlEeGbOcIfUqK4tw" name="availableSharedResource" type="_fNb4QEQkEeGbOcIfUqK4tw" association="_7SsdUEQlEeGbOcIfUqK4tw">
+          <ownedComment xmi:id="_f17WwEVEEeGb36HOI07LSw" annotatedElement="_7Sr2QEQlEeGbOcIfUqK4tw">
+            <body>Set of SharedResources that the Node has access to.</body>
+          </ownedComment>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_7Sr2QkQlEeGbOcIfUqK4tw"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_7Sr2QUQlEeGbOcIfUqK4tw" value="*"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_AxjSsEQmEeGbOcIfUqK4tw" name="communicationPath" type="_W-xNsEQkEeGbOcIfUqK4tw" isDerived="true" association="_Axkg0EQmEeGbOcIfUqK4tw">
+          <eAnnotations xmi:id="_KffUgEXPEeGg_5BLT7cI1A" source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+            <details xmi:id="_Oux_cEXPEeGg_5BLT7cI1A" key="derivation" value="self.nodeConnector.communicationPath->flatten()"/>
+          </eAnnotations>
+          <ownedComment xmi:id="_iiTS4EVDEeGb36HOI07LSw" annotatedElement="_AxjSsEQmEeGbOcIfUqK4tw">
+            <body>Set of CommunicationPath to which the node is connected. This association is derived from the&#xD;
+Interconnect::communicationPath association.</body>
+          </ownedComment>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_AxjSskQmEeGbOcIfUqK4tw"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_AxjSsUQmEeGbOcIfUqK4tw" value="*"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_2SM24EVBEeGb36HOI07LSw" name="name">
+          <ownedComment xmi:id="_7Q2FsEVCEeGb36HOI07LSw" annotatedElement="_2SM24EVBEeGb36HOI07LSw">
+            <body>The node’s name.</body>
+          </ownedComment>
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_3GvSMEVBEeGb36HOI07LSw" name="label">
+          <ownedComment xmi:id="_8KS2MEVCEeGb36HOI07LSw" annotatedElement="_3GvSMEVBEeGb36HOI07LSw">
+            <body>An optional human readable label for the node.</body>
+          </ownedComment>
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_T9dJYEVDEeGb36HOI07LSw" name="ownedResource" type="_c391sEQkEeGbOcIfUqK4tw" aggregation="composite" association="_T9eXgEVDEeGb36HOI07LSw">
+          <ownedComment xmi:id="_hNZVcEVDEeGb36HOI07LSw" annotatedElement="_T9dJYEVDEeGb36HOI07LSw">
+            <body>Set of resources owned by the Node.</body>
+          </ownedComment>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_T9dJYkVDEeGb36HOI07LSw"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_T9dJYUVDEeGb36HOI07LSw" value="*"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_qN0KkUQmEeGbOcIfUqK4tw" name="nodeConnector" type="_nu0qgEQkEeGbOcIfUqK4tw" association="_qN0KkEQmEeGbOcIfUqK4tw">
+          <ownedComment xmi:id="_ncriMEVDEeGb36HOI07LSw" annotatedElement="_qN0KkUQmEeGbOcIfUqK4tw">
+            <body>Set of Interconnect to which the node is connected.</body>
+          </ownedComment>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_qN0Kk0QmEeGbOcIfUqK4tw"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_qN0KkkQmEeGbOcIfUqK4tw" value="*"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Extension" xmi:id="_UB7CEUQkEeGbOcIfUqK4tw" name="E_Node_Node0" memberEnd="_UB7CEkQkEeGbOcIfUqK4tw _UB7CEEQkEeGbOcIfUqK4tw">
+        <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_UB7CEkQkEeGbOcIfUqK4tw" name="extension_Node" type="_RQCwUEQkEeGbOcIfUqK4tw" aggregation="composite" association="_UB7CEUQkEeGbOcIfUqK4tw">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_tkpowEXBEeGg_5BLT7cI1A" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_tkq24EXBEeGg_5BLT7cI1A" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Stereotype" xmi:id="_W-xNsEQkEeGbOcIfUqK4tw" name="CommunicationPath">
+        <ownedComment xmi:id="_GA03IEQqEeGu9u2aQ0ZB_Q" annotatedElement="_W-xNsEQkEeGbOcIfUqK4tw">
+          <body>The CommunicationPath stereotype extends the UML 2.0 CommunicationPath metaclass (from&#xD;
+UML2.0::Deployments::Nodes). A CommunicationPath connects two or more Nodes (as opposed to only two nodes for&#xD;
+UML 2.0 Node). A CommunicationPath may be composed of one or more Interconnects and zero or more Bridges.</body>
+        </ownedComment>
+        <ownedAttribute xmi:id="_Z0v8UEQkEeGbOcIfUqK4tw" name="base_CommunicationPath" association="_Z0v8UUQkEeGbOcIfUqK4tw">
+          <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#CommunicationPath"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_c_hkUEQmEeGbOcIfUqK4tw" name="interconnect" type="_nu0qgEQkEeGbOcIfUqK4tw" aggregation="composite" association="_c_iLYEQmEeGbOcIfUqK4tw">
+          <ownedComment xmi:id="_6jaRQEQsEeGu9u2aQ0ZB_Q" annotatedElement="_c_hkUEQmEeGbOcIfUqK4tw">
+            <body>Set of Interconnect contained in the CommunicationPath.</body>
+          </ownedComment>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_c_hkUkQmEeGbOcIfUqK4tw" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_c_hkUUQmEeGbOcIfUqK4tw" value="*"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_MGqJwEQmEeGbOcIfUqK4tw" name="bridge" type="_AOgFcEQlEeGbOcIfUqK4tw" aggregation="composite" association="_MGqw0EQmEeGbOcIfUqK4tw">
+          <ownedComment xmi:id="_7h-LQEQsEeGu9u2aQ0ZB_Q" annotatedElement="_MGqJwEQmEeGbOcIfUqK4tw">
+            <body>Set of Bridges contained in the CommunicationPath.</body>
+          </ownedComment>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_MGqJwkQmEeGbOcIfUqK4tw"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_MGqJwUQmEeGbOcIfUqK4tw" value="*"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_Axkg0UQmEeGbOcIfUqK4tw" name="connectedNode" type="_RQCwUEQkEeGbOcIfUqK4tw" isDerived="true" association="_Axkg0EQmEeGbOcIfUqK4tw">
+          <eAnnotations xmi:id="_wR4DAEXMEeGg_5BLT7cI1A" source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+            <details xmi:id="_yVoDcEXMEeGg_5BLT7cI1A" key="derivation" value="self.interconnect.connectedNode->flatten()"/>
+          </eAnnotations>
+          <ownedComment xmi:id="_8o6lMEQsEeGu9u2aQ0ZB_Q" annotatedElement="_Axkg0UQmEeGbOcIfUqK4tw">
+            <body>Set of Nodes that uses the sharedResource. This association is derived from the Interconnect::connectedNode&#xD;
+association.</body>
+          </ownedComment>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Axkg00QmEeGbOcIfUqK4tw" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Axkg0kQmEeGbOcIfUqK4tw" value="*"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Extension" xmi:id="_Z0v8UUQkEeGbOcIfUqK4tw" name="E_CommunicationPath_CommunicationPath0" memberEnd="_Z0v8UkQkEeGbOcIfUqK4tw _Z0v8UEQkEeGbOcIfUqK4tw">
+        <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_Z0v8UkQkEeGbOcIfUqK4tw" name="extension_CommunicationPath" type="_W-xNsEQkEeGbOcIfUqK4tw" aggregation="composite" association="_Z0v8UUQkEeGbOcIfUqK4tw">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_vpUPMEXBEeGg_5BLT7cI1A" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_vpU2QEXBEeGg_5BLT7cI1A" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Stereotype" xmi:id="_c391sEQkEeGbOcIfUqK4tw" name="Resource">
+        <ownedComment xmi:id="_Az5pIEVEEeGb36HOI07LSw" annotatedElement="_c391sEQkEeGbOcIfUqK4tw">
+          <body>The Resources stereotype extends the UML 2.0 Class metaclass (from UML2.0::Kernel).&#xD;
+Resources represent features within the target environment. They are matched against implementation requirements at&#xD;
+deployment planning time.&#xD;
+&#xD;
+Constraints&#xD;
+• The name of a Resource must be unique within the container.&#xD;
+• A Resource is exclusively owned by either a Node, an Interconnect, or a bridge.</body>
+        </ownedComment>
+        <ownedRule xmi:id="_C6C3IHhHEeOygooCHiEUzQ" name="" constrainedElement="_c391sEQkEeGbOcIfUqK4tw">
+          <specification xmi:type="uml:LiteralString" xmi:id="_C6DeMHhHEeOygooCHiEUzQ" name="" value="The name of a Resource must be unique within the container."/>
+        </ownedRule>
+        <ownedRule xmi:id="_PTaAgHhHEeOygooCHiEUzQ" name="" constrainedElement="_c391sEQkEeGbOcIfUqK4tw">
+          <specification xmi:type="uml:LiteralString" xmi:id="_PTankHhHEeOygooCHiEUzQ" name="" value="A Resource is exclusively owned by either a Node, an Interconnect, or a bridge."/>
+        </ownedRule>
+        <ownedAttribute xmi:id="_gwke8EQkEeGbOcIfUqK4tw" name="base_Class" association="_gwlGAEQkEeGbOcIfUqK4tw">
+          <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_vzRZsEVDEeGb36HOI07LSw" name="name" visibility="public">
+          <ownedComment xmi:id="_uYV0AHhOEeOygooCHiEUzQ" annotatedElement="_vzRZsEVDEeGb36HOI07LSw">
+            <body>An optional name for the requirement satisfier.</body>
+          </ownedComment>
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_CvDq8HhOEeOygooCHiEUzQ" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_CvFgIHhOEeOygooCHiEUzQ" value="1"/>
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_CvHVUHhOEeOygooCHiEUzQ">
+            <value xsi:nil="true"/>
+          </defaultValue>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_0VPJAEVDEeGb36HOI07LSw" name="resourceType" visibility="public" isOrdered="true" isUnique="false">
+          <ownedComment xmi:id="_6yb9MHhOEeOygooCHiEUzQ" annotatedElement="_0VPJAEVDEeGb36HOI07LSw">
+            <body>The resource types that can be satisfied by this resource.</body>
+          </ownedComment>
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_6BVQYHhOEeOygooCHiEUzQ" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_6BWegHhOEeOygooCHiEUzQ" value="1"/>
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_6BXsoHhOEeOygooCHiEUzQ">
+            <value xsi:nil="true"/>
+          </defaultValue>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Stereotype" xmi:id="_fNb4QEQkEeGbOcIfUqK4tw" name="SharedResource">
+        <ownedComment xmi:id="_R3cCoEVEEeGb36HOI07LSw" annotatedElement="_fNb4QEQkEeGbOcIfUqK4tw">
+          <body>The SharedResources stereotype extends the UML 2.0 Class metaclass (from UML2.0::Kernel). It is a specialization of&#xD;
+the Resource stereotype.&#xD;
+Shared resources are resources that are shared between nodes. They are semantically equivalent to “normal” resources;&#xD;
+however, the planner must make sure that a shared resource is not exhausted by using it from multiple nodes in parallel.&#xD;
+&#xD;
+Constraints:&#xD;
+• The name of the SharedResource must be unique within the domain.&#xD;
+• A SharedResource is a type of Resource that can only be associated with Nodes.</body>
+        </ownedComment>
+        <ownedRule xmi:id="_1Gin0HhCEeOygooCHiEUzQ" name="" constrainedElement="_fNb4QEQkEeGbOcIfUqK4tw">
+          <specification xmi:type="uml:LiteralString" xmi:id="_4t4FcHhDEeOygooCHiEUzQ" value="A SharedRsource can only be associated with Nodes, not Interconnect"/>
+        </ownedRule>
+        <ownedRule xmi:id="_jM_hcHhEEeOygooCHiEUzQ" name="" constrainedElement="_fNb4QEQkEeGbOcIfUqK4tw">
+          <specification xmi:type="uml:LiteralString" xmi:id="_jNAvkHhEEeOygooCHiEUzQ" name="" value="The name of the SharedResource must be unique within the domain."/>
+        </ownedRule>
+        <generalization xmi:id="_rRmYQEQlEeGbOcIfUqK4tw" general="_c391sEQkEeGbOcIfUqK4tw"/>
+        <ownedAttribute xmi:id="_hazHsEQkEeGbOcIfUqK4tw" name="base_Class" association="_hazHsUQkEeGbOcIfUqK4tw">
+          <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_7SsdUUQlEeGbOcIfUqK4tw" name="resourceUser" type="_RQCwUEQkEeGbOcIfUqK4tw" association="_7SsdUEQlEeGbOcIfUqK4tw">
+          <ownedComment xmi:id="_RB66cEVFEeGb36HOI07LSw" annotatedElement="_7SsdUUQlEeGbOcIfUqK4tw">
+            <body>Set of nodes that have access to the SharedResource.</body>
+          </ownedComment>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_7SsdU0QlEeGbOcIfUqK4tw"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_7SsdUkQlEeGbOcIfUqK4tw" value="*"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Extension" xmi:id="_gwlGAEQkEeGbOcIfUqK4tw" name="E_Resource_Class0" memberEnd="_gwlGAUQkEeGbOcIfUqK4tw _gwke8EQkEeGbOcIfUqK4tw">
+        <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_gwlGAUQkEeGbOcIfUqK4tw" name="extension_Resource" type="_c391sEQkEeGbOcIfUqK4tw" aggregation="composite" association="_gwlGAEQkEeGbOcIfUqK4tw"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Extension" xmi:id="_hazHsUQkEeGbOcIfUqK4tw" name="E_SharedResource_Class0" memberEnd="_hazHskQkEeGbOcIfUqK4tw _hazHsEQkEeGbOcIfUqK4tw">
+        <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_hazHskQkEeGbOcIfUqK4tw" name="extension_SharedResource" type="_fNb4QEQkEeGbOcIfUqK4tw" aggregation="composite" association="_hazHsUQkEeGbOcIfUqK4tw"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Stereotype" xmi:id="_nu0qgEQkEeGbOcIfUqK4tw" name="Interconnect">
+        <ownedComment xmi:id="_Z3ZfoEVAEeGb36HOI07LSw" annotatedElement="_nu0qgEQkEeGbOcIfUqK4tw">
+          <body>The Interconnect stereotype extends the UML 2.0 AssociationClass metaclass (from UML2.0::AssociationClasses). It&#xD;
+establishes connection between a set of Nodes and Bridges.&#xD;
+An Interconnect provides a shared direct connection between one or more nodes. It can have resources, but no shared&#xD;
+resources. Resources are matched against a connection's requirements at deployment time.&#xD;
+An Interconnect that is attached to only a single node can be used to describe the loopback connection. A loopback&#xD;
+connection is implicit; components can always be interconnected locally. Sometimes, it may be useful or necessary to&#xD;
+describe the type(s) of available loopback connections (e.g., “shared memory”), or their resources or capabilities (e.g.,&#xD;
+latency).&#xD;
+&#xD;
+Constraints:&#xD;
+• The name must be unique within the domain</body>
+        </ownedComment>
+        <ownedRule xmi:id="_9oSUgHhEEeOygooCHiEUzQ" name="" constrainedElement="_nu0qgEQkEeGbOcIfUqK4tw">
+          <specification xmi:type="uml:LiteralString" xmi:id="_9oTioHhEEeOygooCHiEUzQ" name="" value="All ends of an Interconnect are typed by either Node or Bridge"/>
+        </ownedRule>
+        <ownedRule xmi:id="_LirLwHhFEeOygooCHiEUzQ" name="" constrainedElement="_nu0qgEQkEeGbOcIfUqK4tw">
+          <specification xmi:type="uml:LiteralString" xmi:id="_Liry0HhFEeOygooCHiEUzQ" name="" value="The name must be unique within the domain"/>
+        </ownedRule>
+        <ownedAttribute xmi:id="_op-EIEQkEeGbOcIfUqK4tw" name="base_AssociationClass" association="_op-rMEQkEeGbOcIfUqK4tw">
+          <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#AssociationClass"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_Su1-sEQmEeGbOcIfUqK4tw" name="bridge" type="_AOgFcEQlEeGbOcIfUqK4tw" association="_Su2lwEQmEeGbOcIfUqK4tw">
+          <ownedComment xmi:id="_vZXW0EVBEeGb36HOI07LSw" annotatedElement="_Su1-sEQmEeGbOcIfUqK4tw">
+            <body>The bridges that provide connectivity to other interconnects.</body>
+          </ownedComment>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Su1-skQmEeGbOcIfUqK4tw"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Su1-sUQmEeGbOcIfUqK4tw" value="*"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_kOiIsEQmEeGbOcIfUqK4tw" name="ownedResource" type="_c391sEQkEeGbOcIfUqK4tw" aggregation="composite" association="_kOivwEQmEeGbOcIfUqK4tw">
+          <ownedComment xmi:id="_wnGVQEVBEeGb36HOI07LSw" annotatedElement="_kOiIsEQmEeGbOcIfUqK4tw">
+            <body>Set of Resources owned by the Interconnect.</body>
+          </ownedComment>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_kOiIskQmEeGbOcIfUqK4tw"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_kOiIsUQmEeGbOcIfUqK4tw" value="*"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_qNy8cEQmEeGbOcIfUqK4tw" name="connectedNode" type="_RQCwUEQkEeGbOcIfUqK4tw" association="_qN0KkEQmEeGbOcIfUqK4tw">
+          <ownedComment xmi:id="_uPvcUEVBEeGb36HOI07LSw" annotatedElement="_qNy8cEQmEeGbOcIfUqK4tw">
+            <body>Set of nodes that the Interconnect is connected to.</body>
+          </ownedComment>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_qNy8ckQmEeGbOcIfUqK4tw" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_qNy8cUQmEeGbOcIfUqK4tw" value="*"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_bccx4EVAEeGb36HOI07LSw" name="name">
+          <ownedComment xmi:id="_rgwGgEVBEeGb36HOI07LSw" annotatedElement="_bccx4EVAEeGb36HOI07LSw">
+            <body>The interconnect’s name.</body>
+          </ownedComment>
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_ggyOcEVAEeGb36HOI07LSw" name="label">
+          <ownedComment xmi:id="_sy3OoEVBEeGb36HOI07LSw" annotatedElement="_ggyOcEVAEeGb36HOI07LSw">
+            <body>An optional human-readable label for the interconnect.</body>
+          </ownedComment>
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_c_iLYUQmEeGbOcIfUqK4tw" name="communicationPath" type="_W-xNsEQkEeGbOcIfUqK4tw" association="_c_iLYEQmEeGbOcIfUqK4tw">
+          <ownedComment xmi:id="_x9AYQEVBEeGb36HOI07LSw" annotatedElement="_c_iLYUQmEeGbOcIfUqK4tw">
+            <body>Reference the CommunicationPath the Interconnect belongs to.</body>
+          </ownedComment>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_c_iLY0QmEeGbOcIfUqK4tw" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_c_iLYkQmEeGbOcIfUqK4tw" value="1"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Extension" xmi:id="_op-rMEQkEeGbOcIfUqK4tw" name="E_Interconnect_AssociationClass0" memberEnd="_op-rMUQkEeGbOcIfUqK4tw _op-EIEQkEeGbOcIfUqK4tw">
+        <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_op-rMUQkEeGbOcIfUqK4tw" name="extension_Interconnect" type="_nu0qgEQkEeGbOcIfUqK4tw" aggregation="composite" association="_op-rMEQkEeGbOcIfUqK4tw"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Stereotype" xmi:id="_AOgFcEQlEeGbOcIfUqK4tw" name="Bridge">
+        <ownedComment xmi:id="_j-1N4EQoEeGu9u2aQ0ZB_Q" annotatedElement="_AOgFcEQlEeGbOcIfUqK4tw">
+          <body>The Bridge stereotype extends the UML 2.0 AssociationClass metaclass (from UML2.0::AssociationClasses). A Bridge is&#xD;
+a special type of association that connects two or more interconnects.&#xD;
+A Bridge exists between Interconnects to describe an indirect communication path between nodes. If a connection is to be&#xD;
+deployed between components that are instantiated on nodes that are not directly connected, therefore requiring bridging,&#xD;
+the connection's requirements must be satisfied by the resources of each interconnect and bridge in between.&#xD;
+&#xD;
+Constraints:&#xD;
+The name must be unique within the domain.</body>
+        </ownedComment>
+        <ownedRule xmi:id="_nJO4EHhFEeOygooCHiEUzQ" name="" constrainedElement="_AOgFcEQlEeGbOcIfUqK4tw">
+          <specification xmi:type="uml:LiteralString" xmi:id="_nJPfIHhFEeOygooCHiEUzQ" name="" value="All ends of a Bridge are typed by Interconnects"/>
+        </ownedRule>
+        <ownedRule xmi:id="_87RBAHhFEeOygooCHiEUzQ" name="" constrainedElement="_AOgFcEQlEeGbOcIfUqK4tw">
+          <specification xmi:type="uml:LiteralString" xmi:id="_87SPIHhFEeOygooCHiEUzQ" name="" value="The name must be unique within the domain"/>
+        </ownedRule>
+        <ownedAttribute xmi:id="_Blj_AEQlEeGbOcIfUqK4tw" name="base_AssociationClass" association="_BlkmEEQlEeGbOcIfUqK4tw">
+          <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#AssociationClass"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_UYigYEQmEeGbOcIfUqK4tw" name="ownedResource" type="_c391sEQkEeGbOcIfUqK4tw" aggregation="composite" association="_UYjugEQmEeGbOcIfUqK4tw">
+          <ownedComment xmi:id="_f8e9UEQpEeGu9u2aQ0ZB_Q" annotatedElement="_UYigYEQmEeGbOcIfUqK4tw">
+            <body>Set of Resources owned by the Bridge.</body>
+          </ownedComment>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_UYigYkQmEeGbOcIfUqK4tw"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_UYigYUQmEeGbOcIfUqK4tw" value="*"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_mU_0AEQoEeGu9u2aQ0ZB_Q" name="name">
+          <ownedComment xmi:id="_kn5jkEQpEeGu9u2aQ0ZB_Q" annotatedElement="_mU_0AEQoEeGu9u2aQ0ZB_Q">
+            <body>The bridge’s name.</body>
+          </ownedComment>
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_qmJgIEQoEeGu9u2aQ0ZB_Q" name="label">
+          <ownedComment xmi:id="_j0tzIEQpEeGu9u2aQ0ZB_Q" annotatedElement="_qmJgIEQoEeGu9u2aQ0ZB_Q">
+            <body>An optional human-readable label for this bridge.</body>
+          </ownedComment>
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_Su2lwUQmEeGbOcIfUqK4tw" name="interconnect" type="_nu0qgEQkEeGbOcIfUqK4tw" association="_Su2lwEQmEeGbOcIfUqK4tw">
+          <ownedComment xmi:id="_hFo9wEQpEeGu9u2aQ0ZB_Q" annotatedElement="_Su2lwUQmEeGbOcIfUqK4tw">
+            <body>The Interconnects that this Bridge provides connectivity to.</body>
+          </ownedComment>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Su2lw0QmEeGbOcIfUqK4tw" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Su2lwkQmEeGbOcIfUqK4tw" value="*"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_MGqw0UQmEeGbOcIfUqK4tw" name="communicationPath" type="_W-xNsEQkEeGbOcIfUqK4tw" association="_MGqw0EQmEeGbOcIfUqK4tw">
+          <ownedComment xmi:id="_e2-t0EQpEeGu9u2aQ0ZB_Q" annotatedElement="_MGqw0UQmEeGbOcIfUqK4tw">
+            <body>Reference the CommunicationPath the Interconnect belongs to.</body>
+          </ownedComment>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_MGqw00QmEeGbOcIfUqK4tw" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_MGqw0kQmEeGbOcIfUqK4tw" value="1"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Extension" xmi:id="_BlkmEEQlEeGbOcIfUqK4tw" name="E_Bridge_AssociationClass0" memberEnd="_BlkmEUQlEeGbOcIfUqK4tw _Blj_AEQlEeGbOcIfUqK4tw">
+        <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_BlkmEUQlEeGbOcIfUqK4tw" name="extension_Bridge" type="_AOgFcEQlEeGbOcIfUqK4tw" aggregation="composite" association="_BlkmEEQlEeGbOcIfUqK4tw"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_0NA0EEQlEeGbOcIfUqK4tw" name="domain_communicationPath_0" memberEnd="_0NA0EUQlEeGbOcIfUqK4tw _0M-X0EQlEeGbOcIfUqK4tw">
+        <ownedEnd xmi:id="_0NA0EUQlEeGbOcIfUqK4tw" name="domain" type="_Gsob8EQkEeGbOcIfUqK4tw" association="_0NA0EEQlEeGbOcIfUqK4tw">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_0NA0E0QlEeGbOcIfUqK4tw" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_0NA0EkQlEeGbOcIfUqK4tw" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_3PSSQEQlEeGbOcIfUqK4tw" name="domain_node_0" memberEnd="_3PSSQUQlEeGbOcIfUqK4tw _3PREIEQlEeGbOcIfUqK4tw">
+        <ownedEnd xmi:id="_3PSSQUQlEeGbOcIfUqK4tw" name="domain" type="_Gsob8EQkEeGbOcIfUqK4tw" association="_3PSSQEQlEeGbOcIfUqK4tw">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_3PSSQ0QlEeGbOcIfUqK4tw" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_3PSSQkQlEeGbOcIfUqK4tw" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_4VrSkEQlEeGbOcIfUqK4tw" name="domain_sharedResource_0" memberEnd="_4VrSkUQlEeGbOcIfUqK4tw _4VqEcEQlEeGbOcIfUqK4tw">
+        <ownedEnd xmi:id="_4VrSkUQlEeGbOcIfUqK4tw" name="domain" type="_Gsob8EQkEeGbOcIfUqK4tw" association="_4VrSkEQlEeGbOcIfUqK4tw">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_4VrSk0QlEeGbOcIfUqK4tw" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_4VrSkkQlEeGbOcIfUqK4tw" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_7SsdUEQlEeGbOcIfUqK4tw" name="node_sharedResource_0" memberEnd="_7SsdUUQlEeGbOcIfUqK4tw _7Sr2QEQlEeGbOcIfUqK4tw"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="_Axkg0EQmEeGbOcIfUqK4tw" name="node_communicationPath_0" memberEnd="_Axkg0UQmEeGbOcIfUqK4tw _AxjSsEQmEeGbOcIfUqK4tw"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="_MGqw0EQmEeGbOcIfUqK4tw" name="communicationPath_bridge_0" memberEnd="_MGqw0UQmEeGbOcIfUqK4tw _MGqJwEQmEeGbOcIfUqK4tw"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="_Su2lwEQmEeGbOcIfUqK4tw" name="interconnect_bridge_0" memberEnd="_Su2lwUQmEeGbOcIfUqK4tw _Su1-sEQmEeGbOcIfUqK4tw"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="_UYjugEQmEeGbOcIfUqK4tw" name="bridge_resource_0" memberEnd="_UYjugUQmEeGbOcIfUqK4tw _UYigYEQmEeGbOcIfUqK4tw">
+        <ownedEnd xmi:id="_UYjugUQmEeGbOcIfUqK4tw" name="bridge" type="_AOgFcEQlEeGbOcIfUqK4tw" association="_UYjugEQmEeGbOcIfUqK4tw">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_UYjug0QmEeGbOcIfUqK4tw" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_UYjugkQmEeGbOcIfUqK4tw" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_c_iLYEQmEeGbOcIfUqK4tw" name="communicationPath_interconnect_0" memberEnd="_c_iLYUQmEeGbOcIfUqK4tw _c_hkUEQmEeGbOcIfUqK4tw"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="_kOivwEQmEeGbOcIfUqK4tw" name="interconnect_resource_0" memberEnd="_kOivwUQmEeGbOcIfUqK4tw _kOiIsEQmEeGbOcIfUqK4tw">
+        <ownedEnd xmi:id="_kOivwUQmEeGbOcIfUqK4tw" name="interconnect" type="_nu0qgEQkEeGbOcIfUqK4tw" association="_kOivwEQmEeGbOcIfUqK4tw">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_kOivw0QmEeGbOcIfUqK4tw" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_kOivwkQmEeGbOcIfUqK4tw" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_qN0KkEQmEeGbOcIfUqK4tw" name="interconnect_node_0" memberEnd="_qN0KkUQmEeGbOcIfUqK4tw _qNy8cEQmEeGbOcIfUqK4tw"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="_T9eXgEVDEeGb36HOI07LSw" name="node_resource_0" memberEnd="_T9eXgUVDEeGb36HOI07LSw _T9dJYEVDEeGb36HOI07LSw">
+        <ownedEnd xmi:id="_T9eXgUVDEeGb36HOI07LSw" name="node" type="_RQCwUEQkEeGbOcIfUqK4tw" association="_T9eXgEVDEeGb36HOI07LSw">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_T9eXg0VDEeGb36HOI07LSw" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_T9eXgkVDEeGb36HOI07LSw" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+      <profileApplication xmi:id="_j_LMIEQoEeGu9u2aQ0ZB_Q">
+        <eAnnotations xmi:id="_j_TH8EQoEeGu9u2aQ0ZB_Q" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <references xmi:type="ecore:EPackage" href="pathmap://Papyrus.profile.uml#_vaU6ggEYEeCIz8iAxBJnfA"/>
+        </eAnnotations>
+        <appliedProfile href="pathmap://Papyrus.profile.uml#_H9068AEYEeCIz8iAxBJnfA"/>
+      </profileApplication>
+    </packagedElement>
+    <profileApplication xmi:id="_fzz64EUYEeGb36HOI07LSw">
+      <eAnnotations xmi:id="_f0J5IEUYEeGb36HOI07LSw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UML_PROFILES/Ecore.profile.uml#_0"/>
+    </profileApplication>
+  </uml:Profile>
+  <Documentation:Documentation xmi:id="_4q1KwDz0EeGa_u5A69AAkQ" base_Comment="_4qJ1UDz0EeGa_u5A69AAkQ"/>
+  <Documentation:Documentation xmi:id="_IB73oDz1EeGa_u5A69AAkQ" base_Comment="_IB7QkDz1EeGa_u5A69AAkQ"/>
+  <Documentation:Documentation xmi:id="_Iyi1MTz1EeGa_u5A69AAkQ" base_Comment="_Iyi1MDz1EeGa_u5A69AAkQ"/>
+  <Documentation:Documentation xmi:id="_PVGjQDz1EeGa_u5A69AAkQ" base_Comment="_PVF8MDz1EeGa_u5A69AAkQ"/>
+  <Documentation:Documentation xmi:id="_mK4oMDz1EeGa_u5A69AAkQ" base_Comment="_mK4BIDz1EeGa_u5A69AAkQ"/>
+  <Documentation:Documentation xmi:id="_qAAfoTz1EeGa_u5A69AAkQ" base_Comment="_qAAfoDz1EeGa_u5A69AAkQ"/>
+  <Documentation:Documentation xmi:id="_WBnpITz2EeGa_u5A69AAkQ" base_Comment="_WBnpIDz2EeGa_u5A69AAkQ"/>
+  <Documentation:Documentation xmi:id="_W9kpIDz4EeGa_u5A69AAkQ" base_Comment="_W9kCEDz4EeGa_u5A69AAkQ"/>
+  <Documentation:Documentation xmi:id="_YbNr0Dz4EeGa_u5A69AAkQ" base_Comment="_YbNEwDz4EeGa_u5A69AAkQ"/>
+  <Documentation:Documentation xmi:id="_aCkEITz4EeGa_u5A69AAkQ" base_Comment="_aCkEIDz4EeGa_u5A69AAkQ"/>
+  <Documentation:Documentation xmi:id="_bqUsITz4EeGa_u5A69AAkQ" base_Comment="_bqUsIDz4EeGa_u5A69AAkQ"/>
+  <Documentation:Documentation xmi:id="_2iExsDz4EeGa_u5A69AAkQ" base_Comment="_2iEKoDz4EeGa_u5A69AAkQ"/>
+  <Documentation:Documentation xmi:id="_5j3HsTz4EeGa_u5A69AAkQ" base_Comment="_5j3HsDz4EeGa_u5A69AAkQ"/>
+  <Documentation:Documentation xmi:id="_agKJoDz5EeGa_u5A69AAkQ" base_Comment="_agJikDz5EeGa_u5A69AAkQ"/>
+  <Documentation:Documentation xmi:id="_oSR1sTz5EeGa_u5A69AAkQ" base_Comment="_oSR1sDz5EeGa_u5A69AAkQ"/>
+  <Documentation:Documentation xmi:id="_pgi_oDz5EeGa_u5A69AAkQ" base_Comment="_pgiYkDz5EeGa_u5A69AAkQ"/>
+  <Documentation:Documentation xmi:id="_3THXoDz5EeGa_u5A69AAkQ" base_Comment="_3TGwkDz5EeGa_u5A69AAkQ"/>
+  <Documentation:Documentation xmi:id="_9mO7gDz5EeGa_u5A69AAkQ" base_Comment="_9mOUcDz5EeGa_u5A69AAkQ"/>
+  <Documentation:Documentation xmi:id="_NHmFsTz8EeGa_u5A69AAkQ" base_Comment="_NHmFsDz8EeGa_u5A69AAkQ"/>
+  <Documentation:Documentation xmi:id="_OacNoTz8EeGa_u5A69AAkQ" base_Comment="_OacNoDz8EeGa_u5A69AAkQ"/>
+  <Documentation:Documentation xmi:id="_SmFusTz8EeGa_u5A69AAkQ" base_Comment="_SmFusDz8EeGa_u5A69AAkQ"/>
+  <Documentation:Documentation xmi:id="_cMr1gTz8EeGa_u5A69AAkQ" base_Comment="_cMr1gDz8EeGa_u5A69AAkQ"/>
+  <Documentation:Documentation xmi:id="_gC55ITz8EeGa_u5A69AAkQ" base_Comment="_gC55IDz8EeGa_u5A69AAkQ"/>
+  <Documentation:Documentation xmi:id="__R4doTz8EeGa_u5A69AAkQ" base_Comment="__R4doDz8EeGa_u5A69AAkQ"/>
+  <Documentation:Documentation xmi:id="_DNbtMDz9EeGa_u5A69AAkQ" base_Comment="_DNbGIDz9EeGa_u5A69AAkQ"/>
+  <Documentation:Documentation xmi:id="_IsO4MTz9EeGa_u5A69AAkQ" base_Comment="_IsO4MDz9EeGa_u5A69AAkQ"/>
+  <Documentation:Documentation xmi:id="_NfAqsDz9EeGa_u5A69AAkQ" base_Comment="_NfADoDz9EeGa_u5A69AAkQ"/>
+  <Documentation:Documentation xmi:id="_p4eaoDz9EeGa_u5A69AAkQ" base_Comment="_p4dzkDz9EeGa_u5A69AAkQ"/>
+  <Documentation:Documentation xmi:id="_x2bvsDz9EeGa_u5A69AAkQ" base_Comment="_x2bIoDz9EeGa_u5A69AAkQ"/>
+  <Documentation:Documentation xmi:id="_C-jHMTz-EeGa_u5A69AAkQ" base_Comment="_C-jHMDz-EeGa_u5A69AAkQ"/>
+  <Documentation:Documentation xmi:id="_JrGewDz-EeGa_u5A69AAkQ" base_Comment="_JrF3sDz-EeGa_u5A69AAkQ"/>
+  <Documentation:Documentation xmi:id="_4Z5AMTz-EeGa_u5A69AAkQ" base_Comment="_4Z5AMDz-EeGa_u5A69AAkQ"/>
+  <Documentation:Documentation xmi:id="_5VxZoDz-EeGa_u5A69AAkQ" base_Comment="_5VwykDz-EeGa_u5A69AAkQ"/>
+  <Documentation:Documentation xmi:id="_6OnGIDz-EeGa_u5A69AAkQ" base_Comment="_6OmfEDz-EeGa_u5A69AAkQ"/>
+  <Documentation:Documentation xmi:id="_7bcssTz-EeGa_u5A69AAkQ" base_Comment="_7bcssDz-EeGa_u5A69AAkQ"/>
+  <Documentation:Documentation xmi:id="_8p9HMDz-EeGa_u5A69AAkQ" base_Comment="_8p8gIDz-EeGa_u5A69AAkQ"/>
+  <Documentation:Documentation xmi:id="_96NOITz-EeGa_u5A69AAkQ" base_Comment="_96NOIDz-EeGa_u5A69AAkQ"/>
+  <Documentation:Documentation xmi:id="_-4FysDz-EeGa_u5A69AAkQ" base_Comment="_-4FLoDz-EeGa_u5A69AAkQ"/>
+  <Documentation:Documentation xmi:id="_HXrOIDz_EeGa_u5A69AAkQ" base_Comment="_HXqnEDz_EeGa_u5A69AAkQ"/>
+  <Documentation:Documentation xmi:id="_JoLRITz_EeGa_u5A69AAkQ" base_Comment="_JoLRIDz_EeGa_u5A69AAkQ"/>
+  <Documentation:Documentation xmi:id="_iZgIcEQgEeGbOcIfUqK4tw" base_Comment="_iY-kAEQgEeGbOcIfUqK4tw"/>
+  <Documentation:Documentation xmi:id="_j_WyUEQoEeGu9u2aQ0ZB_Q" base_Comment="_j-1N4EQoEeGu9u2aQ0ZB_Q"/>
+  <Documentation:Documentation xmi:id="_e2-t0UQpEeGu9u2aQ0ZB_Q" base_Comment="_e2-t0EQpEeGu9u2aQ0ZB_Q"/>
+  <Documentation:Documentation xmi:id="_f8e9UUQpEeGu9u2aQ0ZB_Q" base_Comment="_f8e9UEQpEeGu9u2aQ0ZB_Q"/>
+  <Documentation:Documentation xmi:id="_hFpk0EQpEeGu9u2aQ0ZB_Q" base_Comment="_hFo9wEQpEeGu9u2aQ0ZB_Q"/>
+  <Documentation:Documentation xmi:id="_j0uaMEQpEeGu9u2aQ0ZB_Q" base_Comment="_j0tzIEQpEeGu9u2aQ0ZB_Q"/>
+  <Documentation:Documentation xmi:id="_kn5jkUQpEeGu9u2aQ0ZB_Q" base_Comment="_kn5jkEQpEeGu9u2aQ0ZB_Q"/>
+  <Documentation:Documentation xmi:id="_GA03IUQqEeGu9u2aQ0ZB_Q" base_Comment="_GA03IEQqEeGu9u2aQ0ZB_Q"/>
+  <Documentation:Documentation xmi:id="_6ja4UEQsEeGu9u2aQ0ZB_Q" base_Comment="_6jaRQEQsEeGu9u2aQ0ZB_Q"/>
+  <Documentation:Documentation xmi:id="_7h-yUEQsEeGu9u2aQ0ZB_Q" base_Comment="_7h-LQEQsEeGu9u2aQ0ZB_Q"/>
+  <Documentation:Documentation xmi:id="_8o7MQEQsEeGu9u2aQ0ZB_Q" base_Comment="_8o6lMEQsEeGu9u2aQ0ZB_Q"/>
+  <Documentation:Documentation xmi:id="_-NCwwEQ0EeGu9u2aQ0ZB_Q" base_Comment="_-NCJsEQ0EeGu9u2aQ0ZB_Q"/>
+  <Documentation:Documentation xmi:id="_bIQi4UQ1EeGu9u2aQ0ZB_Q" base_Comment="_bIQi4EQ1EeGu9u2aQ0ZB_Q"/>
+  <Ecore:EPackage xmi:id="_k1o2AEUYEeGb36HOI07LSw" base_Package="_7TRQ0DztEeGa_u5A69AAkQ" packageName="components" nsURI="http://www.omg.org/spec/DEPL/4.0/profile/components/1.0" basePackage="org.eclipse.upr.depl"/>
+  <Ecore:EPackage xmi:id="_C-op4EUZEeGb36HOI07LSw" base_Package="_F7S_cDzuEeGa_u5A69AAkQ" packageName="target" nsURI="http://www.omg.org/spec/DEPL/4.0/profile/target/1.0" basePackage="org.eclipse.upr.depl"/>
+  <Documentation:Documentation xmi:id="_6iEtcUU9EeGb36HOI07LSw" base_Comment="_6iEtcEU9EeGb36HOI07LSw"/>
+  <Documentation:Documentation xmi:id="_-Iid0UU9EeGb36HOI07LSw" base_Comment="_-Iid0EU9EeGb36HOI07LSw"/>
+  <Documentation:Documentation xmi:id="_Urh3sUVAEeGb36HOI07LSw" base_Comment="_Urh3sEVAEeGb36HOI07LSw"/>
+  <Documentation:Documentation xmi:id="_Z3aGsEVAEeGb36HOI07LSw" base_Comment="_Z3ZfoEVAEeGb36HOI07LSw"/>
+  <Documentation:Documentation xmi:id="_rgwGgUVBEeGb36HOI07LSw" base_Comment="_rgwGgEVBEeGb36HOI07LSw"/>
+  <Documentation:Documentation xmi:id="_sy3OoUVBEeGb36HOI07LSw" base_Comment="_sy3OoEVBEeGb36HOI07LSw"/>
+  <Documentation:Documentation xmi:id="_uPwDYEVBEeGb36HOI07LSw" base_Comment="_uPvcUEVBEeGb36HOI07LSw"/>
+  <Documentation:Documentation xmi:id="_vZX94EVBEeGb36HOI07LSw" base_Comment="_vZXW0EVBEeGb36HOI07LSw"/>
+  <Documentation:Documentation xmi:id="_wnGVQUVBEeGb36HOI07LSw" base_Comment="_wnGVQEVBEeGb36HOI07LSw"/>
+  <Documentation:Documentation xmi:id="_x9AYQUVBEeGb36HOI07LSw" base_Comment="_x9AYQEVBEeGb36HOI07LSw"/>
+  <Documentation:Documentation xmi:id="_1SBzUUVBEeGb36HOI07LSw" base_Comment="_1SBzUEVBEeGb36HOI07LSw"/>
+  <Documentation:Documentation xmi:id="_7Q2swEVCEeGb36HOI07LSw" base_Comment="_7Q2FsEVCEeGb36HOI07LSw"/>
+  <Documentation:Documentation xmi:id="_8KS2MUVCEeGb36HOI07LSw" base_Comment="_8KS2MEVCEeGb36HOI07LSw"/>
+  <Documentation:Documentation xmi:id="_hNZ8gEVDEeGb36HOI07LSw" base_Comment="_hNZVcEVDEeGb36HOI07LSw"/>
+  <Documentation:Documentation xmi:id="_iiTS4UVDEeGb36HOI07LSw" base_Comment="_iiTS4EVDEeGb36HOI07LSw"/>
+  <Documentation:Documentation xmi:id="_ncriMUVDEeGb36HOI07LSw" base_Comment="_ncriMEVDEeGb36HOI07LSw"/>
+  <Documentation:Documentation xmi:id="_Az6QMEVEEeGb36HOI07LSw" base_Comment="_Az5pIEVEEeGb36HOI07LSw"/>
+  <Documentation:Documentation xmi:id="_R3cCoUVEEeGb36HOI07LSw" base_Comment="_R3cCoEVEEeGb36HOI07LSw"/>
+  <Documentation:Documentation xmi:id="_f17WwUVEEeGb36HOI07LSw" base_Comment="_f17WwEVEEeGb36HOI07LSw"/>
+  <Documentation:Documentation xmi:id="_RB7hgEVFEeGb36HOI07LSw" base_Comment="_RB66cEVFEeGb36HOI07LSw"/>
+  <Ecore:EReference xmi:id="_ywsoIEXHEeGg_5BLT7cI1A" isTransient="true" base_Property="_Axkg0UQmEeGbOcIfUqK4tw"/>
+  <Ecore:EReference xmi:id="_YzozwEXIEeGg_5BLT7cI1A" isTransient="true" base_Property="_AxjSsEQmEeGbOcIfUqK4tw"/>
+</xmi:XMI>

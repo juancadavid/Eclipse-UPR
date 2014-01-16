@@ -1,0 +1,31 @@
+This document lists some ambiguities in the description of the UML Profile of the DEPL standard and which interpretation was chosen with a short explanation why.
+All issues, except cardinality of label properties were submitted to the OMG.
+
+
+In the overview diagram the property Components::Component::ownedPort has the multiplicity [1..*] in textual description, however, the multiplicity is [*]. There seems to be no reason why a component should have at least one port.
+We implemented the property compliant to the textual description.
+http://www.omg.org/issues/deployment-rtf.open.html#Issue17028
+
+The property Components::ComponentImplementation::capacity is of type Sequence(Capacity). The type Capacity is not existent, neither in the UML meta-model nor in the DEPL specification. It is most likely (also judging from the stand-alone PIM meta-model) that the type Capability was meant here. So the property should be exchanged by the property:
+Components::ComponentImplementation::capability(Capability)
+We changed property as described above in the implementation.
+http://www.omg.org/issues/deployment-rtf.open.html#Issue17029
+
+The property Components::ExternalReference::location is of type URL. This type is neither defined in the UML meta-model, nor in the DEPL profile. The type should be String and maybe a constraint or regular expression should be defined to restrict the value to a URL.
+In the implementation, we changed the type to String.
+http://www.omg.org/issues/deployment-rtf.open.html#Issue17030
+
+Description for label properties often state "optional", but cardinality is implicit [1]. 
+We keep the cardinality [1] and interpret that an optional label will be an empty string.
+
+The name and description of stereotype-property Components::Port::UID seems odd. Other stereotypes have a UUID property, providing a unique identifier. The description "The primary type of the port." does not seem to fit.
+Therefore we changed the name of the property to "UUID".
+http://www.omg.org/issues/deployment-rtf.open.html#Issue17031
+
+The multiplicity of stereotype-property Target::CommunicationPath::connectedNode is [1..*] in the overview picture, in textual description it is [*]. The multiplicity of [1..*] makes more sense, since the source for the property is 
+self.interconnect.connectedNode, where CommunicationPath::interconnect has multiplicity [1..*] and Interconnect::connectedNode has multiplicity [1..*], so there should be at least one connectedNode.
+http://www.omg.org/issues/deployment-rtf.open.html#Issue17032
+
+The multiplicity of the stereotype-property SharedResource::resourceUser is [0..*] in the overview picture, but [1..*] in the textual description. There seems to be no reason why there should be at least one user for a shared resource.
+Therefore we chose the multiplicity [0..*] for implementation.
+http://www.omg.org/issues/deployment-rtf.open.html#Issue17033

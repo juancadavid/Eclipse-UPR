@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Eclipse UPR SoaML Implementation 4 Papyrus
+Bundle-SymbolicName: org.eclipse.upr.soaml.papyrus;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Require-Bundle: org.eclipse.upr.soaml;bundle-version="1.0.0",
+ org.eclipse.papyrus.uml.extensionpoints
