@@ -20,7 +20,7 @@ Marc-Florian Wendland
       id="org.eclipse.upr.depl.feature"
       label="Eclipse UPR DEPL 4.0 UML Profile Implementation"
       version="0.9.0.qualifier"
-      provider-name="Fraunhofer FOKUS">
+      provider-name="Eclipse UPR">
 
    <description>
       Implementation of the UML profile defined in the OMG standard

@@ -6,7 +6,7 @@
       <profile
             name="SoaML"
             path="pathmap://SOAML/soaml.profile.uml"
-            provider="Fraunhofer FOKUS">
+            provider="Eclipse UPR">
       </profile>
    </extension>
 

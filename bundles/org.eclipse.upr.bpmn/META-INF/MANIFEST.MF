@@ -3,5 +3,5 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Eclipse UPR BPMN UML Profile Implementation
 Bundle-SymbolicName: org.eclipse.upr.bpmn
 Bundle-Version: 0.9.0.qualifier
-Bundle-Vendor: Fraunhofer FOKUS
+Bundle-Vendor: Eclipse UPR
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

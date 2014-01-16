@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Tests for DEPL Project
+Bundle-SymbolicName: org.eclipse.upr.depl.tests
+Fragment-Host: org.eclipse.upr.depl
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: Eclipse UPR
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Require-Bundle: org.junit;bundle-version="4.11.0"

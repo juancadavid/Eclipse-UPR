@@ -20,7 +20,7 @@ Marc-Florian Wendland
       id="org.eclipse.upr.utp.papyrus.feature"
       label="Eclipse UPR UTP 1.2 Implementation for Payprus"
       version="0.9.0.qualifier"
-      provider-name="Fraunhofer FOKUS">
+      provider-name="Eclipse UPR">
 
    <description>
       This feature integrates the Eclipse UPR UTP implementation with Eclipse Papyrus.

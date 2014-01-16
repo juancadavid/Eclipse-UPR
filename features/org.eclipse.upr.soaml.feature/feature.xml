@@ -20,7 +20,7 @@ Max Bureck
       id="org.eclipse.upr.soaml.feature"
       label="Eclipse UPR SoaML Implementation"
       version="0.9.0.qualifier"
-      provider-name="Fraunhofer FOKUS">
+      provider-name="Eclipse UPR">
 
    <description>
       This feature provides the Eclipse UPR SoaML implementation.
