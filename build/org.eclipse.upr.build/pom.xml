@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-  Copyright (c) 2014 Fraunhofer FOKUS and others.
-  All rights reserved. This program and the accompanying materials
-  are made available under the terms of the Eclipse Public License v1.0
-  which accompanies this distribution, and is available at
-  http://www.eclipse.org/legal/epl-v10.html
- 
-  Contributors:
-     Max Bureck
-     Marc-Florian Wendland
--->
+<!-- Copyright (c) 2014 Fraunhofer FOKUS and others. All rights reserved. 
+	This program and the accompanying materials are made available under the 
+	terms of the Eclipse Public License v1.0 which accompanies this distribution, 
+	and is available at http://www.eclipse.org/legal/epl-v10.html Contributors: 
+	Max Bureck Marc-Florian Wendland -->
 
 <project
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
@@ -23,6 +17,8 @@
 	<properties>
 		<tycho-version>0.19.0</tycho-version>
 		<tycho-extras-version>0.19.0</tycho-extras-version>
+		<!-- does not make too much sense currently, since repository not yet exists -->
+		<baseline-repository>http://download.eclipse.org/modeling/upr/nightly/</baseline-repository>
 	</properties>
 
 	<repositories>
@@ -108,6 +104,39 @@
 
 			<plugin>
 				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-packaging-plugin</artifactId>
+				<version>${tycho-version}</version>
+				<dependencies>
+					<dependency>
+						<groupId>org.eclipse.tycho.extras</groupId>
+						<artifactId>tycho-buildtimestamp-jgit</artifactId>
+						<version>${tycho-extras-version}</version>
+					</dependency>
+				</dependencies>
+				<configuration>
+					<timestampProvider>jgit</timestampProvider>
+					<jgit.ignore>
+						pom.xml
+					</jgit.ignore>
+					<format>yyyyMMdd-HHmm</format>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-p2-plugin</artifactId>
+				<version>${tycho-version}</version>
+				<configuration>
+					<baselineRepositories>
+						<repository>
+							<url>${baseline-repository}</url>
+						</repository>
+					</baselineRepositories>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
 				<artifactId>target-platform-configuration</artifactId>
 				<version>${tycho-version}</version>
 				<configuration>
@@ -115,35 +144,35 @@
 					<resolver>p2</resolver>
 					<pomDependencies>consider</pomDependencies>
 					<environments>
-							<environment>
-								<os>win32</os>
-								<ws>win32</ws>
-								<arch>x86</arch>
-							</environment>
-							<environment>
-								<os>linux</os>
-								<ws>gtk</ws>
-								<arch>x86_64</arch>
-							</environment>
-							<environment>
-								<os>linux</os>
-								<ws>gtk</ws>
-								<arch>x86</arch>
-							</environment>
-							<environment>
-								<os>macosx</os>
-								<ws>cocoa</ws>
-								<arch>x86_64</arch>
-							</environment>
-							<environment>
-								<os>macosx</os>
-								<ws>cocoa</ws>
-								<arch>x86</arch>
-							</environment>
+						<environment>
+							<os>win32</os>
+							<ws>win32</ws>
+							<arch>x86</arch>
+						</environment>
+						<environment>
+							<os>linux</os>
+							<ws>gtk</ws>
+							<arch>x86_64</arch>
+						</environment>
+						<environment>
+							<os>linux</os>
+							<ws>gtk</ws>
+							<arch>x86</arch>
+						</environment>
+						<environment>
+							<os>macosx</os>
+							<ws>cocoa</ws>
+							<arch>x86_64</arch>
+						</environment>
+						<environment>
+							<os>macosx</os>
+							<ws>cocoa</ws>
+							<arch>x86</arch>
+						</environment>
 					</environments>
 				</configuration>
 			</plugin>
-			
+
 		</plugins>
 	</build>
 </project>
