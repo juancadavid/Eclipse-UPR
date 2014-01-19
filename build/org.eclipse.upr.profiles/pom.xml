@@ -22,6 +22,7 @@
   <groupId>org.eclipse.upr</groupId>
   <artifactId>org.eclipse.upr.profiles</artifactId>
   <name>Eclipse UML Profiles Repository</name>
-  <version>0.9.0</version>
+  <version>0.9.0-SNAPSHOT</version>
   <packaging>eclipse-repository</packaging>
+  
 </project>
