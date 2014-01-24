@@ -1,34 +1,24 @@
 package org.eclipse.upr.depl.tests.components;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage.Registry;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.uml2.uml.Component;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.NamedElement;
-import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLPackage;
-import org.eclipse.uml2.uml.resource.UMLResource;
-import org.eclipse.uml2.uml.resources.ResourcesPlugin;
 import org.eclipse.uml2.uml.util.UMLUtil;
 import org.eclipse.upr.depl.components.ComponentAssembly;
-import org.eclipse.upr.depl.components.ComponentsFactory;
-import org.eclipse.upr.depl.components.ComponentsPackage;
 import org.eclipse.upr.depl.components.Property;
-import org.eclipse.upr.depl.target.TargetPackage;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
