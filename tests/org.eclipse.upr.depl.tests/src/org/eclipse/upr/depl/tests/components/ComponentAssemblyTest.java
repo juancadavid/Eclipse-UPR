@@ -35,7 +35,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
- * Tests derived properties on model element {@link ComponentAssembly}
+ * Tests derived properties on model element {@link ComponentAssembly}.
+ * When running in Eclipse, this test has to be executed as a Plug-in Test.
  * @author Max Bureck
  */
 public class ComponentAssemblyTest {
@@ -65,7 +66,6 @@ public class ComponentAssemblyTest {
 	
 	@Test
 	public void testConfigProperty() {
-		//fail("Not yet implemented");
 		final org.eclipse.uml2.uml.Package p = getComponentAssemblyPackacke();
 		final boolean ignoreCase = false;
 		final boolean createOnDemand = false;
