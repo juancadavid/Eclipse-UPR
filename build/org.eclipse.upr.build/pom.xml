@@ -55,6 +55,7 @@
 		<module>../../bundles/org.eclipse.upr.bpmn</module>
 		<module>../../bundles/org.eclipse.upr.depl</module>
 		<module>../../features/org.eclipse.upr.depl.feature</module>
+		<module>../../tests/org.eclipse.upr.depl.tests</module>
 		<module>../../bundles/org.eclipse.upr.depl.papyrus</module>
 		<module>../../features/org.eclipse.upr.depl.papyrus.feature</module>
 		<module>../../bundles/org.eclipse.upr.soaml</module>

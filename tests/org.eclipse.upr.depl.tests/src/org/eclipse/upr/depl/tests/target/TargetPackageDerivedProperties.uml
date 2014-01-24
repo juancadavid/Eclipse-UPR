@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:UMLProfileForDC.Target="http://www.omg.org/spec/DEPL/4.0/profile/target/1.0" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML">
+  <uml:Model xmi:id="_ZxGuQH91EeOSYoR-9kk5gw" name="model">
+    <packagedElement xmi:type="uml:Node" xmi:id="_a3PP4H91EeOSYoR-9kk5gw" name="Node1"/>
+    <packagedElement xmi:type="uml:Node" xmi:id="_dA65MH91EeOSYoR-9kk5gw" name="Node2"/>
+    <packagedElement xmi:type="uml:Node" xmi:id="_fodjMH91EeOSYoR-9kk5gw" name="Node3"/>
+    <packagedElement xmi:type="uml:AssociationClass" xmi:id="_y2yccH95EeOSYoR-9kk5gw" name="Node1_Node2"/>
+    <packagedElement xmi:type="uml:CommunicationPath" xmi:id="_vqnl8H96EeOSYoR-9kk5gw" name=""/>
+    <packagedElement xmi:type="uml:Node" xmi:id="_4njEsH96EeOSYoR-9kk5gw" name="Node4"/>
+    <packagedElement xmi:type="uml:AssociationClass" xmi:id="__I6f8H96EeOSYoR-9kk5gw" name="Node2_Node4"/>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_BqtEEH93EeOSYoR-9kk5gw">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_BsDu8H93EeOSYoR-9kk5gw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.omg.org/spec/DEPL/4.0/profile/target/1.0#/"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="platform:/plugin/org.eclipse.upr.depl/model/depl.profile.uml#_F7S_cDzuEeGa_u5A69AAkQ"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLProfileForDC.Target:Node xmi:id="_BsHZUH93EeOSYoR-9kk5gw" base_Node="_a3PP4H91EeOSYoR-9kk5gw" name="Node1" label="Node 1" nodeConnector="_5E6LkH95EeOSYoR-9kk5gw"/>
+  <UMLProfileForDC.Target:Node xmi:id="_Bupv8H93EeOSYoR-9kk5gw" base_Node="_dA65MH91EeOSYoR-9kk5gw" name="Node2" label="Node 2" nodeConnector="_eWevMH97EeOSYoR-9kk5gw _5E6LkH95EeOSYoR-9kk5gw"/>
+  <UMLProfileForDC.Target:Node xmi:id="_BuqXAH93EeOSYoR-9kk5gw" base_Node="_fodjMH91EeOSYoR-9kk5gw" name="Node3" label="Node 3"/>
+  <UMLProfileForDC.Target:CommunicationPath xmi:id="_vqqCMH96EeOSYoR-9kk5gw" base_CommunicationPath="_vqnl8H96EeOSYoR-9kk5gw">
+    <interconnect xmi:type="UMLProfileForDC.Target:Interconnect" xmi:id="_eWevMH97EeOSYoR-9kk5gw" base_AssociationClass="__I6f8H96EeOSYoR-9kk5gw" connectedNode="_Bupv8H93EeOSYoR-9kk5gw _4njEsX96EeOSYoR-9kk5gw" name="Node2_Node4" label="From Node 2 to Node 4"/>
+    <interconnect xmi:type="UMLProfileForDC.Target:Interconnect" xmi:id="_d-g7IH97EeOSYoR-9kk5gw" base_AssociationClass="_y2yccH95EeOSYoR-9kk5gw"  connectedNode="_BsHZUH93EeOSYoR-9kk5gw _Bupv8H93EeOSYoR-9kk5gw" name="Node1_Node2" label="From Node 1 to Node 2"/>
+  </UMLProfileForDC.Target:CommunicationPath>
+  <UMLProfileForDC.Target:Node xmi:id="_4njEsX96EeOSYoR-9kk5gw" base_Node="_4njEsH96EeOSYoR-9kk5gw" name="Node4" label="Node 4" nodeConnector="_eWevMH97EeOSYoR-9kk5gw"/>
+</xmi:XMI>
