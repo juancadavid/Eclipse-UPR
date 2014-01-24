@@ -1,54 +1,159 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:UMLProfileForDC.Components="http://www.omg.org/spec/DEPL/4.0/profile/components/1.0" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML">
-  <uml:Model xmi:id="_TAHXMH33EeOt8qHDFBEAhQ" name="model">
-    <packagedElement xmi:type="uml:Package" xmi:id="_UJwtkH38EeOt8qHDFBEAhQ" name="AssemblyProperty">
-      <packagedElement xmi:type="uml:Component" xmi:id="_XpL0EH33EeOt8qHDFBEAhQ" name="Implementation_2">
-        <ownedAttribute xmi:id="_PmrZYH37EeOt8qHDFBEAhQ" name="property_2"/>
+<xmi:XMI xmi:version="20110701"
+    xmlns:xmi="http://www.omg.org/spec/XMI/20110701"
+    xmlns:UMLProfileForDC.Components="http://www.omg.org/spec/DEPL/4.0/profile/components/1.0"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML">
+  <uml:Model
+      xmi:id="_TAHXMH33EeOt8qHDFBEAhQ"
+      name="model">
+    <packagedElement
+        xmi:type="uml:Package"
+        xmi:id="_UJwtkH38EeOt8qHDFBEAhQ"
+        name="AssemblyProperty">
+      <packagedElement
+          xmi:type="uml:Component"
+          xmi:id="_XpL0EH33EeOt8qHDFBEAhQ"
+          name="Implementation_2">
+        <ownedAttribute
+            xmi:id="_PmrZYH37EeOt8qHDFBEAhQ"
+            name="property_2"/>
       </packagedElement>
-      <packagedElement xmi:type="uml:Component" xmi:id="_M_h7gH38EeOt8qHDFBEAhQ" name="Implementation_3">
-        <ownedAttribute xmi:id="_YLAVcH38EeOt8qHDFBEAhQ" name="property_3"/>
+      <packagedElement
+          xmi:type="uml:Component"
+          xmi:id="_M_h7gH38EeOt8qHDFBEAhQ"
+          name="Implementation_3">
+        <ownedAttribute
+            xmi:id="_YLAVcH38EeOt8qHDFBEAhQ"
+            name="property_3"/>
       </packagedElement>
-      <packagedElement xmi:type="uml:Component" xmi:id="_U-DqkH33EeOt8qHDFBEAhQ" name="Implementation_1">
-        <ownedAttribute xmi:id="_nJjVMH34EeOt8qHDFBEAhQ" name="propterty_1"/>
+      <packagedElement
+          xmi:type="uml:Component"
+          xmi:id="_U-DqkH33EeOt8qHDFBEAhQ"
+          name="Implementation_1">
+        <ownedAttribute
+            xmi:id="_nJjVMH34EeOt8qHDFBEAhQ"
+            name="propterty_1"/>
       </packagedElement>
-      <packagedElement xmi:type="uml:Component" xmi:id="_T510gH33EeOt8qHDFBEAhQ" name="Assembly"/>
+      <packagedElement
+          xmi:type="uml:Component"
+          xmi:id="_T510gH33EeOt8qHDFBEAhQ"
+          name="Assembly"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Package" xmi:id="_z-4FAH38EeOt8qHDFBEAhQ" name="ExternalPort">
-      <packagedElement xmi:type="uml:Component" xmi:id="_nAdRUH39EeOt8qHDFBEAhQ" name="Implementation_1">
-        <ownedAttribute xmi:type="uml:Port" xmi:id="_gj6PMH3-EeOt8qHDFBEAhQ" name="port_1" aggregation="composite"/>
+    <packagedElement
+        xmi:type="uml:Package"
+        xmi:id="_z-4FAH38EeOt8qHDFBEAhQ"
+        name="ExternalPort">
+      <packagedElement
+          xmi:type="uml:Component"
+          xmi:id="_nAdRUH39EeOt8qHDFBEAhQ"
+          name="Implementation_1">
+        <ownedAttribute
+            xmi:type="uml:Port"
+            xmi:id="_gj6PMH3-EeOt8qHDFBEAhQ"
+            name="port_1"
+            aggregation="composite"/>
       </packagedElement>
-      <packagedElement xmi:type="uml:Component" xmi:id="_nAefcH39EeOt8qHDFBEAhQ" name="Implementation_2">
-        <ownedAttribute xmi:type="uml:Port" xmi:id="_oDOgcH3-EeOt8qHDFBEAhQ" name="port_2" aggregation="composite"/>
+      <packagedElement
+          xmi:type="uml:Component"
+          xmi:id="_nAefcH39EeOt8qHDFBEAhQ"
+          name="Implementation_2">
+        <ownedAttribute
+            xmi:type="uml:Port"
+            xmi:id="_oDOgcH3-EeOt8qHDFBEAhQ"
+            name="port_2"
+            aggregation="composite"/>
       </packagedElement>
-      <packagedElement xmi:type="uml:Component" xmi:id="_nAcDMH39EeOt8qHDFBEAhQ" name="Implementation_3">
-        <ownedAttribute xmi:type="uml:Port" xmi:id="_sfGO0H3-EeOt8qHDFBEAhQ" name="port_3" aggregation="composite"/>
+      <packagedElement
+          xmi:type="uml:Component"
+          xmi:id="_nAcDMH39EeOt8qHDFBEAhQ"
+          name="Implementation_3">
+        <ownedAttribute
+            xmi:type="uml:Port"
+            xmi:id="_sfGO0H3-EeOt8qHDFBEAhQ"
+            name="port_3"
+            aggregation="composite"/>
       </packagedElement>
-      <packagedElement xmi:type="uml:Component" xmi:id="_nAfGgH39EeOt8qHDFBEAhQ" name="Assembly_1"/>
+      <packagedElement
+          xmi:type="uml:Component"
+          xmi:id="_nAfGgH39EeOt8qHDFBEAhQ"
+          name="Assembly_1"/>
     </packagedElement>
-    <profileApplication xmi:id="_sjwJgH33EeOt8qHDFBEAhQ">
-      <eAnnotations xmi:id="_sj_aEH33EeOt8qHDFBEAhQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="http://www.omg.org/spec/DEPL/4.0/profile/components/1.0#/"/>
+    <profileApplication
+        xmi:id="_sjwJgH33EeOt8qHDFBEAhQ">
+      <eAnnotations
+          xmi:id="_sj_aEH33EeOt8qHDFBEAhQ"
+          source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references
+            xmi:type="ecore:EPackage"
+            href="http://www.omg.org/spec/DEPL/4.0/profile/components/1.0#/"/>
       </eAnnotations>
-      <appliedProfile href="platform:/plugin/org.eclipse.upr.depl/model/depl.profile.uml#_7TRQ0DztEeGa_u5A69AAkQ"/>
+      <appliedProfile
+          href="platform:/plugin/org.eclipse.upr.depl/model/depl.profile.uml#_7TRQ0DztEeGa_u5A69AAkQ"/>
     </profileApplication>
   </uml:Model>
-  <UMLProfileForDC.Components:ComponentAssembly xmi:id="_AJ3NcH34EeOt8qHDFBEAhQ" base_Class="_T510gH33EeOt8qHDFBEAhQ"/>
-  <UMLProfileForDC.Components:Component xmi:id="_LAn7oH34EeOt8qHDFBEAhQ" base_Component="_U-DqkH33EeOt8qHDFBEAhQ" label="Implementation 1" implementation="_AJ3NcH34EeOt8qHDFBEAhQ">
-    <configProperty xmi:id="_5A_34H34EeOt8qHDFBEAhQ" base_Property="_nJjVMH34EeOt8qHDFBEAhQ"/>
+  <UMLProfileForDC.Components:ComponentAssembly
+      xmi:id="_AJ3NcH34EeOt8qHDFBEAhQ"
+      base_Class="_T510gH33EeOt8qHDFBEAhQ"/>
+  <UMLProfileForDC.Components:Component
+      xmi:id="_LAn7oH34EeOt8qHDFBEAhQ"
+      base_Component="_U-DqkH33EeOt8qHDFBEAhQ"
+      label="Implementation 1"
+      implementation="_AJ3NcH34EeOt8qHDFBEAhQ">
+    <configProperty
+        xmi:id="_5A_34H34EeOt8qHDFBEAhQ"
+        base_Property="_nJjVMH34EeOt8qHDFBEAhQ"/>
   </UMLProfileForDC.Components:Component>
-  <UMLProfileForDC.Components:Component xmi:id="_L2J1cH34EeOt8qHDFBEAhQ" base_Component="_XpL0EH33EeOt8qHDFBEAhQ" label="Implementation 2" implementation="_AJ3NcH34EeOt8qHDFBEAhQ">
-    <configProperty xmi:id="_w3qR4H37EeOt8qHDFBEAhQ" base_Property="_PmrZYH37EeOt8qHDFBEAhQ"/>
+  <UMLProfileForDC.Components:Component
+      xmi:id="_L2J1cH34EeOt8qHDFBEAhQ"
+      base_Component="_XpL0EH33EeOt8qHDFBEAhQ"
+      label="Implementation 2"
+      implementation="_AJ3NcH34EeOt8qHDFBEAhQ">
+    <configProperty
+        xmi:id="_w3qR4H37EeOt8qHDFBEAhQ"
+        base_Property="_PmrZYH37EeOt8qHDFBEAhQ"/>
   </UMLProfileForDC.Components:Component>
-  <UMLProfileForDC.Components:Component xmi:id="_M_h7gX38EeOt8qHDFBEAhQ" base_Component="_M_h7gH38EeOt8qHDFBEAhQ" label="Implementation 3" UUID="Implementation_3"/>
-  <UMLProfileForDC.Components:Component xmi:id="_nAcqQH39EeOt8qHDFBEAhQ" base_Component="_nAcDMH39EeOt8qHDFBEAhQ"/>
-  <UMLProfileForDC.Components:Component xmi:id="_nAdRUn39EeOt8qHDFBEAhQ" base_Component="_nAdRUH39EeOt8qHDFBEAhQ"/>
-  <UMLProfileForDC.Components:Component xmi:id="_nAefcn39EeOt8qHDFBEAhQ" base_Component="_nAefcH39EeOt8qHDFBEAhQ"/>
-  <UMLProfileForDC.Components:Component xmi:id="_nAg7sH39EeOt8qHDFBEAhQ" base_Component="_nAefcH39EeOt8qHDFBEAhQ" label="Implementation 2" implementation="_nAiJ0H39EeOt8qHDFBEAhQ">
-    <ownedPort xmi:id="_SQM5AH3-EeOt8qHDFBEAhQ" base_Port="_oDOgcH3-EeOt8qHDFBEAhQ"/>
+  <UMLProfileForDC.Components:Component
+      xmi:id="_M_h7gX38EeOt8qHDFBEAhQ"
+      base_Component="_M_h7gH38EeOt8qHDFBEAhQ"
+      label="Implementation 3"
+      UUID="Implementation_3">
+    <configProperty
+        xmi:id="_AMqG8IVEEeOrZ4qHMGBz7A"
+        base_Property="_YLAVcH38EeOt8qHDFBEAhQ"/>
   </UMLProfileForDC.Components:Component>
-  <UMLProfileForDC.Components:Component xmi:id="_nAhiwX39EeOt8qHDFBEAhQ" base_Component="_nAcDMH39EeOt8qHDFBEAhQ" implementation="_nAiJ0H39EeOt8qHDFBEAhQ"/>
-  <UMLProfileForDC.Components:Component xmi:id="_nAhiwn39EeOt8qHDFBEAhQ" base_Component="_nAdRUH39EeOt8qHDFBEAhQ" label="Implementation 1" implementation="_nAiJ0H39EeOt8qHDFBEAhQ">
-    <ownedPort xmi:id="_TI3mYH3-EeOt8qHDFBEAhQ" base_Port="_gj6PMH3-EeOt8qHDFBEAhQ"/>
+  <UMLProfileForDC.Components:Component
+      xmi:id="_nAcqQH39EeOt8qHDFBEAhQ"
+      base_Component="_nAcDMH39EeOt8qHDFBEAhQ"/>
+  <UMLProfileForDC.Components:Component
+      xmi:id="_nAdRUn39EeOt8qHDFBEAhQ"
+      base_Component="_nAdRUH39EeOt8qHDFBEAhQ"/>
+  <UMLProfileForDC.Components:Component
+      xmi:id="_nAefcn39EeOt8qHDFBEAhQ"
+      base_Component="_nAefcH39EeOt8qHDFBEAhQ"/>
+  <UMLProfileForDC.Components:Component
+      xmi:id="_nAg7sH39EeOt8qHDFBEAhQ"
+      base_Component="_nAefcH39EeOt8qHDFBEAhQ"
+      label="Implementation 2"
+      implementation="_nAiJ0H39EeOt8qHDFBEAhQ">
+    <ownedPort
+        xmi:id="_SQM5AH3-EeOt8qHDFBEAhQ"
+        base_Port="_oDOgcH3-EeOt8qHDFBEAhQ"/>
   </UMLProfileForDC.Components:Component>
-  <UMLProfileForDC.Components:ComponentAssembly xmi:id="_nAiJ0H39EeOt8qHDFBEAhQ" base_Class="_nAfGgH39EeOt8qHDFBEAhQ"/>
+  <UMLProfileForDC.Components:Component
+      xmi:id="_nAhiwX39EeOt8qHDFBEAhQ"
+      base_Component="_nAcDMH39EeOt8qHDFBEAhQ"
+      implementation="_nAiJ0H39EeOt8qHDFBEAhQ"/>
+  <UMLProfileForDC.Components:Component
+      xmi:id="_nAhiwn39EeOt8qHDFBEAhQ"
+      base_Component="_nAdRUH39EeOt8qHDFBEAhQ"
+      label="Implementation 1"
+      implementation="_nAiJ0H39EeOt8qHDFBEAhQ">
+    <ownedPort
+        xmi:id="_TI3mYH3-EeOt8qHDFBEAhQ"
+        base_Port="_gj6PMH3-EeOt8qHDFBEAhQ"/>
+  </UMLProfileForDC.Components:Component>
+  <UMLProfileForDC.Components:ComponentAssembly
+      xmi:id="_nAiJ0H39EeOt8qHDFBEAhQ"
+      base_Class="_nAfGgH39EeOt8qHDFBEAhQ"/>
 </xmi:XMI>

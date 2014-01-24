@@ -1,6 +1,6 @@
 package org.eclipse.upr.depl.tests.components;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -54,6 +54,10 @@ public class ComponentAssemblyTest {
 		umlResource = null;
 	}
 	
+
+	/**
+	 * Tests if the derived property "configProperty" works as expected
+	 */
 	@Test
 	public void testConfigProperty() {
 		final org.eclipse.uml2.uml.Package p = getComponentAssemblyPackacke();
@@ -85,6 +89,14 @@ public class ComponentAssemblyTest {
 		assertTrue( properties.containsAll(component_implementation1.getConfigProperty()) );
 		assertTrue( properties.containsAll(component_implementation2.getConfigProperty()) );
 		
+		// test if the property of "Implementation_3" (which is not implementing "Assembly") is NOT
+		// part of the derived property
+		
+		final Component implementation3 = getComponent("Implementation_3", p, ignoreCase, createOnDemand);
+		org.eclipse.upr.depl.components.Component component_implementation3 = 
+				(org.eclipse.upr.depl.components.Component) implementation3.getStereotypeApplications().get(0);
+		
+		assertFalse( properties.containsAll(component_implementation3.getConfigProperty()) );
 	}
 
 	
