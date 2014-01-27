@@ -18,7 +18,7 @@ Max Bureck
 -->
 <feature
       id="org.eclipse.upr.soaml.feature"
-      label="Eclipse UPR SoaML Implementation"
+      label="Eclipse UPR SoaML Implementation (Incubation)"
       version="0.9.0.qualifier"
       provider-name="Eclipse UPR">
 

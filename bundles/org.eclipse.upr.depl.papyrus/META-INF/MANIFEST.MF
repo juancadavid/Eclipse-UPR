@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: OMG DEPL Profile Papyrus Integration
+Bundle-Name: OMG DEPL Profile Papyrus Integration (Incubation)
 Bundle-SymbolicName: org.eclipse.upr.depl.papyrus;singleton:=true
 Bundle-Version: 0.9.0.qualifier
 Bundle-Vendor: Eclipse UPR

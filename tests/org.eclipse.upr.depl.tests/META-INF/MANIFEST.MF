@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Tests for DEPL Project
+Bundle-Name: Tests for DEPL Project (Incubation)
 Bundle-SymbolicName: org.eclipse.upr.depl.tests
 Fragment-Host: org.eclipse.upr.depl
 Bundle-Version: 0.9.0.qualifier

@@ -18,7 +18,7 @@ Marc-Florian Wendland
 -->
 <feature
       id="org.eclipse.upr.depl.feature"
-      label="Eclipse UPR DEPL 4.0 UML Profile Implementation"
+      label="Eclipse UPR DEPL 4.0 UML Profile Implementation (Incubation)"
       version="0.9.0.qualifier"
       provider-name="Eclipse UPR">
 

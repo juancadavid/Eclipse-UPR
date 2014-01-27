@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Eclipse UTR UTP Implementation 4 Papyrus
+Bundle-Name: Eclipse UTR UTP Implementation for Papyrus (Incubation)
 Bundle-SymbolicName: org.eclipse.upr.utp.papyrus;singleton:=true
 Bundle-Version: 0.9.0.qualifier
 Bundle-Vendor: Eclipse UPR
