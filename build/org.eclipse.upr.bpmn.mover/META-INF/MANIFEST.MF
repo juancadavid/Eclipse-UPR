@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.upr.bpmn.mover
+Bundle-Version: 0.9.0.qualifier
+Bundle-Vendor: %providerName
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.m2m.qvt.oml,
+ org.eclipse.m2m.qvt.oml.project

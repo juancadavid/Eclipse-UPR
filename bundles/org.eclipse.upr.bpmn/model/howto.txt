@@ -24,20 +24,21 @@ The structureRef property of the following class were modified by adding
 the EAnnotaion defined above above:
 BPMNProfile::CoreStructure::Common::ItemDefinition
 
-2. Define a file "bpmn.uml" containing a profile that merges all packages from the modified profile from the OMG standard.
+2. Define a file "BPMNProfile_merge.uml" containing a profile that merges all packages from the modified profile from the OMG standard.
    Annotate the profile with the EPackage stereotype from the Ecore UML profile and set 
    * nsURI to http://www.omg.org/spec/BPMNProfile/20121112/BPMNProfile.xmi
    * base package to "org.eclipse.upr" 
    * package name to "bpmn"
    
 3. Copy that file and save under name "bpmn.profile.uml". In this file we actually replace the package merge declaration
-   by actual copies of the merged packages. This can be done using the standard Eclipse UML model tree editor, via main menu entry
-   UML Editor -> Package -> Merge ...
+   by actual copies of the merged packages.
    
-Unfortunately this does not work currently. There are several reasons for this. For one many UML elements that need to be merged
-do not have it's "name" property set (e.g. Associations). Another problem seems to be that packages are being merged that nest each other.
+4. Unfortunately the UML2 Package Merge mechanism (Eclipse UML model tree editor, via main menu entry
+   UML Editor -> Package -> Merge ...) does not work with nested packages being merged. So instead we 
+   use an own QVTO transformation for this. It can be found in "org.eclipse.upr.bpmn.mover\transforms\SimplePackageMerge.qvto".
+   So execute this transformation on file "bpmn.profile.uml".
 
-4. Create a GenModel from file "bpmn.profile.uml", loading this model as a meta model.
+5. Create a GenModel from file "bpmn.profile.uml", loading this model as a meta model.
    Set copyright text on root element and add EAnnotation to root element, so that the OCL expressions get compiled to Java source code.
    
-This was not done yet, since the package merge does not work.
+Currently there are no formalized OCL expressions and code generation does not work at the moment (it is throwing a NullPointerException)

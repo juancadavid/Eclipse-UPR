@@ -1,0 +1,50 @@
+modeltype UML "strict" uses uml('http://www.eclipse.org/uml2/5.0.0/UML');
+modeltype ECORE "strict" uses ecore('http://www.eclipse.org/emf/2002/Ecore');
+	
+
+/**
+ * This transformation does NOT actually perform a package merge according to the rules specified in the
+ * UML standard. Instead it takes all PackageMerge elements from the root packages and moves the content 
+ * of the merged package (skipping nested packages), without merging any elements, to the package declaring the merge.
+ * This transformation is used to inplace transform bpmn.
+ */
+transformation SimplePackageMerge(inout input : UML);
+	
+main() {
+	input.rootObjects()[Package]->forEach(p) {
+		map simpleMerge(p);
+	};
+}
+
+mapping simpleMerge(inout p : Package) {
+	// add eAnotation with info what was merged
+	var a := p.map toMergedInfoAnnotation();
+	p.eAnnotations += a;
+	p.packageMerge->forEach(pm) {
+		pm.mergedPackage->forEach(mergedPack){
+			// move all elements 
+			map moveInto(a, mergedPack, p);
+		};
+	};
+	// empty package merge declaration
+	p.packageMerge := Set{};
+}
+
+/**
+ * Move elements  (except for packages) over from "_from" to "to"
+ */
+mapping moveInto(inout a:EAnnotation, inout _from:Package, inout to:Package) {
+	to.packagedElement += _from.packagedElement[not oclIsKindOf(Package)];
+	
+	// add details entry to annotation for "merged" package
+	a.eAnnotations += _from.map toMergedPackageDetails(to.packagedElement);
+}
+
+mapping Package::toMergedInfoAnnotation() : EAnnotation {
+	source := "http://www.eclipse.org/uml2/2.0.0/UML";	
+}
+
+mapping Package::toMergedPackageDetails(data:Set(PackageableElement)) : EAnnotation {
+	source := self.qualifiedName;
+	_references += data[EObject];
+}
