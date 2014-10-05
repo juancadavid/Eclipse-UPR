@@ -20,9 +20,25 @@ Max Bureck
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="http://www.omg.org/spec/BPMNProfile/20121112/BPMNProfile.xmi"
+            uri="http://www.omg.org/spec/BPMNProfile/20121112/"
             class="org.eclipse.upr.bpmnprof.BpmnprofPackage"
             genModel="model/bpmn.profile.genmodel"/>
+   </extension>
+
+	<extension
+         point="org.eclipse.emf.ecore.uri_mapping">
+      <mapping
+            source="pathmap://BPMN_PROF/"
+            target="platform:/plugin/org.eclipse.upr.bpmn/model/">
+      </mapping>
+   </extension>
+   
+   <extension
+         point="org.eclipse.uml2.uml.generated_package">
+      <profile
+            location="pathmap://BPMN_PROF/model/bpmn.profile.uml#_wrG1oHwkEeOWLfCz6n-rOA"
+            uri="http://www.omg.org/spec/BPMNProfile/20121112/">
+      </profile>
    </extension>
 
 </plugin>
