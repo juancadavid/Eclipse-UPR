@@ -17,9 +17,9 @@ Max Bureck
 -->
 <feature
       id="org.eclipse.upr.bpmn.feature"
-      label="BPMN Profile Feature"
+      label="BPMN UML Profile 1,0 Implementation Feature (Incubation)"
       version="0.9.0.qualifier"
-      provider-name="Eclipse">
+      provider-name="Eclipse UPR">
 
    <description>
       Implementation of the UML profile for BPMN.

@@ -36,7 +36,7 @@ Max Bureck
    <extension
          point="org.eclipse.uml2.uml.generated_package">
       <profile
-            location="pathmap://BPMN_PROF/model/bpmn.profile.uml#_wrG1oHwkEeOWLfCz6n-rOA"
+            location="pathmap://BPMN_PROF/bpmn.profile.uml#_wrG1oHwkEeOWLfCz6n-rOA"
             uri="http://www.omg.org/spec/BPMNProfile/20121112/">
       </profile>
    </extension>
