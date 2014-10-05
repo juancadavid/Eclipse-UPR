@@ -17,19 +17,12 @@ Max Bureck
  $Id$
 -->
 <plugin>
+
    <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated bpmn.profile -->
       <package
             uri="http://www.omg.org/spec/BPMNProfile/20121112/BPMNProfile.xmi"
             class="org.eclipse.upr.bpmnprof.BpmnprofPackage"
             genModel="model/bpmn.profile.genmodel"/>
-   </extension>
-
-   <extension point="org.eclipse.emf.ecore.extension_parser">
-      <!-- @generated bpmn.profile -->
-      <parser
-            type="bpmnprof"
-            class="org.eclipse.upr.bpmnprof.util.BpmnprofResourceFactoryImpl"/>
    </extension>
 
 </plugin>
