@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ <copyright>
+
+Copyright (c) 2014 Fraunhofer FOKUS
+All rights reserved. This program and the accompanying materials
+are made available under the terms of the Eclipse Public License v1.0
+which accompanies this distribution, and is available at
+http://www.eclipse.org/legal/epl-v10.html
+
+Contributors:
+Max Bureck
+
+ </copyright>
+
+ $Id$
+-->
+<feature
+      id="org.eclipse.upr.bpmn.feature"
+      label="BPMN Profile Feature"
+      version="0.9.0.qualifier"
+      provider-name="Eclipse">
+
+   <description>
+      Implementation of the UML profile for BPMN.
+For more information visit: 
+http://www.omg.org/spec/BPMNProfile/
+   </description>
+
+   <copyright>
+      %copyright
+   </copyright>
+
+   <license url="%licenseURL">
+      %license
+   </license>
+
+   <requires>
+      <import plugin="org.eclipse.core.runtime"/>
+      <import plugin="org.eclipse.emf.ecore"/>
+      <import plugin="org.eclipse.emf.ecore.xmi"/>
+      <import plugin="org.eclipse.uml2.types"/>
+      <import plugin="org.eclipse.uml2.uml"/>
+   </requires>
+
+   <plugin
+         id="org.eclipse.upr.bpmn"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>
