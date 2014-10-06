@@ -4,5 +4,6 @@ Bundle-Name: %pluginName
 Bundle-Vendor: %providerName
 Bundle-SymbolicName: org.eclipse.upr.bpmn.papyrus;singleton:=true
 Bundle-Version: 0.9.0.qualifier
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7,
+ JavaSE-1.8
 Require-Bundle: org.eclipse.papyrus.uml.extensionpoints
