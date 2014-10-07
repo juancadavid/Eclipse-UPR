@@ -24,6 +24,31 @@ The structureRef property of the following class were modified by adding
 the EAnnotaion defined above above:
 BPMNProfile::CoreStructure::Common::ItemDefinition
 
+TODO define the following derived properties:
+BPMNProfile-Collaboration-BPMNCollaboration-participants
+BPMNProfile-Collaboration-BPMNCollaboration-conversationLinks
+BPMNProfile-Collaboration-MessageFlow-sourceRef
+BPMNProfile-Collaboration-MessageFlow-targetRef
+BPMNProfile-Collaboration-MessageFlow-messageRef
+BPMNProfile-Collaboration-Participant-processRef
+BPMNProfile-Collaboration-Participant-participantMultiplicity_
+BPMNProfile-Collaboration-Participant-partnerEntityRef
+BPMNProfile-Collaboration-Participant-partnerRoleRef
+BPMNProfile-Collaboration-Participant-partnerRoleRef
+BPMNProfile-Collaboration-Participant-interfaceRefs
+BPMNProfile-Collaboration-ParticipantAssociation-innerParticipantRef
+BPMNProfile-Collaboration-ParticipantAssociation-outerParticipantRef
+BPMNProfile-Collaboration-Conversation-CallConversation-calledCollaborationRef
+BPMNProfile-Collaboration-Conversation-CallConversation-participantAssociations
+BPMNProfile-Collaboration-Conversation-ConversationNode-participantRefs
+BPMNProfile-Collaboration-Conversation-ConversationLink-collaboration
+BPMNProfile-Collaboration-Conversation-ConversationLink-sourceRef
+BPMNProfile-Collaboration-Conversation-ConversationLink-targetRef
+BPMNProfile-Collaboration-InteractionNode-outgoingConversationLinks
+BPMNProfile-Collaboration-InteractionNode-incomingConversationLinks
+BPMNProfile-Collaboration-ParticipantMultiplicity-minimum
+BPMNProfile-Collaboration-ParticipantMultiplicity-maximum
+
 2. Define a file "BPMNProfile_merge.uml" containing a profile that merges all packages from the modified profile from the OMG standard.
    Annotate the profile with the EPackage stereotype from the Ecore UML profile and set 
    * nsURI to http://www.omg.org/spec/BPMNProfile/20121112/BPMNProfile.xmi

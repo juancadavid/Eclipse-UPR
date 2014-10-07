@@ -21,7 +21,7 @@ Max Bureck
          point="org.eclipse.papyrus.uml.extensionpoints.UMLProfile">
       <profile
             name="BPMN Profile"
-            path="pathmap://BPMN_PROF/depl.profile.uml"
+            path="pathmap://BPMN_PROF/bpmn.profile.uml"
             provider="Eclipse UPR">
       </profile>
    </extension>
