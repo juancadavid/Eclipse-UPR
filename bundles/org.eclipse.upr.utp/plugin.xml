@@ -22,6 +22,14 @@
       </parser>
    </extension>
 
+   <extension
+         point="org.eclipse.emf.ecore.uri_mapping">
+      <mapping
+            source="pathmap://UTP/"
+            target="platform:/plugin/org.eclipse.upr.utp/model/">
+      </mapping>
+   </extension>
+
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated utptypes -->
       <package
