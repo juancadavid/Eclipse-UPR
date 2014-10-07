@@ -20,6 +20,7 @@ Max Bureck
    <extension
          point="org.eclipse.papyrus.uml.extensionpoints.UMLProfile">
       <profile
+            iconpath="icons/bpmn_16_16.gif"
             name="BPMN Profile"
             path="pathmap://BPMN_PROF/bpmn.profile.uml"
             provider="Eclipse UPR">
