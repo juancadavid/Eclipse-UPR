@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?pde version="3.8"?><target name="upr-0.9" sequenceNumber="30">
+<locations>
+<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
+<unit id="org.eclipse.ocl.all.sdk.feature.group" version="5.0.2.v20140819-1612"/>
+<unit id="org.eclipse.papyrus.sdk.feature.feature.group" version="1.0.1.v201409170932"/>
+<unit id="org.eclipse.emf.sdk.feature.group" version="2.10.1.v20140901-1055"/>
+<repository location="http://download.eclipse.org/releases/luna/"/>
+</location>
+</locations>
+</target>
