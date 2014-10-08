@@ -43,7 +43,6 @@ http://www.omg.org/spec/DEPL/
       <import plugin="org.eclipse.emf.ecore"/>
       <import plugin="org.eclipse.ocl.examples.library"/>
       <import plugin="org.eclipse.ocl.examples.pivot"/>
-      <import plugin="org.eclipse.ocl.examples.codegen"/>
       <import plugin="org.eclipse.emf.ecore.xmi"/>
       <import plugin="org.eclipse.uml2.types"/>
       <import plugin="org.eclipse.uml2.uml" version="4.0.0" match="greaterOrEqual"/>
