@@ -22,6 +22,7 @@ import org.eclipse.upr.depl.components.Property;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -58,7 +59,7 @@ public class ComponentAssemblyTest {
 	/**
 	 * Tests if the derived property "configProperty" works as expected
 	 */
-	@Test
+	@Ignore @Test
 	public void testConfigProperty() {
 		final org.eclipse.uml2.uml.Package p = getComponentAssemblyPackacke();
 		final boolean ignoreCase = false;
