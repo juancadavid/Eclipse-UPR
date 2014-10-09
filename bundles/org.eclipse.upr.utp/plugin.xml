@@ -44,4 +44,21 @@
             type="utplib"
             class="org.eclipse.upr.utptypes.util.UTPLibResourceFactoryImpl"/>
    </extension>
+   
+      <extension
+         point="org.eclipse.uml2.uml.generated_package">
+      <profile
+            location="pathmap://UTP/utp.profile.uml#_iCl4wOVMEeG84fBOY39c0g"
+            uri="http://www.omg.org/spec/UTP/20120801/utp.xmi">
+      </profile>
+   </extension>
+   
+      <extension
+         point="org.eclipse.uml2.uml.generated_package">
+      <profile
+            location="pathmap://UTP/utptypes.uml#_nGjLwOVVEeG84fBOY39c0g"
+            uri="http://www.omg.org/spec/UTP/20120801/utptypes.xmi">
+      </profile>
+   </extension>
+   
 </plugin>
