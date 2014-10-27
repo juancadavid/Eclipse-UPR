@@ -17,7 +17,7 @@ Max Bureck
 -->
 <feature
       id="org.eclipse.upr.bpmn.papyrus.feature"
-      label="BPMN UML Profile 1,0 Implementation Papyrus Support Feature (Incubation)"
+      label="BPMN UML Profile 1.0 Implementation Papyrus Support Feature (Incubation)"
       version="0.9.0.qualifier"
       provider-name="Eclipse UPR">
 
