@@ -8,7 +8,7 @@
  * Contributors:
  * Max Bureck
  */
-modeltype UML "strict" uses uml('http://www.eclipse.org/uml2/5.0.0/UML');
+modeltype UML "strict" uses uml('http://www.eclipse.org/uml2/4.0.0/UML');
 modeltype ECORE "strict" uses ecore('http://www.eclipse.org/emf/2002/Ecore');
 	
 
