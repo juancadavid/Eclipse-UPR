@@ -1,0 +1,2675 @@
+import BPMN : 'platform:/resource/org.eclipse.bpmn2/model/BPMN20.ecore';
+import UML : 'http://www.eclipse.org/uml2/5.0.0/UML';
+import BPMNProf : 'platform:/resource/org.eclipse.upr.bpmn/model/BpmnProfile.ecore'; 
+  
+transformation BPMN2UMLProfile( bpmn :  BPMN, uml :  UML, bpmnProfile : BPMNProf )
+--QVTR transformation from BPMN model to UML model with UML Profile for BPMN 2 Processes applied.
+{
+ 
+--**********************************
+--	Core Structure
+--**********************************
+
+top relation TopDefinitionsToPackage
+-- This relation maps BPMN Definitions to UML Package
+-- The BPMN Definition is bound to the variable d. Its name is bound to the variable dn.
+-- checkonly semantics ensures there are no side effects in the BPMN model.
+-- the enforce semantics ensures that a corresponding Package is created in the uml model,
+-- and the Definition stereotype is applied to it, and the name is copied.
+-- the where clause calls the subsequent relations to transform the contained elements. 
+{
+	checkonly domain bpmn _definitions : bpmn2::Definitions { };
+	enforce domain uml _package : UML::Package { 
+		
+		
+	};	
+	enforce domain bpmnProfile _umlDefinition : BPMNProfile::Definitions{};
+	where {
+		DefinitionsToPackage( _definitions, _package, _umlDefinition );
+		DefinitionsToProfile( _definitions, _package, _umlDefinition  );
+	}
+}
+
+
+relation DefinitionsToPackage
+--map Definitions to Package if no Extensions are present
+{ 
+	checkonly domain bpmn _definitions : Definitions{ 
+		name  =  _name : String{},
+		rootElements =  _re : RootElement{ },
+		extensions = _extensionsSet : Set(Extension) {} 
+	};
+	enforce domain uml _package : UML::Package{ 
+		name  =  _name,
+		packagedElement  =  _pe : PackageableElement{ },
+		profileApplication = _profileApplication : UML::ProfileApplication {
+												appliedProfile = BPMNProf : UML::Profile{}}
+	};
+	--apply stereotype
+	enforce domain bpmnProfile _umlDefinition : BPMNProfile::Definitions{
+		base_Package  =  _package 
+	};
+	when {
+		_extensionsSet->size() = 0;
+	}
+	where { 
+		RootElementToPackageableElement( _re, _pe, _umlDefinition ); 
+	}
+}
+
+
+relation DefinitionsToProfile
+--map Definitions to Profile if Extensions are present
+{ 
+	checkonly domain bpmn _definitions : Definitions { 
+		name  =  _name : String{},
+		rootElements  =  _re : RootElement{ },
+		extensions = _extensionsSet : Set(Extension)  {}
+	};
+	enforce domain uml _profile : UML::Profile{ 
+		name  =  _name,
+		packagedElement  =  _pe : PackageableElement{ },
+		profileApplication = _profileApplication : UML::ProfileApplication {
+												appliedProfile = bpmnprofile : UML::Profile{}}
+	};
+	--apply stereotype
+	enforce domain bpmnProfile _umlDefinition : BPMNProfile::Definitions{
+		base_Package  =  _profile 
+	};
+	when {
+		_extensionsSet->size() > 0;
+	}
+	where { 
+		RootElementToPackageableElement( _re, _pe, _umlDefinition); 
+	}
+}
+
+
+relation RootElementToPackageableElement
+--map BPMN RootElement to UML PackageableElement
+{ 
+	_name : String;
+	checkonly domain bpmn _rootElement : RootElement{ 
+		id = _name, 
+		Definitions = _definition : bpmn2::Definitions {}
+	};
+	enforce domain uml _packageableElement : UML::PackageableElement{
+		name = _name,
+		owner = _package : UML::Package {}
+	};
+	--apply stereotype
+	enforce domain bpmnProfile _umlRootElement : BPMNProfile::RootElement {
+		base_PackageableElement = _packageableElement 
+	};
+	when { 
+		TopDefinitionsToPackage( _definition, _package, _umlRootElement ); 
+	}
+	where { 
+		DocumentationToComment( _rootElement, _packageableElement, _umlRootElement ); 
+		ImportToPackageImport( _rootElement, _packageableElement, _umlRootElement );
+		ProcessToActivity( _rootElement, _packageableElement, _umlRootElement );
+		ActivityToAction( _rootElement, _packageableElement); 
+	}
+}
+
+
+relation DocumentationToComment
+--map BPMN Documentation to UML Comment
+{ 
+	checkonly domain bpmn _documentation : Documentation { 
+		
+		--id = _name : String{},
+		textFormat = _textFormat: String{}, 
+		text = _text: String{},
+		opposite( BaseElement::documentation ) = _baseElement: BaseElement {}
+	};
+	enforce domain uml _comment : UML::Comment { 
+		--name = _name, 
+		body = _text,
+		opposite( Element::ownedComment ) = _element : Element {}  
+	};
+	--apply stereotype
+	enforce domain bpmnProfile _umlDocumentation : BPMNProfile::Documentation {
+		base_Comment  =  _comment,
+		textFormat  =  _textFormat 
+	};
+	when {
+		BaseElementToElement( _baseElement, _element );
+	}
+}
+
+
+relation ImportToPackageImport
+--map BPMN Import  to UML PackageImport
+{ 
+	checkonly domain bpmn _import : Import {
+		importType = _importType : String{},
+		location = _location : String{},
+		namespace = _namespace : String{} 
+	};
+	enforce domain uml _packageImport : UML::PackageImport {
+		importedPackage = _package : Package {
+		URI = _location,
+		name = _namespace } 
+	};
+	--apply stereotype
+	enforce domain bpmnProfile _umlImport : BPMNProfile::Import {
+		base_PackageImport = _packageImport 
+	};
+}
+
+
+relation ExpressionToOpaqueExpression
+--map BPMN Expressopm  to UML OpaqueExpression
+{ 
+	checkonly domain bpmn _expression : Expression {
+		 
+		id = _name : String {}
+	};
+	enforce domain uml _opaqueExpression : UML::OpaqueExpression { 
+		name = _name 
+	};
+	--apply stereotype
+	enforce domain bpmnProfile _bpmnExpression : BPMNProfile::BPMNExpression{
+		base_OpaqueExpression = _opaqueExpression 
+	};
+}
+
+
+relation FormalExpressionToOpaqueExpression
+--map BPMN FormalExpressopm  to UML OpaqueExpression
+{ 
+	checkonly domain bpmn _formalExpression : FormalExpression { 
+		--name = _name: String{},
+		evaluatesToTypeRef = _evaluatestoTypeRef: ItemDefinition {}
+	};
+	enforce domain uml _opaqueExpression : UML::OpaqueExpression { 
+		--name = _name,
+		type = _class : UML::Class { } 
+	};
+	--apply stereotype
+	enforce domain bpmnProfile _umlFormalExpression : BPMNProfile::BPMNExpression {
+		base_OpaqueExpression  =  _opaqueExpression
+	};
+	where {
+		ItemDefinitionToClass( _evaluatestoTypeRef, _class, _umlFormalExpression );  
+	}
+}
+
+
+relation ItemDefinitionToClass
+--map BPMN ItemDefinition  to UML Class
+{ 
+	checkonly domain bpmn _itemDefinition : ItemDefinition {
+		--name = _name : String{},
+		itemKind = _itemKind : ItemKind{},
+		isCollection = _isCollection : Boolean{} 
+	};
+	enforce domain uml _class : UML::Class { 
+		--name = _name 
+	};
+	--apply stereotype
+	enforce domain bpmnProfile _umlItemDefinition : BPMNProfile::ItemDefinition {
+		base_Class = _class,
+		itemKind = _itemKind,
+		isCollection = _isCollection 
+	};
+}
+
+
+relation AssociationToDependency
+--map BPMN Association to UML Dependency
+{
+	checkonly domain bpmn _association : Association {
+		--name = _name : String{},
+		sourceRef = _sourceRef : BaseElement{},
+		targetRef = _targetRef : BaseElement{} 
+	};
+	enforce domain uml _dependency : Dependency {
+		--name = _name,
+		client = _client : UML::Element{},
+		supplier = _supplier : UML::Element{} 
+	};
+	--apply stereotype
+	enforce domain bpmnProfile _umlAssociation : BPMNProfile::BPMNAssociation {
+		base_Dependency = _dependency 
+	};
+	where {
+		BaseElementToElement( _sourceRef, _client );
+		BaseElementToElement( _targetRef, _supplier );
+	}
+}
+
+relation ExtensionToStereotype
+--map BPMN Extension to UML Stereotype
+{
+	_extensionAttributeDefinition : bpmn2::ExtensionAttributeDefinition;
+	checkonly domain bpmn _extension : bpmn2::Extension { 
+		--name = _name : String{}, 
+		opposite( Definitions::extensions ) = _definitions : Definitions{},
+		definition = _extensionDefinition : ExtensionDefinition {
+				extensionAttributeDefinitions =  _extensionAttributeDefinition  }
+	};
+	enforce domain uml _stereotype : Stereotype { 
+		--name = _name,
+		package = _package : Package { },
+		ownedAttribute = _property : Property { } 
+	};
+	--apply stereotype
+	enforce domain bpmnProfile _umlExtension : BPMNProfile::BPMNExtension { 
+		base_Stereotype = _stereotype,
+		definition = _umlExtensionDefinition 
+	};
+	enforce domain bpmnProfile _umlExtensionDefinition : BPMNProfile::ExtensionDefinition {
+		base_Stereotype = _stereotype 
+	};
+	when {
+		TopDefinitionsToPackage( _definitions, _package, _umlExtension );
+	}
+	where {
+		ExtensionAttributeDefinitionToProperty( _extensionAttributeDefinition, _property, _umlExtensionDefinition ); 
+	}
+}
+
+
+relation ExtensionAttributeDefinitionToProperty
+--map BPMN ExtensionAttributeDefinition to UML Property
+{
+	checkonly domain bpmn _extensionAttributeDefinition : ExtensionAttributeDefinition { 
+		name = _name : String{},
+		type = _type : String{},
+		isReference = _isReference : Boolean{} 
+	};
+	enforce domain uml _property : Property { 
+		name = _name,
+		type = _umltype : UML::Class { qualifiedName = _type },
+		isComposite = _isReference 
+	};
+	--apply stereotype
+	enforce domain bpmnProfile _bpmnExtensionAttributeDefinition : 
+							BPMNProfile::ExtensionAttributeDefinition { 
+		base_Property = _property 
+	};
+}
+
+
+relation ExtensionAttributeValueToSlot
+--map BPMN ExtensionAttributeValue to UML Slot
+{
+	checkonly domain bpmn _extensionAttributeValue : ExtensionAttributeValue {
+		--name = _name : String{},
+		extensionAttributeDefinition = _extensionAttributeDefinition 
+												: ExtensionAttributeDefinition{},
+		opposite( BaseElement::extensionValues ) = _baseElement : BaseElement {}
+	};
+	enforce domain uml _slot : Slot { 
+		--name = _name,
+		owningInstance = _owningInstance : UML::InstanceSpecification {
+									classifier = _classifier : Classifier{},
+									owner = _package : Package { 
+											packagedElement = _element : Element{}
+									} } 
+	};
+	--apply stereotype
+	enforce domain bpmnProfile _bpmnExtensionAttributeValue : 
+								BPMNProfile::ExtensionAttributeValue {
+		base_Slot = _slot 
+	};
+	when {
+		ExtensionAttributeDefinitionToProperty( _extensionAttributeDefinition, _classifier, _bpmnExtensionAttributeValue );
+		BaseElementToElement( _baseElement, _element );
+	}
+}
+
+
+--***************************************
+--	Processes and Global Tasks
+--***************************************
+
+
+relation CallableElementToBehavior
+--map BPMN CallableElement subtypes to UML Behavior subtypes as appropriate
+{
+	checkonly domain bpmn _callableElement : CallableElement { };
+	enforce domain uml _behavior : Behavior { };
+	enforce domain bpmnProfile _callableElementStereotype : BPMNProfile::CallableElement{};
+	where {
+		ProcessToActivity( _callableElement, _behavior, _callableElementStereotype );
+		GlobalTaskToOpaqueBehavior( _callableElement, _behavior, _callableElementStereotype );
+		GlobalManualTaskToOpaqueBehavior( _callableElement, _behavior, _callableElementStereotype );
+		GlobalScriptTaskToOpaqueBehavior( _callableElement, _behavior, _callableElementStereotype );
+		GlobalUserTaskToOpaqueBehavior( _callableElement, _behavior, _callableElementStereotype );
+		GlobalBusinessRuleTaskToOpaqueBehavior( _callableElement, _behavior, _callableElementStereotype );
+	}
+}
+
+
+relation ProcessToActivity
+--map BPMN Process to UML Activity
+{ 
+	checkonly domain bpmn _process : Process{ 
+		name = _name : String{},
+		processType = _processType : ProcessType{ },
+		isClosed = _isClosed : Boolean{},
+		isExecutable = _isExecutable : Boolean{},
+		supports = _supports : Process{},
+		properties = _property : Property{} 
+	};
+	enforce domain uml _activity : UML::Activity{ 
+		name = _name,
+		generalization = _generalization : UML::Generalization {
+			general = _general : UML::Classifier {}
+		},
+		ownedAttribute = _umlProperty : UML::Property{},
+		classifierBehavior = _activity 
+	};
+	--apply Process stereotype to a and map properties
+	enforce domain bpmnProfile _umlProcess : BPMNProfile::BPMNProcess {
+		base_Activity  =  _activity,
+		processType  =  _processType,
+		isClosed = _isClosed,
+		isExecutable = _isExecutable, 
+		properties = _umlBpmnProperty : BPMNProfile::BPMNProperty{}
+	};
+	
+	where { 
+		ProcessToActivity( _supports, _general, _umlProcess );
+		PropertyToProperty( _property, _umlProperty, _umlBpmnProperty); 
+	}
+}
+
+
+relation PropertyToProperty
+--map properties of Process to BPMNProperty stereotype
+{ 
+	checkonly domain bpmn _property : Property { 
+		name = _name : String{},
+		itemSubjectRef = _itemSubjectRef : ItemDefinition{}
+	};
+	enforce domain uml _umlProperty : UML::Property { 
+		name = _name ,
+		type = _class : UML::Class{} 
+	};
+	--apply stereotype
+	enforce domain bpmnProfile _umlBpmnProperty : BPMNProfile::BPMNProperty {
+		umlProperty =  _umlProperty 
+	};
+	when { 
+		ItemDefinitionToClass( _itemSubjectRef, _class, _umlBpmnProperty );
+	}
+}
+
+
+relation GlobalTaskToOpaqueBehavior
+--map GlobalTask to OpaqueBehavior
+{ 
+	checkonly domain bpmn _globalTask : GlobalTask {
+		name  =  _name : String {}
+	};
+	enforce domain uml _opaqueBehavior : UML::OpaqueBehavior {
+		name = _name 
+	};
+	--apply stereotype
+	enforce domain bpmnProfile _umlGlobalTask : BPMNProfile::GlobalTask {
+		base_OpaqueBehavior = _opaqueBehavior 
+	};
+}
+
+
+relation GlobalManualTaskToOpaqueBehavior
+--map GlobalManualTask to OpaqueBehavior
+{
+	checkonly domain bpmn _globalManualTask : GlobalManualTask {
+		name  =  _name : String {}
+	};
+	enforce domain uml _opaqueBehavior : UML::OpaqueBehavior {
+		name = _name 
+	};
+	--apply stereotype
+	enforce domain bpmnProfile _umlGlobalManualTask : BPMNProfile::GlobalManualTask {
+		
+		base_OpaqueBehavior = _opaqueBehavior 
+	};
+}
+
+
+relation GlobalScriptTaskToOpaqueBehavior
+--map GlobalScriptTask to OpaqueBehavior with GlobalScriptTask stereotype applied
+{ 
+	checkonly domain bpmn _globalScriptTask : GlobalScriptTask {
+		--name  =  _name : String{},
+		scriptLanguage  =  _scriptFormat : String{},
+		script = _script : String{} 
+	};
+	enforce domain uml _opaqueBehavior : UML::OpaqueBehavior {
+		--name = _name,
+		language = _scriptFormat,
+		body = _script 
+	};
+	--apply stereotype
+	enforce domain bpmnProfile ugst : BPMNProfile::GlobalScriptTask {
+		base_OpaqueBehavior = _opaqueBehavior 
+	};
+}
+
+
+relation GlobalUserTaskToOpaqueBehavior
+--map GlobalUserTask to OpaqueBehavior with GlobalUserTask applied
+{ 
+	checkonly domain bpmn _globalUserTask : GlobalUserTask {
+		name  =  _name : String{},
+		implementation  =  _implementation : String{},
+		renderings = _rendering : bpmn2::Rendering {}
+	};
+	enforce domain uml _opaqueBehavior : UML::OpaqueBehavior {
+		name = _name,
+		body = _implementation
+		
+	};
+	--apply stereotype
+	enforce domain bpmnProfile _umlGlobalUserTask : BPMNProfile::GlobalUserTask {
+		base_OpaqueBehavior = _opaqueBehavior,
+		
+		renderings = _rendering
+		
+	};
+	where {
+		--RenderingToImage( _rendering, _image );
+	}
+}
+
+
+relation GlobalBusinessRuleTaskToOpaqueBehavior
+--map BPMN GlobalBusinessRuleTask to UML OpaqueBehavior with GlobalbusinessRuleTask
+--stereotype applied
+{ 
+	checkonly domain bpmn _globalBusinessRuleTask : GlobalBusinessRuleTask {
+		name = _name : String{},
+		implementation = _implementation : String {}
+	};
+	enforce domain uml _opaqueBehavior : UML::OpaqueBehavior  {
+		name = _name,
+		body = _implementation 
+	};
+	--apply stereotype
+	enforce domain bpmnProfile _umlGlobalBusinessRuleTask : BPMNProfile::GlobalBusinessRuleTask {
+		base_OpaqueBehavior = _opaqueBehavior 
+	};
+}
+
+
+relation RenderingToImage
+--map BPMN Rendering to UML Image
+{
+	--_name : String;
+	checkonly domain bpmn _rendering : Rendering {
+		--name = _name 
+	};
+	enforce domain uml _image : UML::Image {
+		--name = _name 
+	};
+	--apply stereotype
+	enforce domain bpmnProfile _umlRendering : BPMNProfile::Rendering {
+	base_Image = _image };
+}
+
+
+--***************************************
+--	Activities
+--***************************************
+
+
+relation ActivityToAction
+--map BPMN Activity to UML Action
+{ 
+	_bpmnProfileSequenceFlow : BPMNProfile::SequenceFlow ;
+  	_umlActivity : BPMNProfile::BPMNActivity;
+	checkonly domain bpmn _activity : Activity { 
+		properties = _property : Property{},
+		default = _default : SequenceFlow{} };
+  	enforce domain uml _action : UML::Action {
+  		ownedElement = _umlProperty: UML::Property{},
+  		outgoing = _umlDefault: UML::ControlFlow { guard = 'else' } 
+  	};
+  	where 
+  	{ 	--map types of BPMN Actvity
+  		CallActivityToCallBehaviorAction( _activity, _action, _umlActivity  );
+  		TaskToOpaqueAction( _activity, _action, _umlActivity  );
+  		ManualTaskToOpaqueAction( _activity, _action, _umlActivity  );
+  		ScriptTaskToOpaqueAction( _activity, _action, _umlActivity  );
+       	UserTaskToOpaqueAction( _activity, _action,_umlActivity );
+  		BusinessRuleTaskToOpaqueAction( _activity, _action,_umlActivity  );
+  		--other relations that must hold
+  		PropertyToProperty( _property, _umlProperty, _umlActivity );
+  		SequenceFlowToControlFlow( _default, _umlDefault, _bpmnProfileSequenceFlow);
+  	}
+}
+
+
+relation SubProcessToStructuredActivityNode
+--map BPMN SubProcess to UML StructuredActivityNode
+{
+	_name : String;
+	_triggeredByEvent : Boolean;
+	checkonly domain bpmn _subProcess : SubProcess { 
+					name = _name,
+					triggeredByEvent = _triggeredByEvent };
+	enforce domain uml _structuredActivityNode : UML::StructuredActivityNode {
+					name = _name };
+	--apply stereotype
+	enforce domain bpmnProfile _umlSubProcess : BPMNProfile::SubProcess {
+			base_StructuredActivityNode = _structuredActivityNode,
+			triggeredByEvent = _triggeredByEvent };	
+}
+
+
+relation AdHocSubProcessToStructuredActivityNode
+--map BPMN AdHocSubProcess to UML StructuredActivityNode
+{
+	_name : String;
+	_completionCondition : bpmn2::Expression;
+	_ordering : bpmn2::AdHocOrdering;
+	_cancelRemainingInstances : Boolean;
+	checkonly domain bpmn _adHocSubProcess : AdHocSubProcess { 
+					name = _name,
+					completionCondition = _completionCondition,
+					ordering = _ordering, 
+					cancelRemainingInstances = _cancelRemainingInstances };
+	enforce domain uml _structuredActivityNode : UML::StructuredActivityNode {
+					name = _name };
+	--apply stereotype
+	enforce domain bpmnProfile _umlAdHocSubProcess : BPMNProfile::AdHocSubProcess {
+			base_StructuredActivityNode = _structuredActivityNode, 
+			completionCondition = _completionCondition,
+			ordering = _ordering, 
+			cancelRemainingInstances = _cancelRemainingInstances };
+
+}
+
+
+relation TransactionToStructuredActivityNode
+--map BPMN Transaction to UML StructuredActivityNode
+{
+	_name : String;
+	_method : String;
+	checkonly domain bpmn _transaction : Transaction{ 
+					name = _name,
+					method = _method };
+	enforce domain uml _structuredActivityNode : UML::StructuredActivityNode {
+					name = _name };
+	--apply stereotype
+	enforce domain bpmnProfile _umlTransaction : BPMNProfile::Transaction {
+			base_StructuredActivityNode = _structuredActivityNode, 
+			method = _method };
+}
+
+
+relation CallActivityToCallBehaviorAction
+--map BPMN CallActivity to UML CallBehaviorAction
+{ 
+	checkonly domain bpmn _callActivity : CallActivity { 
+		name = _name : String{},
+		calledElementRef = _calledElement : CallableElement{}
+	};
+	enforce domain uml _callBehaviorAction : UML::CallBehaviorAction {
+		name = _name,
+		behavior = _behavior : Behavior{ }
+	};
+	--apply CallActivity stereotype to ua
+	enforce domain bpmnProfile _umlCallActivity : BPMNProfile::CallActivity {
+		base_CallBehaviorAction = _callBehaviorAction };
+	where {
+		CallableElementToBehavior( _calledElement, _behavior, _umlCallActivity );
+	}
+}
+       
+relation TaskToOpaqueAction
+--map BPMN Task to UML OpaqueAction
+{
+       checkonly domain bpmn _task :  Task{ 
+					name = _name : String{}
+	 };
+     enforce domain uml _opaqueAction : UML::OpaqueAction {
+					name = _name };
+       --apply Task stereotype
+       enforce domain bpmnProfile _bpmntask : BPMNProfile::Task {
+				base_Action  =  _opaqueAction };
+}
+
+
+relation SendTaskToCallOperationAction
+--map BPMN SendTask to UML CallOperationAction
+{
+   checkonly domain bpmn _sendTask :  SendTask{ 
+					name = _name : String {} };
+	enforce domain uml _callOperationAction : UML::CallOperationAction {
+					name = _name };
+	--apply stereotype
+	enforce domain bpmnProfile _bpmnSendTask : BPMNProfile::SendTask {
+				base_CallOperationAction  =  _callOperationAction };
+}
+
+
+relation ServiceTaskToCallOperationAction
+--map BPMN ServiceTask to UML CallOperationAction
+{ 
+  checkonly domain bpmn _serviceTask :  ServiceTask{ 
+					name = _name : String{} };
+	enforce domain uml _callOperationAction : UML::CallOperationAction {
+					name = _name };
+	--apply stereotype
+	enforce domain bpmnProfile _bpmnServiceTask : BPMNProfile::ServiceTask {
+				base_CallOperationAction  =  _callOperationAction };
+}
+
+
+relation ReceiveTaskToAcceptEventAction
+--map BPMN ReceiveTask to UML CallOperationAction
+{ 
+  checkonly domain bpmn _receiveTask :  ReceiveTask{ 
+					name = _name : String {}};
+	enforce domain uml _acceptEventAction : UML::AcceptEventAction {
+					name = _name };
+	--apply stereotype
+	enforce domain bpmnProfile _bpmnReceiveTask : BPMNProfile:: ReceiveTask {
+				base_AcceptEventAction  =  _acceptEventAction };
+}
+
+
+relation ManualTaskToOpaqueAction
+--map BPMN ManualTask to UML OpaqueAction
+{ 
+  checkonly domain bpmn _manualTask :  ManualTask{ 
+					name = _name : String{} };
+	enforce domain uml _opaqueAction : UML::OpaqueAction {
+					name = _name };
+	--apply stereotype 
+	enforce domain bpmnProfile _umlManualTask : BPMNProfile:: ManualTask {
+				base_OpaqueAction  =  _opaqueAction };
+}
+
+
+relation ScriptTaskToOpaqueAction
+--map BPMN ScriptTask to UML OpaqueAction
+{ 
+	checkonly domain bpmn _scriptTask :  ScriptTask{ 
+		name = _name : String{},
+		scriptFormat = _scriptFormat : String{},
+		script = _script : String{} };
+	enforce domain uml _opaqueAction : UML::OpaqueAction {
+		name = _name,
+		language = _scriptFormat,
+		body = _script };
+	--apply stereotype 
+	enforce domain bpmnProfile _umlScriptTask : BPMNProfile::ScriptTask {
+		base_OpaqueAction  =  _opaqueAction };
+}
+
+
+relation UserTaskToOpaqueAction
+--map BPMN UserTask to UML OpaqueAction
+{ 
+    _image : UML::Image;
+	checkonly domain bpmn _userTask :  UserTask{ 
+		name = _name : String{},
+		implementation = _implementation : String{},
+		renderings = _rendering : bpmn2::Rendering{} };
+	enforce domain uml _opaqueAction : UML::OpaqueAction {
+		name = _name,
+		
+		--map implementation to body
+		body = _implementation };
+	--apply stereotype
+	enforce domain bpmnProfile _umlUserTask : BPMNProfile::UserTask {
+		base_OpaqueAction  =  _opaqueAction,
+		--map renderings to icon
+		 renderings = _icon : BPMNProfile::Rendering{}
+	
+		 };
+	where {
+		RenderingToImage( _rendering, _image, _icon );
+	}
+}
+
+
+relation BusinessRuleTaskToOpaqueAction
+--map BPMN BusinessRuleTask to UML OpaqueAction
+{ 
+	checkonly domain bpmn _businessRuleTask :  BusinessRuleTask { 
+		name = _name : String{},
+		implementation = _implementation : String{} };
+	enforce domain uml _opaqueAction : UML::OpaqueAction {
+		name = _name,
+		--map implementation to body
+		body = _implementation };
+	--apply stereotype
+	enforce domain bpmnProfile _umlBusinessRuleTask : BPMNProfile:: BusinessRuleTask{
+		base_OpaqueAction  =  _opaqueAction };
+}
+
+
+--***************************************
+--	Sequence Flows
+--***************************************
+
+
+relation SequenceFlowToControlFlow
+--map BPMN SequenceFlow to UMLControlFlow with SequenceFlow stereotype applied
+{ 
+	_sourceActivityNode : BPMNProfile::FlowNode;
+	_targetActivityNode : BPMNProfile::FlowNode;
+	 _bpmnExpression : BPMNProfile::BPMNExpression;
+	checkonly domain bpmn _sequenceFlow : SequenceFlow {
+		conditionExpression = _conditionExpression : bpmn2::Expression{},
+		sourceRef = _sourceRef : FlowNode{},
+		targetRef = _targetRef : FlowNode{}
+	};
+	enforce domain uml _controlFlow : UML::ControlFlow {
+		guard = _umlConditionExpression : UML::Expression{},
+		source = _umlSourceRef : UML::ActivityNode{},
+		target = _umlTargetRef : UML::ActivityNode{}
+	};
+	--apply SequenceFlow stereotype to umlCF
+	enforce domain bpmnProfile _bpmnProfileSequenceFlow : BPMNProfile::SequenceFlow {
+		base_ControlFlow = _controlFlow };
+	when 
+	{ 
+		ExpressionToOpaqueExpression( _conditionExpression, _umlConditionExpression, _bpmnExpression );
+		FlowNodeToActivityNode( _sourceRef, _umlSourceRef, _sourceActivityNode);
+		FlowNodeToActivityNode( _targetRef, _umlTargetRef, _targetActivityNode);
+	}
+}
+
+
+relation FlowNodeToActivityNode
+--map BPMNFlow Nodes to appropriate UML ActivityNodes
+{ 
+	checkonly domain bpmn _flowNode : FlowNode { };
+	enforce domain uml _activityNode : UML::ActivityNode { };
+	enforce domain bpmnProfile _umlFlowNode : BPMNProfile::FlowNode{};
+	where {
+		--map Events
+		MapCatchEvent( _flowNode, _activityNode, _umlFlowNode );
+		MapThrowEvents( _flowNode, _activityNode, _umlFlowNode  );
+		--map Gateways
+		--map Activities
+	}
+}
+
+
+relation MapCatchEvent
+{
+	checkonly domain bpmn _flowNode : FlowNode { };
+	enforce domain uml _activityNode : UML::ActivityNode { };
+	enforce domain bpmnProfile _umlFlowNode : BPMNProfile::FlowNode{};
+	where {
+		StartEventToInitialNode( _flowNode, _activityNode, _umlFlowNode);
+		StartEventToAcceptEventAction( _flowNode, _activityNode, _umlFlowNode);
+		IntermediateCatchEventToAcceptEventAction( _flowNode, _activityNode, _umlFlowNode );
+		BoundaryEventToAcceptEventAction( _flowNode, _activityNode, _umlFlowNode );		
+	}
+}
+
+
+relation MapThrowEvents
+{
+	checkonly domain bpmn _flowNode : FlowNode { };
+	enforce domain uml _activityNode : UML::ActivityNode { };
+	enforce domain bpmnProfile _umlFlowNode : BPMNProfile::FlowNode{};
+	where {
+		IntermediateThrowEventToCallOperationAction( _flowNode, _activityNode, _umlFlowNode );
+		ImplicitThrowEventToCallOperationAction( _flowNode, _activityNode, _umlFlowNode );
+		EndEventToFlowFinalNode( _flowNode, _activityNode, _umlFlowNode );
+		EndEventToCallOperationAction( _flowNode, _activityNode, _umlFlowNode );
+	}
+}
+
+
+relation CatchEventMultipleEventDefsIn
+-- if a CatchEvent has multiple event definitions, add fork node for incoming
+{
+	_umlCatchEvent : BPMNProfile::CatchEvent;
+	checkonly domain bpmn _catchEvent : CatchEvent {
+		eventDefinitions = _eventDefinitionsSet : Set(EventDefinition){},
+		parallelMultiple = _parallelMultiple : Boolean{},
+		incoming = _incoming : SequenceFlow{} };
+	checkonly domain uml _acceptEventAction : UML::AcceptEventAction { };
+	-- create Fork node and connect incoming flow
+	enforce domain uml _forkNode : UML::ForkNode { };
+	enforce domain uml _controlFlow : UML::ControlFlow { 
+		target = _forkNode };
+	-- create flows connecting Fork node to Accept event action nodes
+	enforce domain uml _newControlFlow : UML::ControlFlow {
+		source = _forkNode,
+		target = _acceptEventAction };
+	enforce domain bpmnProfile _newSequenceFlow : BPMNProfile::SequenceFlow {
+		base_ControlFlow = _newControlFlow };
+	where {
+		_eventDefinitionsSet->size() > 1;
+		_parallelMultiple = true;
+		SequenceFlowToControlFlow( _incoming, _controlFlow, _newSequenceFlow );
+		MapCatchEvent( _catchEvent, _acceptEventAction, _umlCatchEvent );		
+	}
+}
+
+
+relation CatchEventMultipleEventDefsOut
+-- if a CatchEvent has multiple event definitions, add join node for outgoing
+{
+	_umlCatchEvent : BPMNProfile::CatchEvent;
+	checkonly domain bpmn _catchEvent : CatchEvent {
+		eventDefinitions = _eventDefinitionsSet : Set(EventDefinition) {},
+		parallelMultiple = _parallelMultiple : Boolean{},
+		outgoing = _outgoing : SequenceFlow{} };
+	checkonly domain uml _acceptEventAction : UML::AcceptEventAction { };
+	-- create Join node and connect outgoing flow
+	enforce domain uml _joinNode : UML::JoinNode { };
+	enforce domain uml _controlFlow : UML::ControlFlow { 
+		source = _joinNode };
+	-- create flows connecting Accept event action nodes to Join node
+	enforce domain uml _newControlFlow : UML::ControlFlow {
+		source = _acceptEventAction,
+		target = _joinNode };
+	enforce domain bpmnProfile _newSequenceFlow : BPMNProfile::SequenceFlow {
+		base_ControlFlow = _newControlFlow };
+	where {
+		_eventDefinitionsSet->size() > 1;
+		_parallelMultiple = true;
+		SequenceFlowToControlFlow( _outgoing, _controlFlow, _newSequenceFlow );
+		MapCatchEvent( _catchEvent, _acceptEventAction, _umlCatchEvent );		
+	}
+}
+
+
+relation ThrowEventMultipleEventDefsIn
+-- if a ThrowEvent has multiple event definitions, add fork node for incoming
+{
+	_umlThrowEvent : BPMNProfile::ThrowEvent;
+	checkonly domain bpmn _throwEvent : ThrowEvent {
+		eventDefinitions = _eventDefinitionsSet : Set(EventDefinition){},
+		incoming = _incoming : SequenceFlow {}
+		
+		 };
+	checkonly domain uml _callOperationAction : UML::CallOperationAction { };
+	-- create Fork node and connect incoming flow
+	enforce domain uml _forkNode : UML::ForkNode { };
+	enforce domain uml _controlFlow : UML::ControlFlow { 
+		target = _forkNode };
+	-- create flows connecting Fork node to Accept event action nodes
+	enforce domain uml _newControlFlow : UML::ControlFlow {
+		source = _forkNode,
+		target = _callOperationAction };
+	enforce domain bpmnProfile _newSequenceFlow : BPMNProfile::SequenceFlow {
+		base_ControlFlow = _newControlFlow
+		
+	 };
+	where {
+		_eventDefinitionsSet->size() > 1;
+		--_parallelMultiple = true;
+		SequenceFlowToControlFlow( _incoming, _controlFlow, _newSequenceFlow );
+		MapThrowEvents( _throwEvent, _callOperationAction, _umlThrowEvent );		
+	}
+}
+
+
+relation ThrowEventMultipleEventDefsOut
+-- if a ThrowEvent has multiple event definitions, add join node for outgoing
+{
+	_umlThrowEvent : BPMNProfile::ThrowEvent;
+	checkonly domain bpmn _throwEvent : ThrowEvent {
+		eventDefinitions = _eventDefinitionsSet : Set(EventDefinition){},
+		outgoing = _outgoing : SequenceFlow{} };
+	checkonly domain uml _callOperationAction : UML::CallOperationAction { };
+	-- create Join node and connect outgoing flow
+	enforce domain uml _joinNode : UML::JoinNode { };
+	enforce domain uml _controlFlow : UML::ControlFlow { 
+		target = _joinNode };
+	-- create flows connecting Join node to Accept event action nodes
+	enforce domain uml _newControlFlow : UML::ControlFlow {
+		source = _callOperationAction,
+		target = _joinNode };
+	enforce domain bpmnProfile _newSequenceFlow : BPMNProfile::SequenceFlow {
+		base_ControlFlow = _newControlFlow };
+	where {
+		_eventDefinitionsSet->size() > 1;
+		--_parallelMultiple = true;
+		SequenceFlowToControlFlow( _outgoing, _controlFlow, _newSequenceFlow );
+		--MapThrowEvents( _catchEvent, _callOperationAction );	
+		MapThrowEvents( _throwEvent, _callOperationAction, _umlThrowEvent );	
+	}
+}
+
+--*********************
+--	Events
+--*********************
+
+
+relation IntermediateThrowEventToCallOperationAction
+--map BPMN IntermediateThrowEvent to UML CallOperationAction 
+{ checkonly domain bpmn _intermediateThrowEvent : IntermediateThrowEvent {
+				name = _name : String{},
+				eventDefinitions = _eventDefinition : EventDefinition{} };
+	enforce domain uml _callOperationAction : UML::CallOperationAction {
+				name = _name };
+	--apply stereotype
+	enforce domain bpmnProfile _umlIntermediateThrowEvent : BPMNProfile::IntermediateThrowEvent {
+			base_CallOperationAction = _callOperationAction,
+			eventDefinitionRefs = _umlEventDefinition : BPMNProfile::EventDefinition{} };
+    where {
+		EventDefinitionToEvent( _eventDefinition, _umlEventDefinition, _umlIntermediateThrowEvent );
+    }
+}
+
+
+relation ImplicitThrowEventToCallOperationAction
+--map BPMN ImplicitThrowEvent to UML CallOperationAction 
+{ 
+	_umlBpmnEventDefinition : BPMNProfile::EventDefinition;
+	checkonly domain bpmn _implicitThrowEvent : ImplicitThrowEvent {
+				name = _name : String{},
+				eventDefinitions = _eventDefinition : EventDefinition{} };
+	enforce domain uml _callOperationAction : UML::CallOperationAction {
+				name = _name };
+	--apply stereotype
+	enforce domain bpmnProfile _umlImplicitThrowEvent : BPMNProfile::ImplicitThrowEvent {
+			base_CallOperationAction = _callOperationAction,
+			eventDefinitionRefs = _umlEventDefinition : BPMNProfile::EventDefinition{}};
+    where {
+		EventDefinitionToEvent( _eventDefinition, _umlEventDefinition, _umlBpmnEventDefinition );
+    }
+}
+
+
+relation EndEventToFlowFinalNode
+--map BPMN EndEvent with no EventDefinitions to UML FlowFinalNode
+{ 
+   checkonly domain bpmn _endEvent : EndEvent {
+				name = _name : String{},
+				eventDefinitions = _eventDefinitionsSet : Set(EventDefinition){}
+	 };
+	enforce domain uml _flowFinalNode : UML::FlowFinalNode {
+				name = _name };
+	--apply stereotype
+	enforce domain bpmnProfile _umlEndEvent : BPMNProfile::EndEvent {
+			base_FinalNode = _flowFinalNode };
+    when {
+	--OCL expression to check for EventDefinitions
+	_eventDefinitionsSet->size() = 0;
+    }
+}
+
+
+relation EndEventToCallOperationAction
+--map BPMN EndEvent with EventDefinitions to UML CallOperationAction
+{ 
+	checkonly domain bpmn _endEvent : EndEvent {
+		name = _name : String{},
+		eventDefinitions = _eventDefinitionsSet : Set(EventDefinition){}
+    };
+	enforce domain uml _callOperationAction : UML::CallOperationAction {
+		name = _name };
+	--apply stereotype
+	enforce domain bpmnProfile _umlEndEvent : BPMNProfile::EndEvent {
+		base_CallOperationAction = _callOperationAction };
+	when {
+		--OCL expression to check for EventDefinitions
+		_eventDefinitionsSet->size() > 0;
+	}
+}
+
+
+relation StartEventToInitialNode 
+--map BPMN StartEvent with no EventDefinitions to UML InitialNode
+{
+	checkonly domain bpmn _startEvent : StartEvent {
+		name = _name : String{},
+		isInterrupting = _isInterrupting : Boolean{},
+		eventDefinitions = _eventDefinitionsSet : Set(EventDefinition){}
+    };
+	enforce domain uml _initialNode : UML::InitialNode { 
+		name = _name };
+	--apply stereotype 
+	enforce domain bpmnProfile _umlStartEvent : BPMNProfile::StartEvent {
+		base_InitialNode = _initialNode,
+		isInterrupting = _isInterrupting };
+	when {
+		--OCL expression to check for EventDefinitions
+		_eventDefinitionsSet->size() = 0;
+	}
+}
+
+
+relation StartEventToAcceptEventAction 
+--map BPMN StartEvent with EventDefinitions to UML AcceptEventAction
+{
+	checkonly domain bpmn _startEvent : StartEvent {
+		name = _name : String{},
+		isInterrupting = _isInterrupting : Boolean{},
+		eventDefinitions = _eventDefinitionsSet : Set(EventDefinition){}
+    };
+	enforce domain uml _acceptEventAction : UML::AcceptEventAction {
+		name = _name,
+		isUnmarshall = false };
+	--apply stereotype 
+	enforce domain bpmnProfile _umlStartEvent : BPMNProfile::StartEvent {
+		base_InitialNode = _acceptEventAction,
+		isInterrupting = _isInterrupting };
+	when {
+		--OCL expression to check for EventDefinitions
+		_eventDefinitionsSet->size() > 0;
+	}
+}
+
+
+relation IntermediateCatchEventToAcceptEventAction
+--map BPMN IntermediateCatchEvent to UML AcceptEventAction 
+{ 
+	checkonly domain bpmn _intermediateCatchEvent : IntermediateCatchEvent {
+		name = _name : String{},
+		eventDefinitions = _eventDefinition : EventDefinition{},
+		--inherited attribute
+		parallelMultiple = _parallelMultiple : Boolean{} };
+	enforce domain uml _acceptEventAction : UML::AcceptEventAction {
+		name = _name,
+		trigger = _trigger : Trigger { event = _umlEventDefinition : UML::Event{}},
+		isUnmarshall = false };
+	--apply stereotype and copy attributes
+	enforce domain bpmnProfile _umlIntermediateCatchEvent : BPMNProfile::IntermediateCatchEvent {
+		base_ActivityNode = _acceptEventAction,
+		parallelMultiple = _parallelMultiple };
+	where {
+		EventDefinitionToEvent( _eventDefinition, _umlEventDefinition, _umlIntermediateCatchEvent );
+	}
+}
+
+
+relation BoundaryEventToAcceptEventAction
+--map BPMN BoundaryEvent to UML AcceptEventAction 
+{ 
+	_bpmnProfileSequenceFlow : BPMNProfile::SequenceFlow ;
+	_interruptibleActivityRegion : UML::InterruptibleActivityRegion ;
+	checkonly domain bpmn _boundaryEvent : BoundaryEvent {
+		name = _name : String{},
+		cancelActivity = _cancelActivity : Boolean{},
+		eventDefinitions = _eventDefinition : EventDefinition{},
+		outgoing = _outgoing : SequenceFlow {},
+		--inherited attribute
+		parallelMultiple = _parallelMultiple : Boolean{} 
+	};
+	enforce domain uml _acceptEventAction : UML::AcceptEventAction {
+		name = _name,
+		trigger = _trigger : Trigger { event = _umlEventDefinition : UML::Event{}},
+		isUnmarshall = false,
+		outgoing = _interruptingEdge : UML::ActivityEdge{} 
+	};
+	--apply stereotype and copy attributes
+	enforce domain bpmnProfile _umlBoundaryEvent : BPMNProfile::BoundaryEvent {
+		base_AcceptEventAction = _acceptEventAction,
+		cancelActivity = _cancelActivity,
+		parallelMultiple = _parallelMultiple ,
+		_' eventDefinitions' = _umlBpmnEventDefinition : BPMNProfile::EventDefinition{}
+		
+	};
+	where {
+		EventDefinitionToEvent( _eventDefinition, _umlEventDefinition, _umlBpmnEventDefinition );
+		SequenceFlowToControlFlow( _outgoing, _interruptingEdge, _bpmnProfileSequenceFlow );
+	}
+}
+
+
+--Map Event Definitions
+relation EventDefinitionToEvent
+{
+	checkonly domain bpmn _eventDefinition : EventDefinition{};
+	enforce domain uml _event : Event{};
+	enforce domain bpmnProfile _umlEventDefinition : BPMNProfile::EventDefinition{};
+	where {
+		ErrorEventDefinitionToCallEvent( _eventDefinition, _event, _umlEventDefinition ); 
+		EscalationEventDefinitionToCallEvent( _eventDefinition, _event, _umlEventDefinition ); 
+		MessageEventDefinitionToCallEvent( _eventDefinition, _event, _umlEventDefinition ); 
+		SignalEventDefinitionToCallEvent( _eventDefinition, _event, _umlEventDefinition );
+		TerminateEventDefinitionToCallEvent( _eventDefinition, _event, _umlEventDefinition );
+		CancelEventDefinitionToCallEvent( _eventDefinition, _event, _umlEventDefinition );
+		CompensateEventDefinitionToCallEvent( _eventDefinition, _event, _umlEventDefinition );
+		ConditionalEventDefinitionToChangeEvent( _eventDefinition, _event, _umlEventDefinition );
+		TimerEventDefinitionToChangeEvent( _eventDefinition, _event, _umlEventDefinition );
+	}
+}
+
+
+relation ErrorEventDefinitionToCallEvent
+--map BPMN ErrorEventDefinition to UML CallEvent
+{
+   checkonly domain bpmn _errorEventDefinition : ErrorEventDefinition {
+			--	name = _name : String{},
+				errorRef = _error : Error{} };
+	enforce domain uml _callEvent : UML::CallEvent { 
+				--name = _name
+		 };
+	--apply stereotype
+	enforce domain bpmnProfile _umlErrorEventDefinition : BPMNProfile::ErrorEventDefinition {
+			base_CallEvent = _callEvent,
+			errorRef = _umlError : UML::Class{} };
+	where {
+		ErrorToClass( _error, _umlError, _umlErrorEventDefinition );
+	}
+}
+
+
+relation EscalationEventDefinitionToCallEvent
+--map BPMN EscalationEventDefinition to UML CallEvent
+{
+    _bpmnUmlEscalation : BPMNProfile::Escalation ;
+    checkonly domain bpmn _escalationEventDefinition : EscalationEventDefinition {
+				--name = _name : String{},
+				escalationRef = _escalation : Escalation{}
+	};
+	enforce domain uml _callEvent : UML::CallEvent { 
+				--name = _name
+				 };
+	--apply stereotype
+	enforce domain bpmnProfile _umlEscalationEventDefinition : BPMNProfile::EscalationEventDefinition {
+			base_CallEvent = _callEvent,
+			escalationRef = _umlEscalation : UML::Class{}};
+	where {
+		EscalationToClass( _escalation, _umlEscalation, _bpmnUmlEscalation);
+	}
+}
+
+
+relation MessageEventDefinitionToCallEvent
+--map BPMN MessageEventDefinition to UML CallEvent
+{
+   _umlBpmnOperation : BPMNProfile::BPMNOperation;
+   checkonly domain bpmn _messageEventDefinition : MessageEventDefinition {
+				--name = _name : String{},
+				messageRef = _message : bpmn2::Message{},
+				operationRef = _operation : bpmn2::Operation{}
+	};
+	enforce domain uml _callEvent : UML::CallEvent { 
+				--name = _name
+				 };
+	--apply stereotype
+	enforce domain bpmnProfile _umlMessageEventDefinition : BPMNProfile::MessageEventDefinition {
+			base_CallEvent = _callEvent,
+			operationRef = _umlOperation : UML::Operation{},
+			messageRef= _umlBpmnMessage : BPMNProfile::BPMNMessage{}
+			
+	 };
+	 
+	where {
+		MessageToClass( _message, _umlBpmnMessage );
+		OperationToOperation( _operation, _umlOperation, _umlBpmnOperation );
+	}
+}
+
+
+relation SignalEventDefinitionToCallEvent
+--map BPMN SignalEventDefinition to UML CallEvent
+{
+	_umlBpmnSignal : BPMNProfile::BPMNSignal;
+   checkonly domain bpmn _signalEventDefinition : SignalEventDefinition {
+		id = _name : String{},
+		signalRef = _signal : Signal{}
+		
+	};
+	enforce domain uml _callEvent : UML::CallEvent { 
+		name = _name 
+	};
+	--apply stereotype
+	enforce domain bpmnProfile _umlSignalEventDefinition : BPMNProfile::SignalEventDefinition {
+			base_CallEvent = _callEvent,
+			signalRef = _umlSignal : UML::Class{} };
+	
+	where {
+		SignalToClass( _signal, _umlSignal, _umlBpmnSignal );
+	}
+}
+
+
+relation ErrorToClass
+--map BPMN Error to UML Class
+{
+   checkonly domain bpmn _error : Error {
+				name = _name : String{},
+				errorCode = _errorCode : String{} };
+	enforce domain uml _class : UML::Class { 
+				name = _name };
+	--apply stereotype
+	enforce domain bpmnProfile _umlError : BPMNProfile::Error {
+			base_Class = _class,
+			errorCode = _errorCode };
+}
+
+
+relation EscalationToClass
+--map BPMN Escalation to UML Class
+{
+   checkonly domain bpmn _escalation : Escalation {
+				name = _name : String{},
+				escalationCode = _escalationCode : String{} };
+	enforce domain uml _class : UML::Class { 
+				name = _name };
+	--apply stereotype
+	enforce domain bpmnProfile _umlEscalation : BPMNProfile::Escalation {
+			base_Class = _class,
+			escalationCode = _escalationCode };
+}
+
+
+relation MessageToClass
+--map BPMN Message  to UML Class
+{
+   checkonly domain bpmn _message : Message {
+				name = _name : String{} };
+	--apply stereotype
+	enforce domain bpmnProfile _umlMessage : BPMNProfile::BPMNMessage {
+			base_Class = _class : UML::Class { 
+				name = _name }
+			};
+}
+
+
+relation SignalToClass
+--map BPMN Signal to UML Class
+{
+   checkonly domain bpmn _signal :  Signal{
+				name = _name : String{} };
+	enforce domain uml _class : UML::Class { 
+				name = _name };
+	--apply stereotype
+	enforce domain bpmnProfile _umlSignal : BPMNProfile::BPMNSignal {
+			base_Class = _class };
+}
+
+
+relation TerminateEventDefinitionToCallEvent
+--map BPMN TerminateEventDefinition to UML CallEvent
+{
+   checkonly domain bpmn _terminateEventDefinition : TerminateEventDefinition{
+				--name = _name : String{} 
+				};
+	enforce domain uml _callEvent : UML::CallEvent { 
+				--name = _name
+				 };
+	--apply stereotype
+	enforce domain bpmnProfile _umlTerminateEventDefinition : BPMNProfile::TerminateEventDefinition {
+			base_CallEvent = _callEvent };
+}
+
+
+relation CancelEventDefinitionToCallEvent
+--map BPMN CancelEventDefinition to UML CallEvent
+{
+   checkonly domain bpmn _cancelEventDefinition : CancelEventDefinition{
+				--name = _name : String{} 
+				};
+	enforce domain uml _callEvent : UML::CallEvent { 
+				--name = _name
+				 };
+	--apply stereotype
+	enforce domain bpmnProfile _umlCancelEventDefinition : BPMNProfile::CancelEventDefinition {
+			base_CallEvent = _callEvent };
+}
+
+
+relation CompensateEventDefinitionToCallEvent
+--map BPMN CompensateEventDefinition to UML CallEvent
+{
+   checkonly domain bpmn _compensateEventDefinition : CompensateEventDefinition{
+				--name = _name : String{},
+		waitForCompletion = _waitForCompletion : Boolean{},
+		activityRef = _activity : Activity{}
+	};
+	enforce domain uml _callEvent : UML::CallEvent { 
+				--name = _name
+	 };
+	--apply stereotype
+	enforce domain bpmnProfile _umlCompensateEventDefinition : BPMNProfile::CompensateEventDefinition {
+			base_CallEvent = _callEvent,
+			waitForCompletion = _waitForCompletion,
+			activityRef = _umlActivity : UML::Action{}};
+	where {
+		ActivityToAction( _activity, _umlActivity );
+	}
+}
+
+
+relation ConditionalEventDefinitionToChangeEvent
+--map BPMN ConditionalEventDefinition to UML ChangeEvent
+{
+   checkonly domain bpmn _conditionalEventDefinition : ConditionalEventDefinition{
+				--name = _name : String{}
+				 };
+	enforce domain uml _changeEvent : UML::ChangeEvent { 
+				--name = _name 
+				
+				};
+	--apply stereotype
+	enforce domain bpmnProfile _umlConditionalEventDefinition : BPMNProfile::ConditionalEventDefinition {
+			base_ChangeEvent = _changeEvent };
+}
+
+
+relation TimerEventDefinitionToChangeEvent
+--map BPMN TimerEventDefinition to UML ChangeEvent
+{
+   checkonly domain bpmn _timerEventDefinition : TimerEventDefinition{
+				--name = _name : String{},
+				timeCycle = _timeCycleExpression : bpmn2::Expression{},
+				timeDate = _timeDateExpression : bpmn2::Expression{},
+				timeDuration = _timeDurationExpression : bpmn2::Expression{} };
+	enforce domain uml _changeEvent : UML::ChangeEvent { 
+				name = _name : String{}};
+	--apply stereotype
+	enforce domain bpmnProfile _umlTimerEventDefinition : BPMNProfile::TimerEventDefinition {
+				base_ChangeEvent = _changeEvent,
+				timeCycle = _umltimeCycleExpression : UML::OpaqueExpression {},
+				timeDate = _umltimeDateExpression : UML::OpaqueExpression {},
+				timeDuration = _umltimeDurationExpression : UML::OpaqueExpression {}
+			};
+	where {
+		ExpressionToOpaqueExpression(_timeCycleExpression, _umltimeCycleExpression, _umlTimerEventDefinition ); 
+		ExpressionToOpaqueExpression(_timeDateExpression, _umltimeDateExpression, _umlTimerEventDefinition ); 
+		ExpressionToOpaqueExpression(_timeDurationExpression, _umltimeDurationExpression, _umlTimerEventDefinition );
+	}
+}
+
+
+--*******************************
+--	Gateways
+--*******************************
+
+relation ExclusiveGatewayToMergeNode
+--map BPMN ExclusiveGateway to UML MergeNode if only one outgoing SequenceFlow edge
+{
+	checkonly domain bpmn _exclusiveGateway : ExclusiveGateway {
+		name = _name : String{},
+		outgoing = _outgoing : Set( SequenceFlow ){},
+		default = _default : SequenceFlow{}
+	};
+	enforce domain uml _mergeNode : UML:: MergeNode {
+		name = _name
+	};
+	--apply stereotype
+	enforce domain bpmnProfile _umlExclusiveGateway : BPMNProfile::ExclusiveGateway {
+		base_MergeNode = _mergeNode,
+		default = _umldefault : UML::ControlFlow{}
+	};
+	where {
+		--check if exactly one outgoing edge
+		_outgoing->size() = 1;
+		SequenceFlowToControlFlow( _default, _umldefault, _umlExclusiveGateway);
+	}
+}
+
+relation ExclusiveGatewayToDecisionNode
+--map BPMN ExclusiveGateway to UML DecisionNode if more than one outgoing SequenceFlow edge
+{
+	checkonly domain bpmn _exclusiveGateway : ExclusiveGateway {
+		name = _name : String{},
+		outgoing = _outgoing : Set( SequenceFlow ){} ,
+		default = _default : SequenceFlow{} 
+	};
+	enforce domain uml _decisionNode : UML::DecisionNode {
+		name = _name };
+	--apply stereotype
+	enforce domain bpmnProfile _umlExclusiveGateway : BPMNProfile::ExclusiveGateway {
+		base_DecisionNode = _decisionNode,
+		default = _umldefault : UML::ControlFlow{}};
+	where {
+	--check if more than one outgoing edge
+		_outgoing->size() > 1; 
+		SequenceFlowToControlFlow( _default, _umldefault, _umlExclusiveGateway);
+	}
+}
+
+
+relation ParallelGatewayToJoinNode
+--map BPMN ParallelGateway to UML JoinNode if exactly one outgoing SequenceFlow edge
+{
+	checkonly domain bpmn _parallelGateway : ParallelGateway {
+		name = _name : String{},
+		outgoing = _outgoing : Set( SequenceFlow ){}
+	};
+	enforce domain uml _joinNode : UML::JoinNode {
+		name = _name };
+	--apply stereotype
+	enforce domain bpmnProfile _umlParallelGateway : BPMNProfile::ParallelGateway {
+		base_JoinNode = _joinNode };
+	where {
+		--check if exactly one outgoing edge
+		_outgoing->size() = 1; 
+	}
+}
+
+
+relation ParallelGatewayToForkNode
+--map BPMN ParallelGateway to UML ForkNode if more than one outgoing SequenceFlow edge
+{
+	checkonly domain bpmn _parallelGateway : ParallelGateway {
+		name = _name : String{},
+		outgoing = _outgoing : Set( SequenceFlow ) {}
+		--default = _default : SequenceFlow{} 
+		};
+	enforce domain uml _forkNode : UML::ForkNode {
+		name = _name };
+	--apply stereotype
+	enforce domain bpmnProfile _umlParallelGateway : BPMNProfile::ParallelGateway {
+		base_ForkNode = _forkNode };
+	where {
+		--check if more than one outgoing edge
+		_outgoing->size() > 1; 
+	}
+}
+
+
+relation EventBasedGatewayToForkNode
+--map BPMN EventBasedGateway to UML ForkNode
+{
+    _catchEvent : bpmn2::CatchEvent;
+    _controlFlow : UML::ControlFlow;
+    _interruptibleActivityRegion : UML::InterruptibleActivityRegion;
+    _structuredActivityNode : UML::StructuredActivityNode;
+    checkonly domain bpmn _eventBasedGateway : bpmn2::EventBasedGateway {
+			name = _name : String{},
+			instantiate = _instantiate : Boolean{},
+			eventGatewayType = _eventGatewayType : bpmn2::EventBasedGatewayType {}
+	};
+    enforce domain uml _forkNode : UML::ForkNode {
+			name = _name
+	};
+    --apply stereotype
+    enforce domain bpmnProfile _umlEventBasedGateway : BPMNProfile:: EventBasedGateway {
+			base_ForkNode = _forkNode,
+			instantiate = _instantiate,
+			eventGatewayType = _eventGatewayType
+	};
+    where {
+    	-- create interruptible region or structured activity node as required
+    	CreateInterruptibleRegion1( _eventBasedGateway, _catchEvent, _controlFlow, _interruptibleActivityRegion);
+    	CreateInterruptibleRegion2( _eventBasedGateway, _catchEvent, _controlFlow, _interruptibleActivityRegion);
+    	CreateStructuredActivityNode( _eventBasedGateway, _catchEvent, _controlFlow, _structuredActivityNode);
+    }
+}
+
+
+relation CreateInterruptibleRegion1
+-- create interruptible region for EventBasedGateway with incoming flow
+{
+	_umlCatchEvent : BPMNProfile::CatchEvent;
+	checkonly domain bpmn _eventBasedGateway : EventBasedGateway { 
+		incoming = _incomingSet : Set(SequenceFlow){},
+		outgoing = _outgoing : SequenceFlow{} };
+	-- find Catch events connected to gateway using outgoing sequence flow
+	checkonly domain bpmn _catchEvent : CatchEvent {
+		incoming = _outgoing };
+	-- get outgoing flows of corresponding accept event actions in uml
+	checkonly domain uml _controlFlow : UML::ControlFlow {
+		source = _acceptEventAction : UML::AcceptEventAction {}};
+	-- create intteruptible region, and mark outgoing flows as interrupting
+	enforce domain uml _interruptibleActivityRegion : UML::InterruptibleActivityRegion {
+		node = _acceptEventAction,
+		interruptingEdge = _controlFlow };
+	where {
+		_incomingSet->size() > 0;
+		MapCatchEvent( _catchEvent, _acceptEventAction, _umlCatchEvent );
+	}
+}
+
+
+relation CreateInterruptibleRegion2
+-- create interruptible region for EventBasedGateway with no incoming flow, 
+-- and eventGatewayType set to "exclusive"
+{
+	_umlCatchEvent : BPMNProfile::CatchEvent;
+	checkonly domain bpmn _eventBasedGateway : EventBasedGateway { 
+		incoming = _incomingSet : Set(SequenceFlow){},
+		eventGatewayType = ' exclusive',
+		outgoing = _outgoing : SequenceFlow {}};
+	-- find Catch events connected to gateway using outgoing sequence flow
+	checkonly domain bpmn _catchEvent : CatchEvent {
+		incoming = _outgoing };
+	-- get outgoing flows of corresponding accept event actions in uml
+	checkonly domain uml _controlFlow : UML::ControlFlow {
+		source = _acceptEventAction : UML::AcceptEventAction{} };
+	-- create intteruptible region, and mark outgoing flows as interrupting
+	enforce domain uml _interruptibleActivityRegion : UML::InterruptibleActivityRegion {
+		node = _acceptEventAction,
+		interruptingEdge = _controlFlow };
+	where {
+		_incomingSet->size() = 0;
+		MapCatchEvent( _catchEvent, _acceptEventAction, _umlCatchEvent );
+	}
+}
+
+
+relation CreateStructuredActivityNode
+-- create structured activity node for EventBasedGateway with no incoming flow, 
+-- and eventGatewayType set to "parallel"
+{
+	_umlCatchEvent : BPMNProfile::CatchEvent;
+	checkonly domain bpmn _eventBasedGateway : EventBasedGateway { 
+		incoming = _incomingSet : Set(SequenceFlow){},
+		eventGatewayType = 'parallel',
+		outgoing = _outgoing : SequenceFlow{} };
+	-- find Catch events connected to gateway using outgoing sequence flow
+	checkonly domain bpmn _catchEvent : CatchEvent {
+		incoming = _outgoing };
+	-- get outgoing flows of corresponding accept event actions in uml
+	checkonly domain uml _controlFlow : UML::ControlFlow {
+		source = _acceptEventAction : UML::AcceptEventAction {}};
+	-- create intteruptible region, and mark outgoing flows as interrupting
+	enforce domain uml _structuredActivityNode : UML::StructuredActivityNode {
+		node = _acceptEventAction };
+	where {
+		_incomingSet->size() = 0;
+		MapCatchEvent( _catchEvent, _acceptEventAction, _umlCatchEvent );
+	}
+}
+
+
+relation ComplexGatewayToJoinNode
+--map BPMN ComplexGateway to UML JoinNode if exactly one outgoing SequenceFlow edge
+{
+    checkonly domain bpmn _complexGateway : ComplexGateway {
+			name = _name : String{},
+			outgoing = _outgoing : Set( SequenceFlow ) {},
+			default = _default : SequenceFlow {},
+			activationCondition = _activationCondition : Expression{} };
+    enforce domain uml _joinNode : UML::JoinNode {
+			name = _name,
+			joinSpec = _joinSpec : bpmn2::Expression{} };
+    --apply stereotype
+    enforce domain bpmnProfile _umlComplexGateway : BPMNProfile::ComplexGateway {
+			base_JoinNode = _joinNode,
+			default = _umldefault : BPMNProfile::SequenceFlow{}};
+    where {
+			--check if exactly one outgoing edge
+			_outgoing->size() = 1; 
+			SequenceFlowToControlFlow( _default, _umldefault, _umlComplexGateway);
+			ExpressionToOpaqueExpression( _activationCondition, _joinSpec, _umlComplexGateway );
+    }
+}
+
+
+relation ComplexGatewayToForkNode
+--map BPMN ComplexGateway to UML ForkNode if more than one outgoing SequenceFlow edge
+{
+    checkonly domain bpmn _complexGateway : ComplexGateway {
+			name = _name : String{},
+			outgoing = _outgoing : Set( SequenceFlow ){} ,
+			default = _default : SequenceFlow{} };
+    enforce domain uml _forkNode : UML::ForkNode {
+			name = _name };
+    --apply stereotype
+    enforce domain bpmnProfile _umlComplexGateway : BPMNProfile::ComplexGateway {
+			base_ForkNode = _forkNode,
+			default = _umldefault : UML::ControlFlow{}
+		 };
+    where {
+		--check if more than one outgoing edge
+		_outgoing->size() > 1; 
+		SequenceFlowToControlFlow( _default, _umldefault, _umlComplexGateway);
+    }
+}
+
+
+relation InclusiveGatewayToJoinNode
+--map BPMN ComplexGateway to UML JoinNode if exactly one outgoing SequenceFlow edge
+{
+    checkonly domain bpmn _inclusiveGateway : InclusiveGateway {
+			name = _name : String{},
+			outgoing = _outgoing : Set( SequenceFlow ){} ,
+			default = _default : SequenceFlow{} };
+    enforce domain uml _joinNode : UML::JoinNode {
+			name = _name };
+    --apply stereotype
+    enforce domain bpmnProfile _umlInclusiveGateway : BPMNProfile::InclusiveGateway {
+    	
+			base_JoinNode = _joinNode,
+			default = _umldefault : UML::ControlFlow{}};
+    where {
+	--check if exactly one outgoing edge
+	_outgoing->size() = 1; 
+	SequenceFlowToControlFlow( _default, _umldefault, _umlInclusiveGateway);
+    }
+}
+
+
+relation InclusiveGatewayToForkNode
+--map BPMN ComplexGateway to UML ForkNode if more than one outgoing SequenceFlow edge
+{
+    checkonly domain bpmn _inclusiveGateway : InclusiveGateway {
+			name = _name : String{},
+			outgoing = _outgoing : Set( SequenceFlow ) {},
+			default = _default : SequenceFlow{} };
+    enforce domain uml _forkNode : UML::ForkNode {
+			name = _name };
+    --apply stereotype
+    enforce domain bpmnProfile _umlInclusiveGateway : BPMNProfile::InclusiveGateway {
+			base_ForkNode = _forkNode,
+			default = _umldefault : UML::ControlFlow{}};
+    where {
+	--check if more than one outgoing edge
+	_outgoing->size() > 1; 
+	SequenceFlowToControlFlow( _default, _umldefault, _umlInclusiveGateway);
+    }
+}
+
+
+--*******************************
+--	Data
+--*******************************
+
+--InputOutputSpecification #1: for CallActivity
+relation InputOutputSpecificationToCallBehaviorAction
+--map BPMN InputOutputSpecification owned by CallActivity to corresponding CallBehaviorAction
+{
+	checkonly domain bpmn _inputOutputSpecification : InputOutputSpecification {
+		opposite(CallActivity::ioSpecification) = _callActivity : CallActivity{} };
+	--apply stereotype
+	enforce domain bpmnProfile _umlInputOutputSpecification : BPMNProfile::InputOutputSpecification {
+		base_Action = _callBehaviorAction : UML::CallBehaviorAction{} };
+	when {
+		CallActivityToCallBehaviorAction( _callActivity, _callBehaviorAction, _umlInputOutputSpecification );
+	}
+}
+
+
+--InputOutputSpecification #2: for Process
+relation InputOutputSpecificationToActivity
+--map BPMN InputOutputSpecification owned by Process to corresponding Activity
+{
+    checkonly domain bpmn _inputOutputSpecification : InputOutputSpecification {
+				opposite(Process::ioSpecification) = _process : Process {}};
+    --apply stereotype
+    enforce domain bpmnProfile _umlInputOutputSpecification : BPMNProfile::InputOutputSpecification {
+			base_Behavior = _activity : UML::Activity{}};
+    when {
+	ProcessToActivity( _process, _activity, _umlInputOutputSpecification );
+    }
+}
+
+
+--InputOutputSpecification #3: for GlobalTask
+relation InputOutputSpecificationToOpaqueAction
+--map BPMN InputOutputSpecification owned by GlobalTask to corresponding OpaqueBehavior
+{
+    checkonly domain bpmn _inputOutputSpecification : InputOutputSpecification {
+				opposite(GlobalTask::ioSpecification) = _globalTask : GlobalTask {}};
+    --apply stereotype
+    enforce domain bpmnProfile _umlInputOutputSpecification : BPMNProfile::InputOutputSpecification {
+			base_Behavior = _opaqueBehavior : UML::OpaqueBehavior{} };
+    when {
+	GlobalTaskToOpaqueBehavior( _globalTask, _opaqueBehavior, _umlInputOutputSpecification );
+    }
+}
+
+
+--InputOutputSpecification #4: for Task
+relation InputOutputSpecificationToOpaqueAction
+--map BPMN InputOutputSpecification owned by a Task to corresponding OpaqueAction
+{
+    checkonly domain bpmn _inputOutputSpecification : InputOutputSpecification {
+				opposite(Task::ioSpecification) = _task : Task {}};
+    --apply stereotype
+    enforce domain bpmnProfile _umlInputOutputSpecification : BPMNProfile::InputOutputSpecification {
+			base_Action = _opaqueAction : UML::OpaqueAction{}};
+    when {
+	TaskToOpaqueAction( _task, _opaqueAction, _umlInputOutputSpecification );
+    }
+}
+
+
+--InputOutputSpecification #5: for SendTask
+relation InputOutputSpecificationToCallOperationAction
+--map BPMN InputOutputSpecification owned by SendTask to corresponding CallOperationAction
+{
+    checkonly domain bpmn _inputOutputSpecification : InputOutputSpecification {
+				opposite(SendTask::ioSpecification) = _sendTask : SendTask {}};
+    --apply stereotype
+    enforce domain bpmnProfile _umlInputOutputSpecification : BPMNProfile::InputOutputSpecification {
+			base_Action = _callOperationAction : UML::CallOperationAction{}};
+    when {
+	SendTaskToCallOperationAction( _sendTask, _callOperationAction, _umlInputOutputSpecification );
+    }
+}
+
+
+--InputOutputSpecification #6: for ServiceTask
+relation InputOutputSpecificationToCallOperationAction
+--map BPMN InputOutputSpecification owned by ServiceTask to corresponding CallOperationAction
+{
+    checkonly domain bpmn _inputOutputSpecification : InputOutputSpecification {
+				opposite(ServiceTask::ioSpecification) = _serviceTask : ServiceTask{} };
+    --apply stereotype
+    enforce domain bpmnProfile _umlInputOutputSpecification : BPMNProfile::InputOutputSpecification {
+			base_Action = _callOperationAction : UML::CallOperationAction{}};
+    when {
+		ServiceTaskToCallOperationAction ( _serviceTask, _callOperationAction, _umlInputOutputSpecification );
+    }
+}
+
+
+--InputOutputSpecification #7: for ReceiveTask
+relation InputOutputSpecificationToAcceptEventAction
+--map BPMN InputOutputSpecification owned by ServiceTask to corresponding CallOperationAction
+{
+    checkonly domain bpmn _inputOutputSpecification : InputOutputSpecification {
+			opposite(ReceiveTask::ioSpecification) = _receiveTask : ReceiveTask{} };
+    --apply stereotype
+    enforce domain bpmnProfile _umlInputOutputSpecification : BPMNProfile::InputOutputSpecification {
+			base_Action = _acceptEventAction : UML::CallOperationAction{}};
+    when {
+	ServiceTaskToCallOperationAction ( _receiveTask, _acceptEventAction, _umlInputOutputSpecification );
+    }
+}
+
+
+relation InputSetToParameterSet
+--map BPMN InputSet to UML ParameterSet
+--only in the case of CallableElements
+{
+    checkonly domain bpmn _inputSet : InputSet {
+			name = _name : String{},
+			opposite( InputOutputSpecification::inputSets ) = _ioSpec : 
+				InputOutputSpecification { 
+					opposite( CallableElement::ioSpecification ) =
+						_callableElement : CallableElement{} } };
+    enforce domain uml _parameterSet : UML::ParameterSet {
+			name = _name,
+			opposite( Behavior::ownedParameterSet ) = _behavior : Behavior {}};
+    --apply stereotype
+    enforce domain bpmnProfile _umlInputSet : BPMNProfile::InputSet {
+				base_ParameterSet = _parameterSet };
+    where {
+	CallableElementToBehavior( _callableElement, _behavior, _umlInputSet );
+    }
+}
+
+
+
+relation OutputSetToParameterSet
+--map BPMN OutputSet to UML ParameterSet
+--only in the case of CallableElements
+
+{
+    checkonly domain bpmn _outputSet : OutputSet {
+			name = _name : String{},
+			opposite( InputOutputSpecification::outputSets ) = _ioSpec : 
+				InputOutputSpecification { 
+					opposite( CallableElement::ioSpecification ) =
+						_callableElement : CallableElement{} } };
+
+    enforce domain uml _parameterSet : UML::ParameterSet {
+			name = _name,
+			opposite( Behavior::ownedParameterSet ) = _behavior : Behavior {}};
+    --apply stereotype
+    enforce domain bpmnProfile _umlOutputSet : BPMNProfile::OutputSet {
+				base_ParameterSet = _parameterSet };
+    where {
+		CallableElementToBehavior( _callableElement, _behavior, _umlOutputSet );
+    }
+}
+
+
+relation InputPinToActivityParameterNode
+--map BPMN InputPin contained in BPMN CallableElements to UML ActivityParameterNode
+{
+    _umlCallableElement : BPMNProfile::CallableElement;
+    checkonly domain bpmn _inputPin : bpmn2::InputSet {
+		name = _name : String{},
+		opposite( InputOutputSpecification::dataInputs ) = _ioSpec : InputOutputSpecification { 
+			opposite(CallableElement::ioSpecification) = _callableElement : CallableElement{} 
+		} 
+	};
+    enforce domain uml _activityParameterNode : UML::ActivityParameterNode {
+		name = _name,
+		activity = _activity : UML::Activity {}
+	};
+    --apply stereotype
+    enforce domain bpmnProfile _umlDataInput : BPMNProfile::DataInput {
+				base_ActivityParameterNode = _activityParameterNode };
+    where {
+		CallableElementToBehavior( _callableElement, _activity, _umlCallableElement );
+    }
+}
+
+
+relation OutputPinToActivityParameterNode
+--map BPMN OutputPin contained in BPMN CallableElements to UML ActivityParameterNode
+{
+    _umlCallableElement : BPMNProfile::CallableElement;
+    checkonly domain bpmn _outputPin : bpmn2::OutputSet{
+	name = _name : String{},
+	opposite( InputOutputSpecification::dataInputs ) = _ioSpec : InputOutputSpecification { 
+		opposite(CallableElement::ioSpecification) = _callableElement : CallableElement {}} };
+    enforce domain uml _activityParameterNode : UML::ActivityParameterNode {
+		name = _name,
+		activity = _activity : UML::Activity {}
+	};
+    --apply stereotype
+    enforce domain bpmnProfile _umlDataOutput : BPMNProfile::DataOutput {
+				base_ActivityParameterNode = _activityParameterNode };
+    where {
+		CallableElementToBehavior( _callableElement, _activity, _umlCallableElement );
+    }
+}
+
+
+relation DataInputToInputPin
+--map BPMN DataInput contained in BPMN Activities to UML InputPin
+{
+    checkonly domain bpmn _dataInput : DataInput {
+		name = _name : String{},
+		opposite( InputOutputSpecification::dataInputs ) = _ioSpec : InputOutputSpecification { 
+				opposite(Activity::ioSpecification) = _activity : Activity{} } };
+    enforce domain uml _inputPin : UML::InputPin {
+			name = _name,
+			Action = _action : UML::Action {}
+	};
+    --apply stereotype
+    enforce domain bpmnProfile _umlDataInput : BPMNProfile::DataInput {
+				base_InputPin = _inputPin };
+    where {
+	ActivityToAction( _activity, _action );
+    }
+}
+
+
+relation DataOutputToOutputPin
+--map BPMN DataOutput contained in BPMN Activities to UML OutputPin
+{
+    checkonly domain bpmn _dataOutput : DataOutput {
+		name = _name : String{},
+		opposite( InputOutputSpecification::dataOutputs ) = _ioSpec : InputOutputSpecification { 
+				opposite(Activity::ioSpecification) = _activity : Activity{} } };
+    enforce domain uml _outputPin : UML::OutputPin {
+			name = _name,
+			Action = _action : UML::Action{} 
+	};
+    --apply stereotype
+    enforce domain bpmnProfile _umlDataOutput : BPMNProfile::DataOutput {
+				base_OutputPin = _outputPin };
+    where {
+		ActivityToAction( _activity, _action);
+    }
+}
+
+
+relation DataObjectToDataStoreNode
+--map BPMN DataObject to UML DataStoreNode
+{
+    checkonly domain bpmn _dataObject : DataObject {
+			name = _name : String {}};
+    enforce domain uml _dataStoreNode : UML::DataStoreNode {
+			name = _name };
+    --apply stereotype
+    enforce domain bpmnProfile _umlDataObject : BPMNProfile::DataObject {
+			base_DataStoreNode = _dataStoreNode };
+}
+
+
+relation DataObjectRefToDataStoreNode
+--map BPMN DataObjectRef to UML DataStoreNode
+{
+    checkonly domain bpmn _dataObjectRef : bpmn2::DataObjectReference {
+			dataObjectRef = _dataObject : DataObject { name = _name : String {}} };
+    enforce domain uml _dataStoreNode : UML::DataStoreNode {
+			name = _name };
+    --apply stereotype
+    enforce domain bpmnProfile _umlDataObjectRef : BPMNProfile::DataObjectReference {
+			base_DataStoreNode = _dataStoreNode };
+}
+
+
+--*******************************
+--	LoopCharacteristics
+--*******************************
+
+relation StandardLoopCharacteristicsToLoopNode
+--map BPMN StandardLoopCharactistics to UML LoopNode
+{
+    checkonly domain bpmn _standardLoopCharacteristics : StandardLoopCharacteristics {
+				--name = _name : String{},
+				loopMaximum = _loopMaximum : Integer{},
+				opposite(Activity::loopCharacteristics) = _activity : Activity {}};
+    enforce domain uml _loopNode : UML::LoopNode {
+				--name = _name,
+				bodyPart = _bodyPart : Action{} };
+    --apply stereotype
+    enforce domain bpmnProfile _umlStandardLoopCharacteristics : BPMNProfile::StandardLoopCharacteristics {
+				base_LoopNode = _loopNode,
+				loopMaximum = _loopMaximum };
+	where {
+		ActivityToAction( _activity, _bodyPart );
+	}
+}
+
+
+
+
+relation MultiInstanceLoopCharacteristicsToExpansionRegion
+--map BPMN MultiInstanceLoopCharacteristics to UML ExpansionRegion
+{
+	checkonly domain bpmn _multiInstanceLoopCharacteristics : MultiInstanceLoopCharacteristics {
+		--name = _name : String{},
+		behavior = _behavior : MultiInstanceBehavior{},
+		opposite(Activity::loopCharacteristics) = _activity : Activity {}};
+	enforce domain uml _expansionRegion : UML::ExpansionRegion {
+		--name = _name,
+		node = _node : Action{}
+	};
+	--apply stereotype
+	enforce domain bpmnProfile _umlMultiInstanceLoopCharacteristics : BPMNProfile::MultiInstanceLoopCharacteristics {
+		base_ExpansionRegion = _expansionRegion,
+		behavior = _behavior
+	};
+	where {
+		ActivityToAction( _activity, _node );
+	}
+}
+
+
+relation MultiInstanceLoopCharacteristicsAddExpansionNode
+-- add expansion node to expansion region if loopCardinality is specified
+{
+	_umlMultiInstanceLoopCharacteristics : BPMNProfile::MultiInstanceLoopCharacteristics; 
+	checkonly domain bpmn _multiInstanceLoopCharacteristics : MultiInstanceLoopCharacteristics { 
+		loopCardinality = _loopCardinality : Expression{}
+	};
+	enforce domain uml _expansionRegion : UML::ExpansionRegion {
+		inputElement = _inputElement : UML::ExpansionNode { } 
+	};
+	where {
+		MultiInstanceLoopCharacteristicsToExpansionRegion( 
+			_multiInstanceLoopCharacteristics, _expansionRegion, _umlMultiInstanceLoopCharacteristics );
+	}
+}
+
+
+relation MultiInstanceLoopCharacteristicsAddInterruptibleRegion
+-- add interruptible region if completion condition is specified
+{
+	-- check if MultiInstanceLoopCharacteristics has completion condition
+	checkonly domain bpmn _multiInstanceLoopCharacteristics : MultiInstanceLoopCharacteristics { 
+		completionCondition = _completionCondition : Expression	{}
+	};
+	-- create interruptible region
+	enforce domain uml _interruptibleActivityRegion : UML::InterruptibleActivityRegion {
+		node = _acceptEventAction : UML::AcceptEventAction{},
+		interruptingEdge = _controlFlow : UML::ControlFlow { } 
+	};
+	--copy completion condition expression to corresponding stereotype 
+	enforce domain bpmnProfile _umlMultiInstanceLoopCharacteristics :
+		BPMNProfile::MultiInstanceLoopCharacteristics {
+		base_ExpansionRegion = _expansionRegion : UML::Region{},
+		completionCondition = _umlCompletionCondition : UML::OpaqueExpression{}
+	};
+	where {
+		MultiInstanceLoopCharacteristicsToExpansionRegion( 
+			_multiInstanceLoopCharacteristics, _expansionRegion,  _umlMultiInstanceLoopCharacteristics );
+		ExpressionToOpaqueExpression( _completionCondition, _umlCompletionCondition,  _umlMultiInstanceLoopCharacteristics );
+	}
+}
+
+
+relation ComplexBehaviorDefinitionToExpansionRegion
+--map BPMN ComplexBehaviorDefinition  to UML ExpansionRegion
+{
+	checkonly domain bpmn _complexBehaviorDefinition : ComplexBehaviorDefinition {
+			--name = _name : String{}
+			id = _id : String{}
+	};
+	enforce domain uml _expansionRegion : UML::ExpansionRegion {
+			--name = _name 
+			name = _id : String{}
+	};
+	--apply stereotype
+	enforce domain bpmnProfile _umlComplexBehaviorDefinition : BPMNProfile::ComplexBehaviorDefinition {
+			base_ControlFlow = _expansionRegion 
+		};
+}
+
+
+
+--*******************************
+--	Lanes and Resources
+--*******************************
+
+
+relation LaneToActivityPartition
+--map BPMN Lane to UML ActivityPartition
+{
+	checkonly domain bpmn _lane : Lane {
+		name = _name : String{} };
+	enforce domain uml _activityPartition : UML::ActivityPartition {
+		name = _name };
+	--apply stereotype
+	enforce domain bpmnProfile _umlLane : BPMNProfile::Lane {
+		base_ActivityPartition = _activityPartition };
+}
+
+
+relation LaneSetToActivityPartition
+--map BPMN LaneSet to UML ActivityPartition
+{
+	checkonly domain bpmn _laneSet : LaneSet {
+		name = _name : String{},
+		FlowElementsContainer = _subProcess : bpmn2::SubProcess {}};
+	enforce domain uml _activityPartition : UML::ActivityPartition {
+		name = _name,
+		isDimension = true };
+	--apply stereotype
+	enforce domain bpmnProfile _umlLaneSet : BPMNProfile::LaneSet {
+		base_ActivityPartition = _activityPartition,
+		flowElementsContainer = _umlSubProcess : UML::StructuredActivityNode{} };
+	where {
+		SubProcessToStructuredActivityNode( _subProcess, _umlSubProcess,  _umlLaneSet );
+	}
+}
+
+
+relation ResourceToClass
+--map BPMN Resource to UML Class
+{
+    checkonly domain bpmn _resource : Resource {
+				name = _name : String {}};
+    enforce domain uml _class : UML::Class {
+				name = _name };
+    --apply stereotype
+    enforce domain bpmnProfile _umlResource : BPMNProfile::Resource {
+				base_Class = _class };
+}
+
+
+relation ResourceRoleToProperty
+--map BPMN ResourceRole to UML Property
+{
+    _bpmnExpression : BPMNProfile::BPMNExpression;
+    checkonly domain bpmn _resourceRole : ResourceRole {
+			name = _name : String{},
+			resourceAssignmentExpression = _resourceAssignmentExpression :
+								ResourceAssignmentExpression {}};
+    enforce domain uml _property : UML::Property {
+			name = _name };
+    --apply stereotype
+    enforce domain bpmnProfile _umlResourceRole : BPMNProfile::ResourceRole {
+			base_Property = _property,
+			resourceAssignmentExpression = _umlResourceAssignmentExpression : UML::Expression{} };
+    where {
+	ExpressionToOpaqueExpression( _resourceAssignmentExpression,
+							_umlResourceAssignmentExpression, _bpmnExpression);
+    }
+}
+
+
+relation PerformerToProperty
+--map Performer BPMN to UML Property
+{
+    _bpmnExpression : BPMNProfile::BPMNExpression;
+    checkonly domain bpmn _performer : Performer {
+			name = _name : String{},
+			resourceAssignmentExpression = _resourceAssignmentExpression :
+								ResourceAssignmentExpression {}};
+    enforce domain uml _property : UML::Property {
+			name = _name };
+    --apply stereotype
+    enforce domain bpmnProfile _umlPerformer : BPMNProfile::Performer {
+			base_Property = _property : UML::Property{},
+			resourceAssignmentExpression = _umlResourceAssignmentExpression : UML::Expression{}
+			
+		};
+    where {
+		ExpressionToOpaqueExpression( _resourceAssignmentExpression,
+							_umlResourceAssignmentExpression, _bpmnExpression);
+    }
+}
+
+
+relation HumanPerformerToProperty
+--map BPMN HumanPerformer to UML Property
+{
+    _bpmnExpression : BPMNProfile::BPMNExpression;
+    checkonly domain bpmn _humanPerformer : HumanPerformer {
+			name = _name : String{},
+			resourceAssignmentExpression = _resourceAssignmentExpression :
+								ResourceAssignmentExpression{} };
+    enforce domain uml _property : UML::Property {
+			name = _name };
+    --apply stereotype
+    enforce domain bpmnProfile _umlHumanPerformer : BPMNProfile::HumanPerformer {
+			base_Property = _property,
+			resourceAssignmentExpression = _umlResourceAssignmentExpression : UML::Expression{} 
+		};
+    where {
+		ExpressionToOpaqueExpression( _resourceAssignmentExpression,
+							_umlResourceAssignmentExpression, _bpmnExpression);
+    }
+}
+
+
+relation PotentialOwnerToProperty
+--map BPMN PotentialOwner to UML Property
+{
+    _bpmnExpression : BPMNProfile::BPMNExpression;
+    checkonly domain bpmn _potentialOwner : PotentialOwner {
+			name = _name : String{},
+			resourceAssignmentExpression = _resourceAssignmentExpression :
+								ResourceAssignmentExpression{} };
+    enforce domain uml _property : UML::Property {
+			name = _name };
+    --apply stereotype
+    enforce domain bpmnProfile _umlPotentialOwner : BPMNProfile::PotentialOwner {
+			base_Property = _property,
+			resourceAssignmentExpression = _umlResourceAssignmentExpression : UML::Expression{}
+	};
+    where {
+	ExpressionToOpaqueExpression( _resourceAssignmentExpression,
+							_umlResourceAssignmentExpression, _bpmnExpression);
+    }
+}
+
+
+relation ResourceParameterToProperty
+--map BPMN ResourceParameter to UML Property
+{
+    checkonly domain bpmn _resourceParameter : ResourceParameter {
+			name = _name : String{} };
+    enforce domain uml _property : UML::Property {
+			name = _name };
+    --apply stereotype
+    enforce domain bpmnProfile _umlResourceParameter : BPMNProfile::ResourceParameter {
+			base_Property = _property };
+}
+
+
+relation ResourceParameterBindingToSlot
+--map BPMN ResourceParameterBinding to UML Slot
+{
+    checkonly domain bpmn _resourceParameterBinding : ResourceParameterBinding {
+			--name = _name : String{} 
+			};
+    enforce domain uml _slot : UML:: Slot {
+			--name = _name
+			 };
+    --apply stereotype
+    enforce domain bpmnProfile _umlResourceParameterBinding : BPMNProfile::ResourceParameterBinding {
+			base_Slot = _slot };
+}
+
+
+--*******************************
+--	Collaborations
+--*******************************
+
+relation CollaborationToCollaboration
+--map BPMN Collaboration to UML Collaboratoin
+{
+       checkonly domain bpmn _bpmnCollaboration : Collaboration {
+			name = _name : String{},
+			isClosed = _isClosed : Boolean{},
+			participants = _participant : Participant{}
+		};
+       enforce domain uml _umlCollaboratoin : UML::Collaboration {
+			name = _name,
+       		ownedAttribute = _property : UML::Property{}
+        };
+       --apply stereotype
+       enforce domain bpmnProfile _umlBpmnCollaboration : BPMNProfile::BPMNCollaboration {
+			base_Collaboration = _umlCollaboratoin,
+			isClosed = _isClosed };
+	where {
+		ParticipantToProperty( _participant, _property, _umlBpmnCollaboration );
+	}
+}
+
+relation InteractionNodeToElement
+--call relations on subtypes of InteractionNode
+{
+	checkonly domain bpmn _interactionNode : InteractionNode { };
+	enforce domain uml _element : UML::Element { };
+	where {
+		ConversationToInformationFlow( _interactionNode, _element );
+		SubConversationToInformationFlow( _interactionNode, _element );
+		CallConversationToCollaborationUse( _interactionNode, _element );
+		ActivityToAction( _interactionNode, _element );
+	}
+}
+
+relation MessageFlowToInformationFlow
+--map BPMN MessageFlow contained in Collaborations to UML InformationFlow
+{
+	checkonly domain bpmn _messageFlow : MessageFlow {
+		name = _name : String{},
+		Collaboration = _collaboration : Collaboration{},
+		sourceRef = _sourceRef : InteractionNode{},
+		targetRef = _targetRef : InteractionNode{} };
+	enforce domain uml _informationFlow : UML::InformationFlow {
+		name = _name,
+		informationSource = _informationSource : Element{},
+		informationTarget = _informationTarget : Element{} };
+	--apply stereotype
+	enforce domain bpmnProfile _umlMessageFlow : BPMNProfile::MessageFlow {
+		base_InformationFlow = _informationFlow,
+		BPMNCollaboration = _umlCollaboration : UML::Collaboration{}
+	};
+	where {
+		CollaborationToCollaboration( _collaboration, _umlCollaboration, _umlMessageFlow );
+		InteractionNodeToElement( _sourceRef, _informationSource );
+		InteractionNodeToElement( _targetRef, _informationTarget );
+	}
+}
+
+relation ConversationToInformationFlow
+--map BPMN Conversation contained in Collaborations to UML InformationFlow
+{
+    _umlCollaboration : UML::Collaboration;
+    checkonly domain bpmn _conversation : Conversation {
+			name = _name : String{},
+			Collaboration = _collaboration : Collaboration{},
+       		messageFlowRefs = _messageFlow : MessageFlow{} };
+    --apply stereotype
+    enforce domain uml _umlConversation : BPMNProfile::Conversation {
+			base_InformationFlow = _informationFlow : UML::InformationFlow {
+				name = _name 
+			},
+			BPMNCollaboration = _umlBpmnCollaboration : BPMNProfile::BPMNCollaboration{},
+      	 	messageFlowRefs = _umlMessageFlow : BPMNProfile::MessageFlow{}
+    };
+    where {
+		CollaborationToCollaboration( _collaboration, _umlCollaboration, _umlBpmnCollaboration );
+		MessageFlowToInformationFlow( _messageFlow, _informationFlow, _umlMessageFlow );
+    }
+}
+
+relation SubConversationToInformationFlow
+--map BPMN SubConversation contained in Collaborations to UML InformationFlow
+{
+	_umlCollaboration : UML::Collaboration;
+    checkonly domain bpmn _subConversation : SubConversation {
+			name = _name : String{},
+			Collaboration = _collaboration : bpmn2::Collaboration{},
+       messageFlowRefs = _messageFlow : MessageFlow{}
+    };
+    --apply stereotype
+    enforce domain bpmnProfile _umlSubConversation : BPMNProfile::SubConversation {
+		base_InformationFlow = _informationFlow : UML::InformationFlow {
+			name = _name },
+		BPMNCollaboration = _umlBpmnCollaboration : BPMNProfile::BPMNCollaboration{},
+       	messageFlowRefs = _umlMessageFlow : BPMNProfile::MessageFlow{}};
+    where {
+		CollaborationToCollaboration( _collaboration, _umlCollaboration, _umlBpmnCollaboration  ); 
+		MessageFlowToInformationFlow( _messageFlow, _informationFlow, _umlMessageFlow );
+    }
+}
+
+
+relation CallConversationToCollaborationUse
+--map BPMN CallConversation contained in Collaborations to UML CollaborationUse
+{
+	
+		_umlCollaboration : UML::Collaboration;
+	checkonly domain bpmn _callConversation : CallConversation {
+		name = _name : String{},
+		calledCollaborationRef = _collaboration : Collaboration{},
+		messageFlowRefs = _messageFlow : MessageFlow{} };
+	--apply stereotype
+	enforce domain bpmnProfile _umlCallConversation : BPMNProfile::CallConversation {
+		_' collaborationUse' = _collaborationUse : UML::CollaborationUse {
+			name = _name
+			
+		},
+		base_InformationFlow = _informationFlow : UML::InformationFlow{},
+		BPMNCollaboration = _umlBpmnCollaboration : BPMNProfile::BPMNCollaboration{},
+		messageFlowRefs = _umlMessageFlow : BPMNProfile::MessageFlow{} };
+	where {
+		CollaborationToCollaboration( _collaboration, _umlCollaboration, _umlBpmnCollaboration ); 
+		MessageFlowToInformationFlow( _messageFlow, _informationFlow, _umlMessageFlow );
+	}
+}
+
+relation MessageFlowAssociationToDependency
+--map BPMN MessageFlowAssociation contained in Collaborations to UML Dependency
+{
+	_umlCollaboration : UML::Collaboration;
+	checkonly domain bpmn _messageFlowAssociation : MessageFlowAssociation {
+		Collaboration = _collaboration : Collaboration{},
+		innerMessageFlowRef = _innerMessageFlowRef : Participant{},
+		outerMessageFlowRef = _outerMessageFlowRef : Participant{} };
+	enforce domain uml _dependency : UML::Dependency { 
+		supplier = _supplier : Property{},
+		client = _client : Property{} };			
+	--apply stereotype
+	enforce domain bpmnProfile _umlParticipantAssociation : BPMNProfile::ParticipantAssociation {
+		base_Dependency = _dependency,
+		BPMNCollaboration = _umlBpmnCollaboration : BPMNProfile::BPMNCollaboration{} };
+	where {
+		CollaborationToCollaboration( _collaboration, _umlCollaboration, _umlBpmnCollaboration  );
+		ParticipantToProperty( _innerMessageFlowRef, _supplier, _umlParticipantAssociation );
+		ParticipantToProperty( _outerMessageFlowRef, _client, _umlParticipantAssociation );
+	}
+}
+
+
+relation ParticipantAssociationToDependency
+--map BPMN ParticipantAssociation contained in Collaborations to UML Dependency
+{
+	_umlCollaboration : UML::Collaboration; 
+	checkonly domain bpmn _participantAssociation : ParticipantAssociation {
+		Collaboration = _collaboration : Collaboration{},
+		innerParticipantRef = _innerParticipantRef : Participant{}, 
+		outerParticipantRef = _outerParticipantRef : Participant{}};
+	enforce domain uml _dependency : UML::Dependency { 
+		supplier = _supplier : Property{},
+		client = _client : Property{} };						
+	--apply stereotype
+	enforce domain bpmnProfile _umlParticipantAssociation : BPMNProfile::ParticipantAssociation {
+		base_Dependency = _dependency,
+		BPMNCollaboration = _umlBpmnCollaboration : BPMNProfile::BPMNCollaboration{} };
+	where {
+		CollaborationToCollaboration( _collaboration, _umlCollaboration, _umlBpmnCollaboration );
+		ParticipantToProperty( _innerParticipantRef, _supplier, _umlParticipantAssociation );
+		ParticipantToProperty( _outerParticipantRef, _client, _umlParticipantAssociation );
+	}
+}
+
+
+relation ConversationNodeToInformationFlow
+-- map BPMN ConversationNode to UML InformationFlow
+{
+	checkonly domain bpmn _conversationNode : ConversationNode {
+		name = _name : String{} };
+	enforce domain uml _informationFlow : UML::InformationFlow {
+		name = _name };
+	--apply stereotype
+	enforce domain bpmnProfile _bpmnConversationNode : BPMNProfile::ConversationNode {
+		base_InformationFlow = _informationFlow	};
+}
+
+
+relation ConversationLinkToDependency
+-- map BPMN ConversationLink to UML Dependency
+{
+	checkonly domain bpmn _conversationLink : ConversationLink {
+		sourceRef = _sourceRef : InteractionNode{},
+		targetRef = _targetRef : InteractionNode{} };
+	enforce domain uml _dependency : UML::Dependency {
+		client = _umlSourceRef : UML::Element{},
+		target = _umlTargetRef : UML::Element{}
+		};
+	enforce domain bpmnProfile _bpmnConversationLink : BPMNProfile::ConversationLink {
+		base_Dependency = _dependency };
+	where {
+		InteractionNodeToElement( _sourceRef, _umlSourceRef );
+		InteractionNodeToElement( _targetRef, _umlTargetRef );
+	}
+}
+
+
+relation ParticipantToProperty
+--map BPMN Participant in Collaborations to UML Property as ownedProperty of UML Collaboration
+{
+	_umlBpmnCollaboration : BPMNProfile::BPMNCollaboration; 
+	checkonly domain bpmn _participant : Participant {
+		name = _name : String{},
+		Collaboration = _collaboration : Collaboration {}};
+	enforce domain uml _property : UML::Property {
+		name = _name,
+		Collaboration = _umlCollaboration : UML::Collaboration{
+			ownedAttribute = _property
+		},
+		owner = _umlCollaboration
+	};
+	 
+	--apply stereotype
+	enforce domain bpmnProfile _umlParticipant : BPMNProfile::Participant {
+		base_Property = _property };
+	when {
+		CollaborationToCollaboration( _collaboration, _umlCollaboration, _umlBpmnCollaboration );
+	}
+}
+
+
+relation PartnerRoleToClass
+--map BPMN PartnerRole to UML Class and set it as the type of corresponding UML Property
+{
+	checkonly domain bpmn _partnerRole : PartnerRole {
+		name = _name : String{},
+		participantRef = _participant : Participant {}};
+	enforce domain uml _class : UML::Class {
+		name = _name };
+	--apply stereotype 
+	enforce domain bpmnProfile _umlPartnerRole : BPMNProfile::PartnerRole {
+		base_Class = _class };
+}
+
+relation PartnerEntityToInstanceSpecification
+--map BPMN PartnerEntity to UML InstanceSpecification, with an InstanceValue
+--and apply it to the defaultValue of corresponding Property
+{
+	checkonly domain bpmn _partnerEntity : PartnerEntity {
+		name = _name : String{},
+		participantRef = _participantRef : Participant{} };
+	enforce domain uml _instanceSpecification : UML::InstanceSpecification {
+		name = _name,
+		InstanceValue = _instanceValue : UML::InstanceValue {
+							owner = _property : Property{} } };
+	--apply stereotype
+	enforce domain bpmnProfile _umlPartnerEntity : BPMNProfile::PartnerEntity {
+		base_InstanceSpecification = _instanceSpecification };
+	when {
+		ParticipantToProperty( _participantRef, _property, _umlPartnerEntity );
+	}
+}
+
+
+relation OperationToOperation
+--map BPMN Operation to UML Operation
+{
+	checkonly domain bpmn _bpmnOperation : Operation {
+		name = _name : String{},
+		implementationRef = _implementationRef : UML::Element{} };
+	enforce domain uml _umlOperation : UML::Operation { 
+		name = _name };
+	--apply stereotype
+	enforce domain bpmnProfile _bpmnumlOperation : BPMNProfile::BPMNOperation {
+		base_Operation = _umlOperation,
+		implementationRef = _implementationRef };
+}
+
+
+relation InterfaceToInterface
+--map BPMN Interface to UML Interface
+{
+	checkonly domain bpmn _bpmnInterface : Interface {
+		name = _name : String{},
+		implementationRef = _implementationRef : bpmn2::BaseElement{} };
+	enforce domain uml _umlInterface : UML:: Interface{ 
+		name = _name };
+	--apply stereotype
+	enforce domain bpmnProfile _bpmnumlInterface : BPMNProfile::BPMNInterface {
+		base_Interface= _umlInterface,
+		implementationRef = _implementationRef };
+}
+
+
+relation CorrelationKeyToClass
+--map BPMN CorrelationKey to UML Class
+{
+	_umlBpmnCollaboration : BPMNProfile::BPMNCollaboration;
+	_umlCollaboration : UML::Collaboration;
+	checkonly domain bpmn _correlationKey : CorrelationKey {
+		name = _name : String{},
+		Collaboration = _collaboration : Collaboration{},
+		ConversationNode = _conversationNode : ConversationNode {}};
+	enforce domain uml _class : UML::Class { 
+		name = _name };
+	--apply stereotype
+	enforce domain bpmnProfile _umlCorrelationKey : BPMNProfile::CorrelationKey {
+		base_Class= _class,
+		BPMNCollaboration = _umlBpmnCollaboration,
+		ConversationNode = _umlconversationNode : BPMNProfile::ConversationNode{}};
+	where {
+		CollaborationToCollaboration( _collaboration, _umlCollaboration, _umlBpmnCollaboration );
+		ConversationNodeToInformationFlow( _conversationNode, _umlconversationNode, _umlCorrelationKey );
+	}
+}
+
+
+relation CorrelationSubscriptionToClass
+--map BPMN CorrelationSubscription to UML Class
+{
+	_umlBpmnProcess : BPMNProfile::BPMNProcess ;
+	checkonly domain bpmn _correlationSubscription : CorrelationSubscription {
+		id = _name : String{},
+		opposite( Process::correlationSubscriptions ) = _process : Process {}};
+	enforce domain uml _class : UML::Class { 
+		name = _name };
+	--apply stereotype
+	enforce domain bpmnProfile _umlCorrelationSubscription : BPMNProfile::CorrelationSubscription {
+		base_Class= _class,
+		opposite( bpmn2::Process::correlationSubscriptions ) = _umlProcess : UML::Activity{}};
+	where {
+		ProcessToActivity( _process, _umlProcess, _umlBpmnProcess );
+	}
+}
+
+
+
+relation CorrelationPropertyToProperty
+--map BPMN CorrelationProperty to UML Property
+{
+	checkonly domain bpmn _correlationProperty : CorrelationProperty {
+		name = _name : String {}};
+	enforce domain uml _class : UML::Class { 
+		name = _name };
+	--apply stereotype
+	enforce domain bpmnProfile _umlCorrelationProperty : BPMNProfile::CorrelationProperty {
+		base_Property = _property : UML::Property{} };
+}
+
+
+relation CorrelationPropertyBindingToProperty
+--map BPMN CorrelationProperty to UML Property
+{
+   checkonly domain bpmn _correlationPropertyBinding : CorrelationPropertyBinding {
+		id = _name : String{},
+		dataPath = _dataPath : FormalExpression {}};
+	enforce domain uml _class : UML::Class { 
+		name = _name };
+	--apply stereotype
+	enforce domain bpmnProfile _umlCorrelationPropertyBinding : BPMNProfile::CorrelationPropertyBinding {
+		base_Property = _property : UML::Property{},
+		dataPath  = _umlFormalExpression : UML::OpaqueExpression{}};
+    where {
+		FormalExpressionToOpaqueExpression ( _dataPath, _umlFormalExpression, _umlCorrelationPropertyBinding );
+    }
+}
+
+
+relation CorrelationPropertyRetrievalExpressionToProperty
+--map BPMN CorrelationProperty to UML Property
+{
+   checkonly domain bpmn _correlationPropertyRetrievalExpression : 
+       CorrelationPropertyRetrievalExpression {
+				id = _name : String{},
+    		 	messagePath = _messagePath : FormalExpression{},
+				messageRef = _message : Message {}};
+	enforce domain uml _class : UML::Class { 
+				name = _name };
+	--apply stereotype
+	enforce domain bpmnProfile _umlCorrelationPropertyRetrievalExpression : BPMNProfile::CorrelationPropertyRetrievalExpression {
+				base_Element = _property : UML::Property{},
+     			messagePath = _umlFormalExpression : UML::Expression{},
+				messageRef = _umlMessage : BPMNProfile::BPMNMessage{}};
+    where {
+		FormalExpressionToOpaqueExpression ( _messagePath, _umlFormalExpression, _umlCorrelationPropertyRetrievalExpression );
+			MessageToClass( _message, _umlMessage);
+    }
+}
+
+
+ --transformation
+
+
+relation CreateMergeNode
+-- map multiple incoming flows in a BPMN Activity to a UML Merge node0
+{
+    checkonly domain bpmn _activity : Activity {
+    	incoming = _incomingSet : Set( SequenceFlow ){},
+    	startQuantity = _startQuantity : Integer {}};
+    --create UML Merge node
+    enforce domain uml _mergeNode : UML::MergeNode { };
+    --connect new Merge node to corresponding UML Action
+    enforce domain bpmnProfile _controlFlow : UML::ControlFlow {
+    	source = _mergeNode,
+    	target = _action : UML::Action {}
+    };
+    where {
+    	_incomingSet->size() > 1;
+    	_startQuantity = 1;
+    	ActivityToAction( _activity, _action);
+    	--connect corresponding control flows to merge node
+    	ConnectFlows( _activity, _mergeNode, _controlFlow );
+    }
+}
+
+
+relation ConnectFlows
+-- connnect incoming controlflows in UML corresponding to sequence flows of Activity in BPMN
+-- to the given UML Merge node
+{
+	_bpmnProfileSequenceFlow : BPMNProfile::SequenceFlow ;
+	checkonly domain bpmn _activity : Activity {
+		incoming = _incoming : SequenceFlow{}
+	};
+	checkonly domain uml _mergeNode : UML::MergeNode { };
+	-- set target of matching control flows to uml merge node
+	enforce domain uml _controlFlow : UML::ControlFlow {
+		target = _mergeNode };
+	where {
+		SequenceFlowToControlFlow( _incoming, _controlFlow, _bpmnProfileSequenceFlow );
+	}
+}
+
+
+relation CreateJoinNode
+-- map multiple incoming flows in a BPMN Activity to a UML Join node
+{
+    checkonly domain bpmn _activity : Activity {
+    	incoming = _incoming : Set( SequenceFlow ){},
+    	startQuantity = _startQuantity : Integer {}
+    };
+    --create UML Join node
+    enforce domain uml _joinNode : UML::JoinNode { 
+    	joinSpec = UML::OpaqueExpression{ 
+    				body = 'StartQuantity',
+    				language = 'BPMNProf' }
+    };
+    --connect new Join node to corresponding UML Action
+    enforce domain uml _controlFlow : UML::ControlFlow {
+    	source = _joinNode,
+    	target = _action : UML::Action{}
+    };
+    where {
+    	_incoming->size() > 1;
+    	_startQuantity > 1;
+    	ActivityToAction( _activity, _action );
+    	--connect corresponding control flows to join node
+    	ConnectFlows( _activity, _joinNode, _controlFlow );
+    }
+}
+
+relation BaseElementToElement{
+	checkonly domain bpmn _baseElement : BaseElement{
+		id = _id : String{}
+	};
+	enforce domain uml _element : NamedElement{
+		name = _id
+	};
+}
+
+}
+
